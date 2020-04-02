@@ -6,4 +6,3 @@
   * [Run your own node](getting_started/run_your_own_node.md)
 * [Architecture](architecture/README.md)
   * [Components](architecture/components.md)
-
