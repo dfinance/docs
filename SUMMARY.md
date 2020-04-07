@@ -6,8 +6,8 @@
   * [Your first transaction](getting_started/your_first_transaction.md)
   * [Run smart contract](getting_started/run_smart_contract.md)
   * [Run your own node](getting_started/run_your_own_node.md)
-* [Architecture](architecture/README.md)
-  * [DNode introduction](architecture/dnode.md)
-  * [DNCli introduction](architecture/dncli.md)
+* Architecture
+  * [Dnode](architecture/dnode.md)
+  * [Dncli](architecture/dncli.md)
   * [Components](architecture/components.md)
 * [Move Book](https://www.move-book.com/)
