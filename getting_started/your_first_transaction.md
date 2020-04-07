@@ -18,7 +18,7 @@ To send 10 DFI coins to this account needs to execute the next command:
 dncli tx bank send <sender> <recipient> 10000000000000000000dfi --fees 1dfi
 ```
 
-Replace **<sender>** with your account address and **<recipient>** with **<recipient>** address.
+Replace **&lt;sender&gt;** with your account address and **&lt;recipient&gt;** with **&lt;recipient&gt;** address.
 
 We use **"10000000000000000000dfi"** as the amount because by default DFI has 18 decimals places, so to send 10 DFI you have to keep decimals.
 
@@ -34,5 +34,5 @@ Also now you can query a recipient account and see how balance updated:
 dncli query account <address>
 ```
 
-Replace **<address>** with recipient address to see updated balance.
+Replace **&lt;address&gt;** with recipient address to see updated balance.
 
