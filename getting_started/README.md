@@ -1,6 +1,6 @@
 # Getting started
 
-Here is a guide on how to install *dncli* command line interface and connect to dfinance testnet.
+Here is a guide on how to install **dncli** command line interface and connect to dfinance testnet.
 
 ## Installation using precompiled binaries
 
