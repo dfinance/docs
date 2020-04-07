@@ -60,7 +60,7 @@ Replace **&lt;address&gt;** with your dfinance address.
 
 - Put file **send.mvir** contains script into the workspace.
 - Open file **send.mvir** in the editor and run the command: **'Move: Compile'**.
-- Check ./out folder in the workspace to see the compiled file.
+- Check **./out** folder in the workspace to see the compiled file.
 - Done!
 
 ### Terminal
