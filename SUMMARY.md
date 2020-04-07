@@ -17,4 +17,7 @@
   * [Scripts](/move_vm/scripts.md)
   * [Script Arguments](/move_vm/script_args.md)
   * [Standard Library](/move_vm/standard_lib.md)
+  * [Events](/move_vm/events.md)
+  * [Resources](/move_vm/resources.md)
+* [Swagger](https://swagger.testnet.dfinance.co)
 * [Move Book](https://www.move-book.com/)

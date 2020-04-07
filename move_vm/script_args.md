@@ -4,7 +4,9 @@ Each script contains **"main"** function, and there could be arguments.
 
 So, with **execute-script** command you can pass arguments, see:
 
-    dncli tx vm execute-script --help
+```shell
+dncli tx vm execute-script --help
+```
 
 **Dncli** **"execute-script"** supports different kind of arguments, as:
 
