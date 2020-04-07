@@ -2,7 +2,7 @@
 
 This document describes how Move VM works, which types of smart contracts transaction supported by dnode, and how to work with smart contracts in case of **dfinance** blockchain.
 
-## Move VM
+## Introduction
 
 Dfinance uses Move VM to implement smart contracts functional: allow users to develop, deploy and execute their smart contracts. The current implementation works due to **dnode** implementation with connection to **[dvm](https://github.com/dfinance/dvm)**. **DVM** is the implementation of **Move VM** with support of GRPC protocol, that allows communication between dvm and dnode.
 
