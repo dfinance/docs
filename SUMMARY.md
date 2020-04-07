@@ -15,4 +15,6 @@
 * [Move VM](/move_vm/README.md)
   * [Modules](/move_vm/modules.md)
   * [Scripts](/move_vm/scripts.md)
+  * [Script Arguments](/move_vm/script_args.md)
+  * [Standard Library](/move_vm/standard_lib.md)
 * [Move Book](https://www.move-book.com/)
