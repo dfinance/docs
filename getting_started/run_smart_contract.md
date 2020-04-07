@@ -84,7 +84,7 @@ We should make a transaction that will contain compiled byte code and put the ri
 
 Do it with the command:
 
-```text
+```shell
 dncli tx vm execute-script ./out/send.mvir.json <recipient> 10000000000000000000 dfi --from my-account --fees 1dfi
 ```
 

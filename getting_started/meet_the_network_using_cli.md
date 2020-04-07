@@ -6,7 +6,7 @@ Here is a step-by-step guide on how to operate with arbitrary dfinance node whic
 
 Let's create your first dfinance account:
 
-```text
+```shell
 dncli keys add my-account
 ```
 
@@ -16,7 +16,7 @@ Go to dfinance [wallet portal](https://wallet.testnet.dfinance.co/) and request 
 
 After this let's query our account with **dncli**:
 
-```text
+```shell
 dncli query account <address>
 ```
 
