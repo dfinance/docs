@@ -25,7 +25,7 @@
   * [Deposit](/pegzone/deposit.md)
   * [Usage](/pegzone/usage.md)
   * [Withdraw](/pegzone/withdraw.md)
-* [Useful Resources]
+* Useful Resources
   * [VSCode Plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
   * [Dfinance](https://dfinance.co) 
   * [Wallet](https://wallet.testnet.dfinance.co)
