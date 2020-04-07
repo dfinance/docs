@@ -19,7 +19,8 @@ For Windows:
 1. Go to **"Program Files"** directory.
 2. Create there **"dn"** directory.
 3. Rename the downloaded file to **"dncli"** and put it into **"dn"** directory.
-4. Launch **"cmd"** and execute: 
+
+Now **"cmd"** and execute 
 
     setx path "%path%;%ProgramFiles%\dn"
 
