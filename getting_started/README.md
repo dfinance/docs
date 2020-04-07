@@ -32,6 +32,8 @@ Check that installation successful done by running the command:
 
 Your should see your current version of **dncli** in output.
 
+## Configuration
+
 Let's configure **dncli** and after go to the next step:
 
     dncli config chain-id dn-testnet
