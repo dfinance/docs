@@ -20,5 +20,7 @@
   * [Events](/move_vm/events.md)
   * [Resources](/move_vm/resources.md)
   * [More](/move_vm/more.md)
+* [Oracles](/oracles/README.md)
+  * [Query Price](/oracles/query_price.md)
 * [Swagger](https://swagger.testnet.dfinance.co)
 * [Move Book](https://www.move-book.com/)
