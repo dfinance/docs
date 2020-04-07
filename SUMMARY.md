@@ -8,5 +8,6 @@
   * [Run your own node](getting_started/run_your_own_node.md)
 * [Architecture](architecture/README.md)
   * [DNode introduction](architecture/dnode.md)
+  * [DNCli introduction](architecture/dncli.md)
   * [Components](architecture/components.md)
 * [Move Book](https://www.move-book.com/)

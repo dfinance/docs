@@ -1,10 +1,6 @@
 # DNode introduction
 
-Introduction to **dnode** - dfinance node. 
-
-## What's dnode
-
-**Dnode** is a blockchain node of dfinance platform. Indeed **dnode** implements core functional of dfinance, reach consensus, securing chain with PoS, processing transactions, p2p connections, etc.
+**DNode** is a blockchain node of dfinance platform. Indeed **dnode** implements core functional of dfinance, reach consensus, securing chain with PoS, processing transactions, p2p connections, etc.
 
 You can find dnode source code into our Github [repository](https://github.com/dfinance/dnode).
 
