@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Getting started](getting_started/README.md)
   * [Meet the network using CLI](getting_started/meet_the_network_using_cli.md)
+  * [Your first transaction](getting_started/your_first_transaction.md)
   * [Run your own node](getting_started/run_your_own_node.md)
-  * [Quick Start](getting_started/quick-start.md)
 * [Architecture](architecture/README.md)
   * [Components](architecture/components.md)

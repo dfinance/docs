@@ -16,7 +16,14 @@ For Mac OS/Linux:
 
 For Windows:
 
-TODO
+1. Go to **"Program Files"** directory.
+2. Create there **"dn"** directory.
+3. Rename the downloaded file to **"dncli"** and put it into **"dn"** directory.
+4. Launch **"cmd"** and execute: 
+
+    setx path "%path%;%ProgramFiles%\dn"
+
+Now restart **"cmd"**.
 
 Check that installation successful done by running the command:
 
@@ -41,7 +48,7 @@ Check that **dncli** configurated correctly:
 
 ## Installation from sources
 
-Before we start you should have a correct 'GOPATH', 'GOROOT' environment variables.
+Before we start you should have a correct 'GOPATH', 'GOROOT' environment variables, also installed [Golang](https://golang.org/).
 
 Required:
 
@@ -68,8 +75,8 @@ So after this command *dncli* will be available from console
 
 And let's build *dncli*:
 
-    GO111MODULE=on go build -o dncli cmd/dncli/main.go
+    GO111MODULE=on go build -o dncli cmd/dncli/main.go dncli
 
 Command must execute fine, after it you can run *dncli*:
 
-    GO111MODULE=on go run cmd/dncli/main.go
+    ./dncli --long

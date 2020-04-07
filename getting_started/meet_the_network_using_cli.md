@@ -14,7 +14,7 @@ Put passphrase to encrypt your account locally, also copy **mnemonic** and keep 
 
 Go to dfinance [wallet portal](https://wallet.testnet.dfinance.co/) and request faucet to send your free DFI. Click there on request **Request Tokens** button and wait for few seconds, DFI coins will appear on your account.
 
-After this let's query our account with _dncli_:
+After this let's query our account with **dncli**:
 
 ```text
 dncli query account <address>
