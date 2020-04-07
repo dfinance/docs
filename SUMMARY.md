@@ -19,5 +19,6 @@
   * [Standard Library](/move_vm/standard_lib.md)
   * [Events](/move_vm/events.md)
   * [Resources](/move_vm/resources.md)
+  * [More](/move_vm/more.md)
 * [Swagger](https://swagger.testnet.dfinance.co)
 * [Move Book](https://www.move-book.com/)
