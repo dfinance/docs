@@ -2,7 +2,9 @@
 
 **Dncli** is a command-line interface application developed to iterate with **dnode**. With **dncli** you can query blockchain data, post transactions, query network status. 
 
-It comes as binary application and can be downloaded from **dnode** GitHub [release page](https://github.com/dfinance/dnode/releases), also **dncli** could be built from sources from **[dnode](https://github.com/dfinance/dnode)** repository.
+It comes as binary application and can be downloaded from **dnode** GitHub **[release page](https://github.com/dfinance/dnode/releases)**. 
+
+Also, **dncli** could be built from sources from **[dnode](https://github.com/dfinance/dnode)** repository.
 
 ## Usage
 

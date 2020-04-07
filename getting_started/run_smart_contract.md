@@ -4,10 +4,10 @@ Here is guide how to run your first smart contract in dfinance network using **d
 
 ## Smart contracts introduction
 
-Dfinance platform allows writing smart contracts in two languages: Mvir and Move. You can choose the one you like best.
+**Dfinance** platform allows writing smart contracts in two languages: Mvir and Move. You can choose the one you like best.
 Current documentation contains examples in Mvir language, Move language examples would be added in the near time.
 
-Dfinance provides [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide), so you can download [VSCode](https://code.visualstudio.com/) and then install the plugin for Mvir/Move with compilation support.
+**Dfinance** provides [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide), so you can download [VSCode](https://code.visualstudio.com/) and then install the plugin for Mvir/Move with compilation support.
 
 Let's do the same we've done in the previous part of documentation, but with smart contracts: transfer coins between two accounts.
 
@@ -39,8 +39,8 @@ VSCode marketplace link: [https://marketplace.visualstudio.com/items?itemName=da
 
 First, go to plugin settings and update default account and compiler URL:
 
-- Default account: use your dfinance address.
-- Compiler: rpc.testnet.dfinance.co:50053
+- Default account: use your **dfinance** address.
+- Compiler: **rpc.testnet.dfinance.co:50053**
 
 Then:
 
@@ -56,7 +56,7 @@ Then:
 }
 ```
 
-Replace **&lt;address&gt;** with your dfinance address.
+Replace **&lt;address&gt;** with your **dfinance** address.
 
 - Put file **send.mvir** contains script into the workspace.
 - Open file **send.mvir** in the editor and run the command: **'Move: Compile'**.
@@ -72,7 +72,7 @@ mkdir out
 dncli query vm compile-script ./send.mvir <address> --to-file ./out/send.mvir.json
 ```
 
-Replace **&lt;address&gt;** with your dfinance address and execute the command.
+Replace **&lt;address&gt;** with your **dfinance** address and execute the command.
 
 You will see new file **./out/send.mvir.json** contains the byte code of the script.
 

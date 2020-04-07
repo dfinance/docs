@@ -1,6 +1,6 @@
 # Dncli introduction
 
-**Dnode** is a blockchain node of dfinance platform. Indeed **dnode** implements core functional of dfinance, reach consensus, securing chain with PoS, processing transactions, p2p connections, etc.
+**Dnode** is a blockchain node of **dfinance** platform. Indeed **dnode** implements core functional of **dfinance**, reach consensus, securing chain with PoS, processing transactions, p2p connections, etc.
 
 You can find dnode source code into our Github [repository](https://github.com/dfinance/dnode).
 
@@ -16,7 +16,7 @@ For details look at the **[testnet-bootstrap](https://github.com/dfinance/testne
 
 ### Build from source
 
-You also always can build **dnode** from source, for it you will have to fetch and build dnode from Github [repository](https://github.com/dfinance/dnode). 
+You also always can build **dnode** from source, for it you will have to fetch and build dnode from Github **[repository](https://github.com/dfinance/dnode)**. 
 
 Also, you have to do:
 
@@ -27,7 +27,7 @@ Also, you have to do:
 
 First of all init your local **dnode** with name of your node:
 
-```text
+```shell
 dnode init <name>
 ```
 
@@ -44,4 +44,4 @@ Also, open config file (*~/.dnode/config.toml*) find **"persistent_peers"** vari
 persistent_peers = "53bf6ba6dc6ec8024a10392deeeacf75d39aeae8@rpc.testnet.dfinance.co:26656"
 ```
 
-Also by building from sources and follow instruction into **dnode** repository you can run your own local testnet to experiment with **dnode** and **dfinance blockchain**, or for contribution. We always welcome your pull requests.
+Also by building from sources and follow instruction into **dnode** repository you can run your own local testnet to experiment with **dnode** and **dfinance** blockchain, or for [contribution](https://github.com/dfinance/dnode#contributors). We always welcome your pull requests.
