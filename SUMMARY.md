@@ -22,4 +22,7 @@
   * [More](/move_vm/more.md)
 * [Oracles](/oracles/README.md)
   * [Query Price](/oracles/query_price.md)
+* [PegZone](/pegzone/README.md)
+  * [Move ETH](/pegzone/move_eth.md)
+  * [Scripting ETH](/pegzone/scripting_eth.md)
 * [Swagger](https://swagger.testnet.dfinance.co)
