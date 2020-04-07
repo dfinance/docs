@@ -15,7 +15,7 @@ Currently, dfinance supports next tickers:
 
 A list of assets could be updated, so the actual one you can get from [API](https://rest.testnet.dfinance.co/oracle/assets).
 
-Currently oracles nodes fetching price from Binance only. Oracle node application published in our Github [repository](https://github.com/dfinance/oracle-app) and we are welcome for contributions: dfinance needs more exchanges and ticker pairs.
+Currently oracles nodes fetching price from Binance only. Oracle node application published in our Github [repository](https://github.com/dfinance/oracle-app) and we are welcome for contributions: **dfinance** needs more exchanges and ticker pairs.
 
 Every block dfinance platform collect posted prices from whitelisted oracles and then choose median to store final price for the last block.
 

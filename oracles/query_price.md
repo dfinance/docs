@@ -9,7 +9,7 @@ module Oracle {
 }
 ```
 
-This is native function, that you can import into your module or script and use. It accepts the u64 parameter as ticker id, because dfinance encode ticker name in case of smart contract to unique u64 id, and returns u64 number as the current price of pair.
+This is native function, that you can import into your module or script and use. It accepts the **u64** parameter as ticker id, because **dfinance** encode ticker name in case of smart contract to unique **u64** id, and returns u64 number as the current price of pair.
 
 ### Ticker id
 
@@ -19,7 +19,7 @@ Ticker id is a hash from string contains a description, pseudo-code to generate 
 ticker = xxHash(to_lower("ETH_USDT"))
 ```
 
-Dnode and dncli already support everything from the box, so you don't need to worry and do any manipulations.
+**Dnode** and **dncli** already support everything from the box, so you don't need to worry and do any manipulations.
 
 In your code you can write already with hashed value:
 
@@ -28,7 +28,7 @@ let price : u64;
 price = Oracle.get_price(#"ETH_USDT");
 ```
 
-In the case of passing arguments, you can make a script that receives ticket id as u64 argument:
+In the case of passing arguments, you can make a script that receives ticket id as **u64** argument:
 
 **Mvir**
 
@@ -48,13 +48,13 @@ You can easily pass a ticker id argument so (ticker id will be converted automat
 dncli tx vm execute-script <script file> #"ETH_USDT" --from <account> --fees 1dfi
 ```
 
-So dncli detects that it hashed value and automatically makes a right hash from it.
+So **dncli** detects that it hashed value and automatically makes a right hash from it.
 
 ### Price
 
-By default returned u64 price has reserved 8 decimals places. 
+By default returned u64 price has reserved **8 decimals places**. 
 
-Means price for ETH_USDT as 100.02 will be presented as 10002000000. 
+Means price for ETH_USDT as **100.02** will be presented as **10002000000**. 
 
 To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/currentprice/eth_usdt), ETH_USDT part, how price presented there.
 
