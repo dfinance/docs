@@ -1,4 +1,4 @@
-# Deposit ETH
+# Deposit to PegZone
 
 In this documentation explained how to deposit testnet ropsten ETH from your account to **dfinance** testnet.
 
@@ -29,4 +29,3 @@ Parameters of **exchange** function:
 ## Contracts
 
 Currenty deployed Bridge contract can be found by address: [0xdF42faf3F0531748227334B2C29d8de3150c2425](https://ropsten.etherscan.io/address/0xdF42faf3F0531748227334B2C29d8de3150c2425).
-
