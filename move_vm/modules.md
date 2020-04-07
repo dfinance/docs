@@ -18,7 +18,7 @@ module Math {
 }
 ```
 
-Let's compile this module using VSCode plugin or **dncli**. As during compilation, the compiler requires an address of module owner, to keep the owner in compiled code and verify during deploy (that transaction sender and address using during compilation match), we will need to provide an address.
+Let's compile this module using [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide) or **dncli**. As during compilation, the compiler requires an address of module owner, to keep the owner in compiled code and verify during deploy (that transaction sender and address using during compilation match), we will need to provide an address.
 
 Using **dncli**, we can do it so:
 

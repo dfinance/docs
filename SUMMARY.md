@@ -25,4 +25,10 @@
   * [Deposit](/pegzone/deposit_eth.md)
   * [Usage](/pegzone/usage.md)
   * [Withdraw](/pegzone/withdraw_eth.md)
-* [Swagger](https://swagger.testnet.dfinance.co)
+* [Useful Resources]
+  * [VSCode Plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
+  * [Dfinance](https://dfinance.co) 
+  * [Wallet](https://wallet.testnet.dfinance.co)
+  * [Explorer](https://explorer.testnet.dfinance.co) 
+  * [Community](https:/community.dfinance.co)
+  * [Swagger](https://swagger.testnet.dfinance.co)

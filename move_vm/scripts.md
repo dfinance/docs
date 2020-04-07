@@ -29,7 +29,7 @@ Replace **&lt;address&gt;** with the address you used during deploy of the modul
 The script accepts two arguments in function **"main"**, then calculate sum with provided arguments, and fire event with this sum. Both arguments are **u64**
 integers. 
 
-Compile using VSCode plugin or **dncli**.
+Compile using [VSCode](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide) plugin or **dncli**.
 
 With **dncli**:
 
