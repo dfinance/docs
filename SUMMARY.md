@@ -22,9 +22,9 @@
 * [Oracles](/oracles/README.md)
   * [Query Price](/oracles/query_price.md)
 * [PegZone](/pegzone/README.md)
-  * [Deposit](/pegzone/deposit_eth.md)
+  * [Deposit](/pegzone/deposit.md)
   * [Usage](/pegzone/usage.md)
-  * [Withdraw](/pegzone/withdraw_eth.md)
+  * [Withdraw](/pegzone/withdraw.md)
 * [Useful Resources]
   * [VSCode Plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
   * [Dfinance](https://dfinance.co) 
