@@ -23,4 +23,3 @@
 * [Oracles](/oracles/README.md)
   * [Query Price](/oracles/query_price.md)
 * [Swagger](https://swagger.testnet.dfinance.co)
-* [Move Book](https://www.move-book.com/)
