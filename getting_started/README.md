@@ -79,4 +79,4 @@ And let's build *dncli*:
 
 Command must execute fine, after it you can run *dncli*:
 
-    ./dncli --long
+    ./dncli version --long

@@ -12,4 +12,7 @@
   * [DFI](/architecture/dfi.md)
   * [Fees & Gas](/architecture/fees_gas.md)
   * [Components](architecture/components.md)
+* [Move VM](/move_vm/README.md)
+  * [Modules](/move_vm/modules.md)
+  * [Scripts](/move_vm/scripts.md)
 * [Move Book](https://www.move-book.com/)
