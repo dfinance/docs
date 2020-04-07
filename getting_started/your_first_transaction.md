@@ -1,5 +1,9 @@
 # Your first transaction
 
+Here is guide how to send your first transaction in dfinance network using **dncli**.
+
+## Transfer coins to recipient
+
 Let's try to send basic coins transfer transactions between two accounts.
 
 Create another account:
