@@ -1,4 +1,3 @@
-
 # Query Price
 
 Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Oracle](https://github.com/dfinance/dvm/blob/master/lang/stdlib/oracle.mvir) module:
@@ -11,7 +10,7 @@ module Oracle {
 
 This is native function, that you can import into your module or script and use. It accepts the **u64** parameter as ticker id, because **dfinance** encode ticker name in case of smart contract to unique **u64** id, and returns u64 number as the current price of pair.
 
-### Ticker id
+## Ticker id
 
 Ticker id is a hash from string contains a description, pseudo-code to generate id looks so:
 
@@ -42,23 +41,23 @@ main(ticker: u64) {
 }
 ```
 
-You can easily pass a ticker id argument so (ticker id will be converted automatically):
+You can easily pass a ticker id argument so \(ticker id will be converted automatically\):
 
-```shell
+```text
 dncli tx vm execute-script <script file> #"ETH_USDT" --from <account> --fees 1dfi
 ```
 
 So **dncli** detects that it hashed value and automatically makes a right hash from it.
 
-### Price
+## Price
 
-By default returned u64 price has reserved **8 decimals places**. 
+By default returned u64 price has reserved **8 decimals places**.
 
-Means price for ETH_USDT as **100.02** will be presented as **10002000000**. 
+Means price for ETH\_USDT as **100.02** will be presented as **10002000000**.
 
-To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/currentprice/eth_usdt), ETH_USDT part, how price presented there.
+To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/currentprice/eth_usdt), ETH\_USDT part, how price presented there.
 
-### Write a script
+## Write a script
 
 Let's write a script that takes any price ticker, getting a price and fire event with the price.
 
@@ -83,7 +82,7 @@ main(ticker: u64) {
 
 Compile it, and let's execute several transactions with different tickers:
 
-```shell
+```text
 dncli tx vm execute-script <compiled file> #"ETH_USDT" --from <account> --fees 1dfi
 dncli tx vm execute-script <compiled file> #"BTC_USDT" --from <account> --fees 1dfi
 dncli tx vm execute-script <compiled file> #"DFI_ETH"  --from <account> --fees 1dfi
@@ -91,7 +90,7 @@ dncli tx vm execute-script <compiled file> #"DFI_ETH"  --from <account> --fees 1
 
 You can query transaction ids to see how events with price fired.
 
-### Usage in module
+## Usage in module
 
 Similarly, you can write your module, that will use the price from oracles.
 
@@ -108,3 +107,4 @@ module PriceRequest {
 ```
 
 And then just use it in your scripts.
+

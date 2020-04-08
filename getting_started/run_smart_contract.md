@@ -4,14 +4,14 @@ Here is guide how to run your first smart contract in dfinance network using **d
 
 ## Smart contracts introduction
 
-**Dfinance** platform allows writing smart contracts in two languages: Mvir and Move. You can choose the one you like best.
-Current documentation contains examples in Mvir language, Move language examples would be added in the near time.
+**Dfinance** platform allows writing smart contracts in two languages: Mvir and Move. You can choose the one you like best. Current documentation contains examples in Mvir language, Move language examples would be added in the near time.
 
 **Dfinance** provides [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide), so you can download [VSCode](https://code.visualstudio.com/) and then install the plugin for Mvir/Move with compilation support.
 
 Let's do the same we've done in the previous part of documentation, but with smart contracts: transfer coins between two accounts.
 
 **Mvir**
+
 ```rust
 import 0x0.Account;
 import 0x0.Coins;
@@ -25,7 +25,7 @@ main(recipient: address, amount: u128, denom: bytearray) {
 }
 ```
 
-As you can see we import core modules from address 0x0. This address (0x0) reserved for core modules. Then we withdraw Coin resource from the sender account and deposit to the recipient.
+As you can see we import core modules from address 0x0. This address \(0x0\) reserved for core modules. Then we withdraw Coin resource from the sender account and deposit to the recipient.
 
 ## Compilation
 
@@ -39,15 +39,15 @@ VSCode marketplace link: [https://marketplace.visualstudio.com/items?itemName=da
 
 First, go to plugin settings and update default account and compiler URL:
 
-- Default account: use your **dfinance** address.
-- Compiler: **rpc.testnet.dfinance.co:50053**
+* Default account: use your **dfinance** address.
+* Compiler: **rpc.testnet.dfinance.co:50053**
 
 Then:
 
-- Create a new workspace.
-- Put a configuration file into the workspace under .mvconfig.json name.
+* Create a new workspace.
+* Put a configuration file into the workspace under .mvconfig.json name.
 
-```json
+```javascript
 {
     "network": "dfinance",
     "defaultAccount": "<address>",
@@ -58,16 +58,16 @@ Then:
 
 Replace **&lt;address&gt;** with your **dfinance** address.
 
-- Put file **send.mvir** contains script into the workspace.
-- Open file **send.mvir** in the editor and run the command: **'Move: Compile'**.
-- Check **./out** folder in the workspace to see the compiled file.
-- Done!
+* Put file **send.mvir** contains script into the workspace.
+* Open file **send.mvir** in the editor and run the command: **'Move: Compile'**.
+* Check **./out** folder in the workspace to see the compiled file.
+* Done!
 
 ### Terminal
 
 Put the script under **'./send.mvir'** name and compile using dncli:
 
-```shell
+```text
 mkdir out
 dncli query vm compile-script ./send.mvir <address> --to-file ./out/send.mvir.json
 ```
@@ -84,7 +84,7 @@ We should make a transaction that will contain compiled byte code and put the ri
 
 Do it with the command:
 
-```shell
+```text
 dncli tx vm execute-script ./out/send.mvir.json <recipient> 10000000000000000000 dfi --from my-account --fees 1dfi
 ```
 
@@ -94,4 +94,5 @@ As you see arguments passed to execute-script match arguments in script function
 
 In nutshell, we have done the same, but instead of using **dncli** native functional for sending coins, we used a smart contract.
 
-Now, once the transaction confirmed and executed, you can query the recipient account again to see how balance changed (should be increased by 10 DFI).
+Now, once the transaction confirmed and executed, you can query the recipient account again to see how balance changed \(should be increased by 10 DFI\).
+

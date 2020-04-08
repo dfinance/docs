@@ -8,3 +8,4 @@ Dfinance network consists of several main components:
 * **compiler** - Mvir/Move language compiler packed in GRPC server, also requires **dnode** to functional correctly.
 
 In next documentation parts all components reviewed with details, so go on.
+

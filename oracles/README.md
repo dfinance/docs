@@ -1,4 +1,4 @@
-# Oracles Price Feed
+# Oracles
 
 This document described how to work with oracles data in case of **dfinance** network.
 
@@ -8,10 +8,10 @@ This document described how to work with oracles data in case of **dfinance** ne
 
 Currently, dfinance supports next tickers:
 
-- **ETH_USDT** - [Binance](https://www.binance.com/en/trade/ETH_USDT).
-- **BTC_USDT** - [Binance](https://www.binance.com/en/trade/BTC_USDT).
-- **DFI_ETH** - simulation.
-- **DFI_BTC** - simulation.
+* **ETH\_USDT** - [Binance](https://www.binance.com/en/trade/ETH_USDT).
+* **BTC\_USDT** - [Binance](https://www.binance.com/en/trade/BTC_USDT).
+* **DFI\_ETH** - simulation.
+* **DFI\_BTC** - simulation.
 
 A list of assets could be updated, so the actual one you can get from [API](https://rest.testnet.dfinance.co/oracle/assets).
 
@@ -20,3 +20,4 @@ Currently oracles nodes fetching price from Binance only. Oracle node applicatio
 Every block dfinance platform collect posted prices from whitelisted oracles and then choose median to store final price for the last block.
 
 This functional implemented by dnode in [x/oracle](https://github.com/dfinance/dnode/tree/master/x/oracle) module.
+

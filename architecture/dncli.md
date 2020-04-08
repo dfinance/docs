@@ -1,16 +1,16 @@
-# Dnode introduction
+# Dncli
 
-**Dncli** is a command-line interface application developed to iterate with **dnode**. With **dncli** you can query blockchain data, post transactions, query network status. 
+**Dncli** is a command-line interface application developed to iterate with **dnode**. With **dncli** you can query blockchain data, post transactions, query network status.
 
-It comes as binary application and can be downloaded from **dnode** GitHub **[release page](https://github.com/dfinance/dnode/releases)**. 
+It comes as binary application and can be downloaded from **dnode** GitHub [**release page**](https://github.com/dfinance/dnode/releases).
 
-Also, **dncli** could be built from sources from **[dnode](https://github.com/dfinance/dnode)** repository.
+Also, **dncli** could be built from sources from [**dnode**](https://github.com/dfinance/dnode) repository.
 
 ## Usage
 
-After installation of **dncli**, it should be configured: 
+After installation of **dncli**, it should be configured:
 
-```shell
+```text
 dncli config chain-id dn-testnet
 dncli config output json
 dncli config indent true
@@ -21,7 +21,7 @@ dncli config node 127.0.0.1:26657
 
 After configuration you can try a **dncli**:
 
-```shell
+```text
 dncli version
 dncli --help
 ```
@@ -32,17 +32,17 @@ There are two types of commands of **dncli**: transaction commands and query com
 
 You can try it yourself and see available commands:
 
-```shell
+```text
 dncli tx --help
 dncli query --help
 ```
 
 Also, you can use **--help** for a displayed commands, e.g.:
 
-```shell
+```text
 dncli tx vm --help
 dncli tx vm execute-script --help
-    
+
 dncli query vm --help
 dncli query vm compile-script --help
 ```
@@ -51,9 +51,10 @@ dncli query vm compile-script --help
 
 **Dncli** by default connects to local **dnode** and **compiler**, to connect to remote one node or launched testnet change configuration settings:
 
-```shell
+```text
 dncli config node rpc.testnet.dfinance.co:26657
 dncli config compiler rpc.testnet.dfinance.co:50053
 ```
 
-Also, the **compiler** address could be passed just using **--compiler** flag, during the execution of compile commands (compile-script/compile-module).
+Also, the **compiler** address could be passed just using **--compiler** flag, during the execution of compile commands \(compile-script/compile-module\).
+

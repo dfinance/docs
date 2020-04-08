@@ -10,9 +10,11 @@ Install downloaded **dncli** binary.
 
 For Mac OS/Linux:
 
-    mv <downloaded binary path> ./dncli
-    chmod +x ./dncli
-    mv ./dncli /usr/local/bin/dncli
+```text
+mv <downloaded binary path> ./dncli
+chmod +x ./dncli
+mv ./dncli /usr/local/bin/dncli
+```
 
 For Windows:
 
@@ -20,15 +22,19 @@ For Windows:
 2. Create there **"dn"** directory.
 3. Rename the downloaded file to **"dncli"** and put it into **"dn"** directory.
 
-Now **"cmd"** and execute 
+Now **"cmd"** and execute
 
-    setx path "%path%;%ProgramFiles%\dn"
+```text
+setx path "%path%;%ProgramFiles%\dn"
+```
 
 Now restart **"cmd"**.
 
 Check that installation successful done by running the command:
 
-    dncli version
+```text
+dncli version
+```
 
 Your should see your current version of **dncli** in output.
 
@@ -36,18 +42,22 @@ Your should see your current version of **dncli** in output.
 
 Let's configure **dncli** and after go to the next step:
 
-    dncli config chain-id dn-testnet
-    dncli config output json
-    dncli config indent true
-    dncli config trust-node true
-    dncli config compiler rpc.testnet.dfinance.co:50053
-    dncli config node rpc.testnet.dfinance.co:26657
+```text
+dncli config chain-id dn-testnet
+dncli config output json
+dncli config indent true
+dncli config trust-node true
+dncli config compiler rpc.testnet.dfinance.co:50053
+dncli config node rpc.testnet.dfinance.co:26657
+```
 
 These configurations will connect your local **dncli** with remote testnet nodes.
 
 Check that **dncli** configurated correctly:
 
-    dncli status
+```text
+dncli status
+```
 
 ## Installation from sources
 
@@ -55,31 +65,40 @@ Before we start you should have a correct 'GOPATH', 'GOROOT' environment variabl
 
 Required:
 
-    * golang 1.13.8 or later.
-    * protoc - here is [installation instruction](https://www.grpc.io/docs/quickstart/go/).
+* golang 1.13.8 or later.
+* protoc - here is [installation instruction](https://www.grpc.io/docs/quickstart/go/).
 
 ### Build and Install using Makefile
 
-
 Clone dfinance node repository to suitable place
 
-    git clone https://github.com/dfinance/dnode.git
+```text
+git clone https://github.com/dfinance/dnode.git
+```
 
-Build and install *dncli* as binary using Makefile
+Build and install _dncli_ as binary using Makefile
 
-    make install-dncli
+```text
+make install-dncli
+```
 
-So after this command *dncli* will be available from console
+So after this command _dncli_ will be available from console
 
-    dncli version --long
-
+```text
+dncli version --long
+```
 
 ### Build without Makefile
 
-And let's build *dncli*:
+And let's build _dncli_:
 
-    GO111MODULE=on go build -o dncli cmd/dncli/main.go dncli
+```text
+GO111MODULE=on go build -o dncli cmd/dncli/main.go dncli
+```
 
-Command must execute fine, after it you can run *dncli*:
+Command must execute fine, after it you can run _dncli_:
 
-    ./dncli version --long
+```text
+./dncli version --long
+```
+

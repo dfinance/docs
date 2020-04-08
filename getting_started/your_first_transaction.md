@@ -8,13 +8,13 @@ Let's try to send basic coins transfer transactions between two accounts.
 
 Create another account:
 
-```shell
+```text
 dncli keys add recipient
 ```
 
 To send **10 DFI** coins to this account needs to execute the next command:
 
-```shell
+```text
 dncli tx bank send <sender> <recipient> 10000000000000000000dfi --fees 1dfi
 ```
 
@@ -24,13 +24,13 @@ We use **"10000000000000000000dfi"** as the amount because by default **DFI** ha
 
 After execution, you will get transaction id in the output. To see transaction status execute:
 
-```shell
+```text
 dncli query tx <txId>
 ```
 
 Also now you can query a recipient account and see how balance updated:
 
-```shell
+```text
 dncli query account <address>
 ```
 
