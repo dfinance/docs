@@ -1,24 +1,29 @@
 # Fees & Gas
 
-Each transaction in **dfinance** protocol requires fees to be paid from the sender, also each transaction contains the maximum amount of **gas** that can be used during transaction execution. This **gas** value uses during write/read data from storage, and also during the execution of smart contracts with **Move VM**.
+Every transaction in **dfinance** protocol requires sender to pay fee, as well as it has maximum amount of **gas** which can be used during transaction execution. Gas is a cost of operation in our blockchain (such as executing smart-contract in **VM** or basic read-write operations on blockchain storage).
 
 ## Gas
 
-The gas amount is an integer and could be provided by **--gas** flag in **dncli**:
+The gas amount is an integer and is set by `--gas` option in **dncli**:
 
-```text
+```bash
 dncli tx bank send <sender> <recipient> <amount> --gas <value>
 ```
 
 ## Fees
 
-Even **dfinance** supports different currencies, like **ETH**, transaction fees can be paid only in **DFI**.
+Although **dfinance** supports different currencies (like ETH**), transaction fees can be paid only in **DFI** currency.
 
+Currently, minimal fee amount is **1 DFI**. Though this value may vary for each validator in the network as it's for validator to decide his minimal fee. This means that even if your transaction fee was too low for current validator, it still will be added in one of the next few blocks by validators whose minimal fee matches your value.
+
+<!--
 The minimum amount of fees by default is **1 DFI**, but this value could be configured by each validator in the network, which means each validator can have the different minimum amount of fee to include your transaction in a block.
+-->
 
-So when you send any transaction, you must provide at minimum **1 DFI** as fees, in **dncli** use **--fees** flag to provide gas, e.g.:
+So when you send any transaction, you must provide minimal feee in **1 DFI**. In `dncli` use `--fees` option to set it, e.g.:
 
-```text
+```bash
+# 1dfi MUST be written without spaces between amount and denom
 dncli tx vm execute-script <script.mvir.json> <args,...> --fees 1dfi
 ```
 
