@@ -2,11 +2,11 @@
 
 ## What is dfinance
 
-**dfinance** \[diːfaɪˈnæns\] is a decentralized platform that facilitates the creation of a variety of DeFi instruments and products, oriented at people with no or limited programming skills.
+**dfinance** \[diːfaɪˈnæns\] is a truly decentralized infrastructure dedicated to various financial and DeFi instruments and products designed for people.
 
-It is designed from scratch to unlock the creative potential present in so-called “financial engineers”, individuals that are well versed and experienced in the financial industry \(products and services\), whom, despite their expertise, have difficulty translating their ideas into actual products due to technical challenges. **dfinance** will enable them to rapidly implement their ideas and test drive them in a secure environment.
+Our infrastructure on the one hand adopts all the properties of a good blockchain: high transaction throughput with low latency, unconstrained scalability, granular security and quite well designed smart contracts engine. On the other hand it proposes a simple and solid set of instruments to engage all you knowledge in finances on the way to success of your project.
 
-The emphasis is on recreating the environments which these creators are most used to, with the learning curve being as steep as possible. Once ideas prove themselves worthy of time and resource investment, it leverage by assembling a team to create further extensive functionality for these products.
+We proudly offer you to employ the **dfinance** infrastructure to deploy your ideas and focus on your aim.
 
 ## Parts
 
