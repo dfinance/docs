@@ -1,48 +1,55 @@
-# Dnode
+# dnode
 
-**Dnode** is a blockchain node of **dfinance** platform. Indeed **dnode** implements core functional of **dfinance**, reach consensus, securing chain with PoS, processing transactions, p2p connections, etc.
+**dnode** is a blockchain node of **dfinance** platform. **dnode** implements core functional of **dfinance**: reach consensus, securing chain with PoS, processing transactions, p2p connections, etc.
 
-You can find dnode source code into our Github [repository](https://github.com/dfinance/dnode).
+You can find dnode source code [in dnode Github repository](https://github.com/dfinance/dnode).
 
 ## Run your dnode
 
-Currently, you can connect to the testnet and have your own local node synched. There are two possible ways to do it.
+There are multiple ways of running your dnode. We've sorted them from easiest to more complicated.
 
-### Docker
+### Join testnet with testnet-bootstrap
 
-Just use public docker-compose version of **dnode** and get locally installed dnode via docker.
+For fastest and simplest launch we recommend using [testnet-bootstrap repos](https://github.com/dfinance/testnet-bootstrap). We've created it to make testnet-node launch as easy as it can be. See 4-step launch guide in its [README](https://github.com/dfinance/testnet-bootstrap#dfinance-testnet-bootstrap).
 
-For details look at the [**testnet-bootstrap**](https://github.com/dfinance/testnet-bootstrap) Github repository.
+### Docker Image
+
+Pre-built docker image is available on Docker Hub: [here's the link](https://hub.docker.com/r/dfinance/dnode). It already includes binary file for dnode so if you feel like it - go on - try it yourself.
 
 ### Build from source
 
-You also always can build **dnode** from source, for it you will have to fetch and build dnode from Github [**repository**](https://github.com/dfinance/dnode).
+You can build **dnode** from source, to do so fetch and build dnode from [Github repository](https://github.com/dfinance/dnode).
 
-Also, you have to do:
+After that you need to:
 
-* Install **dvm** and **compiler**, from [**dmv**](https://github.com/dfinance/dvm) Github repository.
-* Launch **dvm** and **compiler** on recommended ports \(or configure your own ports both in **dnode** and **dvm**, **compiler**\).
+* Install **dvm** and **compiler**, from [dvm repository](https://github.com/dfinance/dvm).
+* Launch **dvm** and **compiler** with recommended port setting (or configure your own ports in both dnode and dvm+compiler).
 
-## Testnet configuration
+## Testnet configuration (for docker or manual run)
 
-First of all init your local **dnode** with name of your node:
+First of all init your local **dnode** with moniker (name) of your node:
 
 ```text
-dnode init <name>
+dnode init <moniker>
 ```
 
-After, download testnet version of **genesis.json**:
+After that download testnet version of `genesis.json`:
 
-```text
+```bash
+# remove default genesis created on init
 rm ~/.dnode/config/genesis.json
-curl rpc.testnet.dfinance.co:26657/genesis | jq '.result.genesis' | less > ~/.dnode/config/genesis.json
+
+# this solution requires 'jq' util to be installed
+curl rpc.testnet.dfinance.co:26657/genesis | jq '.result.genesis' > ~/.dnode/config/genesis.json
 ```
 
-Also, open config file \(_~/.dnode/config.toml_\) find **"persistent\_peers"** variable and replace with:
+Then open config file (_~/.dnode/config.toml_) find `persistent_peers` line and replace it with:
 
-```text
+```bash
 persistent_peers = "53bf6ba6dc6ec8024a10392deeeacf75d39aeae8@rpc.testnet.dfinance.co:26656"
 ```
 
-Also by building from sources and follow instruction into **dnode** repository you can run your own local testnet to experiment with **dnode** and **dfinance** blockchain, or for [contribution](https://github.com/dfinance/dnode#contributors). We always welcome your pull requests.
+More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.
 
+If you'd like to contribute - [see contributors section](https://github.com/dfinance/dnode#contributors).
+If you have any questions feel free to open [new issue](https://github.com/dfinance/dnode/issues/new).
