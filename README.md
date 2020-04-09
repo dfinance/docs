@@ -2,7 +2,7 @@
 
 ## What is dfinance
 
-**dfinance** \[diːfaɪˈnæns\] is a truly decentralized infrastructure dedicated to a various financial and DeFi instruments and products designed for people.
+**dfinance** \[diːfaɪˈnæns\] is a truly decentralized infrastructure dedicated to various financial and DeFi instruments and products designed for people.
 
 Our infrastructure on the one hand adopts all the properties of a good blockchain: high transaction throughput with low latency, unconstrained scalability, granular security and quite well designed smart contracts engine. On the other hand it proposes a simple and solid set of instruments to engage all you knowledge in finances on the way to success of your project.
 
