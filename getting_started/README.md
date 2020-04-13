@@ -76,13 +76,13 @@ Clone dfinance node repository to suitable place
 git clone https://github.com/dfinance/dnode.git
 ```
 
-Build and install _dncli_ as binary using Makefile
+Build and install **dncli** as binary using Makefile
 
 ```text
 make install-dncli
 ```
 
-So after this command _dncli_ will be available from console
+So after this command **dncli** will be available from console
 
 ```text
 dncli version --long
@@ -90,13 +90,13 @@ dncli version --long
 
 ### Build without Makefile
 
-And let's build _dncli_:
+And let's build **dncli**:
 
 ```text
 GO111MODULE=on go build -o dncli cmd/dncli/main.go dncli
 ```
 
-Command must execute fine, after it you can run _dncli_:
+Command must execute fine, after it you can run **dncli**:
 
 ```text
 ./dncli version --long
