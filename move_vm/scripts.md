@@ -47,36 +47,38 @@ You can verify execution with querying transaction by id.
 
 There will be even fired event, that will contain **"keep"** status and the resulting sum, like:
 
-```javascript
-{
-    "type":"contract_events",
-    "attributes":[
-        {
+```json
+[
+   {
+      "type":"contract_events",
+      "attributes":[
+         {
             "key":"guid",
             "value":"0x030000000000000077616c6c657400000000000095abf6bf9cd39a391567e4508becb25d0f1b98de"
-        },
-        {
+         },
+         {
             "key":"sequence_number",
             "value":"0"
-        },
-        {
+         },
+         {
             "key":"type",
             "value":"U64"
-        },
-        {
+         },
+         {
             "key":"data",
             "value":"0x2300000000000000"
-        }
-    ]
-    },
-    {
-    "type":"contract_status",
-    "attributes":[
-        {
+         }
+      ]
+   },
+   {
+      "type":"contract_status",
+      "attributes":[
+         {
             "key":"status",
             "value":"keep"
-        }
-    ]
-    }
+         }
+      ]
+   }
+]
 ```
 
