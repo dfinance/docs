@@ -27,7 +27,7 @@
   * [Withdraw](pegzone/withdraw.md)
 * [Useful Resources](useful-resources/README.md)
   * [Dfinance Website](https://dfinance.co)
-  * [Community](https:/community.dfinance.co)
+  * [Community](https://community.dfinance.co)
   * [Block Explorer](https://explorer.testnet.dfinance.co)
   * [Wallet](https://wallet.testnet.dfinance.co)
   * [VSCode Move IDE](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
