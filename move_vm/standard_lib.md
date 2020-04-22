@@ -9,5 +9,5 @@ import 0x0.Account;
 import 0x0.Coins;
 ```
 
-You can look for actual standard modules in [dmv](https://github.com/dfinance/dvm/tree/master/lang) repository.
+You can look for actual standard modules in [dvm](https://github.com/dfinance/dvm/tree/master/lang) repository.
 
