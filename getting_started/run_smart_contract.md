@@ -4,77 +4,42 @@ Here is guide how to run your first smart contract in dfinance network using **d
 
 ## Smart contracts introduction
 
-**Dfinance** platform allows writing smart contracts in two languages: Mvir and Move. You can choose the one you like best. Current documentation contains examples in Mvir language, Move language examples would be added in the near time.
+**Dfinance** platform allows writing smart contracts in Move language developed by Libra Facebook and can be executed by Move VM. 
 
-**Dfinance** provides [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide), so you can download [VSCode](https://code.visualstudio.com/) and then install the plugin for Mvir/Move with compilation support.
+Also, **Dfinance** provides [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide), so you can download [VSCode](https://code.visualstudio.com/) and then install the plugin for Move language with syntax and errors highligh, compilation support, and event language server support from box.
 
 Let's do the same we've done in the previous part of documentation, but with smart contracts: transfer coins between two accounts.
 
-**Mvir**
-
 ```rust
-import 0x0.Account;
-import 0x0.Coins;
+script {
+	use 0x0::Account;
+	use 0x0::DFI;
 
-main(recipient: address, amount: u128, denom: bytearray) {
-    let coin: Coins.Coin;
-    coin = Account.withdraw_from_sender(move(amount), move(denom));
-
-    Account.deposit(move(recipient), move(coin));
-    return;
+	fun main(recipient: address, dfi_amount: u128) {
+		Account::pay_from_sender<DFI::T>(recipient, dfi_amount);
+	}
 }
 ```
 
-As you can see we import core modules from address 0x0. This address \(0x0\) reserved for core modules. Then we withdraw Coin resource from the sender account and deposit to the recipient.
+As you can see we import core modules from address 0x0. This address \(0x0\) reserved for core modules. We import two modules: [Account](https://github.com/dfinance/dvm/blob/master/lang/stdlib/account.move) and [DFI](https://github.com/dfinance/dvm/blob/master/lang/stdlib/dfi.move). Account module is developed to work with Dfinance accounts from Move, DFI module contains a resources to work with DFI balances of accounts. We will talk more about resources later in this documentation or you can read about them in [Move Book](https://move-book.com) (book about Move language developed by our team).
+
+The script code just using function `pay_from_sender` of Account module, that function withdraw balance resource balance from sender account and
+put withdrawn resource to recipient account. Another methods and options how to work with balances you can read in our [Standard Library](/move_vm/standard_lib.md) documentation. 
+
+Let's continue with such plain example and compile, execute our script.
 
 ## Compilation
 
-Here is two options how you can compile your Mvir/Move modules/scripts.
-
-### Move IDE for **VSCode**
-
-Repository is here: [https://github.com/damirka/vscode-move-ide](https://github.com/damirka/vscode-move-ide)
-
-VSCode marketplace link: [https://marketplace.visualstudio.com/items?itemName=damirka.move-ide](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
-
-First, go to plugin settings and update default account and compiler URL:
-
-* Default account: use your **dfinance** address.
-* Compiler: **rpc.testnet.dfinance.co:50053**
-
-Then:
-
-* Create a new workspace.
-* Put a configuration file into the workspace under .mvconfig.json name.
-
-```javascript
-{
-    "network": "dfinance",
-    "defaultAccount": "<address>",
-    "compiler": "rpc.testnet.dfinance.co:50053",
-    "compilerDir": "./out"
-}
-```
-
-Replace **&lt;address&gt;** with your **dfinance** address.
-
-* Put file **send.mvir** contains script into the workspace.
-* Open file **send.mvir** in the editor and run the command: **'Move: Compile'**.
-* Check **./out** folder in the workspace to see the compiled file.
-* Done!
-
-### Terminal
-
-Put the script under **'./send.mvir'** name and compile using dncli:
+Put the script under **'./send.move'** name or use [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide) and compile using dncli:
 
 ```text
 mkdir out
-dncli query vm compile-script ./send.mvir <address> --to-file ./out/send.mvir.json
+dncli query vm compile-script ./send.move <address> --to-file ./out/send.move.json
 ```
 
 Replace **&lt;address&gt;** with your **dfinance** address and execute the command.
 
-You will see new file **./out/send.mvir.json** contains the byte code of the script.
+You will see new file **'./out/send.move.json'** contains the byte code of the script.
 
 ## Run
 
@@ -85,7 +50,7 @@ We should make a transaction that will contain compiled byte code and put the ri
 Do it with the command:
 
 ```text
-dncli tx vm execute-script ./out/send.mvir.json <recipient> 10000000000000000000 dfi --from my-account --fees 1dfi
+dncli tx vm execute-script ./out/send.move.json <recipient> 10000000000000000000 --from my-account --fees 1dfi
 ```
 
 Replace **&lt;recipient&gt;** with recipient address account and execute, you can see the result of command execution by querying txId.
@@ -95,4 +60,3 @@ As you see arguments passed to execute-script match arguments in script function
 In nutshell, we have done the same, but instead of using **dncli** native functional for sending coins, we used a smart contract.
 
 Now, once the transaction confirmed and executed, you can query the recipient account again to see how balance changed \(should be increased by 10 DFI\).
-

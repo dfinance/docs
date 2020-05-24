@@ -11,7 +11,7 @@ Required:
 * [Metamask](https://metamask.io/)
 * Ropsten ETH - request from some known faucet, for example, use this [one](https://faucet.ropsten.be/).
 
-Go to [wallet](https://wallet.testnet.dfinance.co) portal and recover/create an account.
+Go to [wallet](https://testnet.dfinance.co) portal and recover/create an account.
 
 Then click on **"Transfer"** button to transfer **ETH** from your Metamask account to **dfinance** blockchain.
 
@@ -31,5 +31,4 @@ Parameters of **exchange** function:
 
 ## Contracts
 
-Currenty deployed Bridge contract can be found by address: [0xdF42faf3F0531748227334B2C29d8de3150c2425](https://ropsten.etherscan.io/address/0xdF42faf3F0531748227334B2C29d8de3150c2425).
-
+Currenty deployed Bridge contract can be found by address: [0xE2FD9D943FFC4adD2F5952025f32E9a984B3637b](https://ropsten.etherscan.io/address/0xE2FD9D943FFC4adD2F5952025f32E9a984B3637b).

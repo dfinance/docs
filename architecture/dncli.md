@@ -13,8 +13,9 @@ dncli config chain-id dn-testnet
 dncli config output json
 dncli config indent true
 dncli config trust-node true
-dncli config compiler 127.0.0.1:50053
-dncli config node 127.0.0.1:26657
+dncli config compiler tcp://127.0.0.1:50053
+dncli config node http://127.0.0.1:26657
+dncli config keyring-backend file
 ```
 
 After configuring, you can try it:
@@ -50,11 +51,11 @@ dncli query vm compile-script --help
 **dncli** by default connects to local **dnode** (at localhost:26657) and **compiler** (at localhost:50053). To connect to remote node or launched testnet, change these configuration settings:
 
 ```bash
-dncli config node rpc.testnet.dfinance.co:26657
-dncli config compiler rpc.testnet.dfinance.co:50053
+dncli config compiler tcp://rpc.testnet.dfinance.co:50053
+dncli config node http://rpc.testnet.dfinance.co:26657
 ```
 
-Also, **compiler** address could be passed as `--compiler` option during execution of commands requiring compillation. Those are:
+Also, **compiler** address could be passed as `--compiler` option during execution of commands requiring compilation. Those are:
 
 ```bash
 # use --help to see full list of options
