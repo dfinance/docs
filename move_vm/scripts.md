@@ -2,6 +2,8 @@
 
 As already mentioned, **dfinance** supports transaction scripting. It means users can compile and execute scripts. Different between modules here is that you can't deploy script and use it again in the future, each script executing by new transaction every time.
 
+The Move Book also has a section about [scripts](https://move-book.com/chapters/function.html) in Move language.
+
 ## Write a script
 
 Let's write a basic script, accepts two arguments, a and b values, and then using module math make a sum from these two numbers and then fire events.

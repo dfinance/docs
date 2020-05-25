@@ -4,6 +4,8 @@ There are two types of smart contracts in **dfinance**: module and script.
 
 Difference between them that module could be deployed into blockchain storage and be stored under the deployer account, while scripts exist only within one transaction and can't be deployed.
 
+The Move Book also has a section about [modules](https://move-book.com/chapters/module.html) in Move language.
+
 ## Write a module
 
 Let's see an example of a small module that will just add two numbers \(a and b\):
