@@ -35,7 +35,7 @@ script {
     use 0x0::Oracle;
 
     fun main(ticker: u64) {
-        let price = Oracle.get_price(move(ticker));
+        let _ = Oracle::get_price(ticker);
     }
 }
 ```
@@ -66,7 +66,7 @@ script {
     use 0x0::Oracle;
 
     fun main(ticker: u64) {
-        let price = Oracle.get_price(move(ticker));
+        let price = Oracle::get_price(ticker);
 
         let event_handle = Event::new_event_handle<u64>();
 		Event::emit_event(&mut event_handle, price);
@@ -95,8 +95,8 @@ Something like:
 module PriceRequest {
     use 0x0::Oracle;
 
-    public get_eth_usdt_price(): u64 {
-        return Oracle.get_price(#"ETH_USDT");
+    public fun get_eth_usdt_price(): u64 {
+        Oracle::get_price(#"ETH_USDT")
     }
 }
 ```

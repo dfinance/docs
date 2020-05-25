@@ -1,3 +1,5 @@
+Out of date.
+
 ### Move IDE for **VSCode**
 
 Repository is here: [https://github.com/damirka/vscode-move-ide](https://github.com/damirka/vscode-move-ide)
