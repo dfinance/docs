@@ -44,4 +44,3 @@ https://rest.testnet.dfinance.co/txs?contract_events.guid=0x06000000000000007761
 ```
 
 Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) for details.
-

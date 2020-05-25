@@ -33,4 +33,3 @@
   * [VSCode Move IDE](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
   * [Swagger UI](https://swagger.testnet.dfinance.co)
   * [Move Book](https://move-book.com)
-

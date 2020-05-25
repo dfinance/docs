@@ -13,4 +13,3 @@ Move VM is developed by [Libra](https://libra.org/), a blockchain platform by Fa
 * Supports transaction scripting, means transaction could contain user script, that will be not stored in the blockchain as smart contract, but will be executed during current transaction processing.
 
 All this makes Move VM much safe than other blockchains VMs. For example, the famous DAO hack just couldn't happen, because of the resource model and byte code verification.
-

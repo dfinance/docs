@@ -28,4 +28,3 @@ Nice UML to see how it works:
 For more details, include smart contracts, check our [eth-peg-zone](https://github.com/dfinance/eth-peg-zone) repository.
 
 **IMPORTANT:** contracts deployed to ropsten testnet, so use only ropsten ETH. This is very experimental software, it could contain critical issues and bugs, use only testnet coins/tokens.
-

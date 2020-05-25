@@ -120,4 +120,3 @@ So deposit function creates a new resource, while withdraw check if resource exi
 You can try to compile and deploy module, and then via script call deposit with your hash of your secret value, and then withdraw by passing your secret value.
 
 Here is [repository](https://github.com/borispovod/cold-storage-example) to help you, contains module and scripts examples.
-

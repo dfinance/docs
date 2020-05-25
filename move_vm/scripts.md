@@ -81,4 +81,3 @@ There will be even fired event, that will contain **"keep"** status and the resu
    }
 ]
 ```
-
