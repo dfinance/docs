@@ -1,8 +1,8 @@
 # Script Arguments
 
-Each script contains **"main"** function, and there could be arguments.
+Each script can contain only one function, usually, it's **"main"**, but you can define it however you want, and this function could have arguments and will be executed when you send a transaction with your script.
 
-So, with **execute-script** command you can pass arguments, see:
+So, with **execute-script** command you can pass arguments to script function, see help:
 
 ```text
 dncli tx vm execute-script --help

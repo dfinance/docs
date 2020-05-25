@@ -18,6 +18,7 @@
   * [Standard Library](move_vm/standard_lib.md)
   * [Events](move_vm/events.md)
   * [Resources](move_vm/resources.md)
+  * [Move Book](move_vm/move_book.md)
   * [More](move_vm/more.md)
 * [Oracles](oracles/README.md)
   * [Query Price](oracles/query_price.md)

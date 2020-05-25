@@ -1,6 +1,6 @@
 # More
 
-Here is collection of documentations/tutorials, that can help learn more about Move VM, Mvir and Move:
+Here is a collection of docs and tutorials, that can help learn more about Move VM and Move language:
 
 * [Libra Documentation](https://developers.libra.org/)
 * [Move Technical Paper](https://developers.libra.org/docs/assets/papers/libra-move-a-language-with-programmable-resources/2019-09-26.pdf)
