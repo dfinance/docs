@@ -167,7 +167,7 @@ script {
         let dfi = Account::withdraw_from_sender(amount);
 
         // Deposit DFI coins in exchange to UDST.
-        Swap6::create<DFI::T, Coins::USDT>(dfi, price);
+        Swap::create<DFI::T, Coins::USDT>(dfi, price);
     }
 }
 ```
@@ -185,7 +185,7 @@ script {
         let usdt = Account::withdraw_from_sender(price);
         
         // Deposit USDT to swap coins.
-        Swap6::swap<DFI::T, Coins::USDT>(seller, usdt);
+        Swap::swap<DFI::T, Coins::USDT>(seller, usdt);
     }
 }
 ```
