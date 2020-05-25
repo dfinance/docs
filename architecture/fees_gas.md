@@ -10,9 +10,11 @@ The gas amount is an integer and is set by `--gas` option in **dncli**:
 dncli tx bank send <sender> <recipient> <amount> --gas <value>
 ```
 
+The default gas parameter using by **dncli** is `500000`, if you see errors related to **"out of gas"** issue, try to increase gas while you find the optimal one for your transaction.
+
 ## Fees
 
-Although **dfinance** supports different currencies (like ETH**), transaction fees can be paid only in **DFI** currency.
+Although **dfinance** supports different currencies (like ETH), transaction fees can be paid only in **DFI** currency.
 
 Currently, minimal fee amount is **1 DFI**. Though this value may vary for each validator in the network as it's for validator to decide his minimal fee. This means that even if your transaction fee was too low for current validator, it still will be added in one of the next few blocks by validators whose minimal fee matches your value.
 
@@ -26,4 +28,3 @@ So when you send any transaction, you must provide minimal feee in **1 DFI**. In
 # 1dfi MUST be written without spaces between amount and denom
 dncli tx vm execute-script <script.mvir.json> <args,...> --fees 1dfi
 ```
-

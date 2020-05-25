@@ -9,7 +9,7 @@
 * [Architecture](architecture/README.md)
   * [Dnode](architecture/dnode.md)
   * [Dncli](architecture/dncli.md)
-  * [DFI](architecture/dfi.md)
+  * [DFI & Other coins](architecture/dfi.md)
   * [Fees & Gas](architecture/fees_gas.md)
 * [Move VM](move_vm/README.md)
   * [Modules](move_vm/modules.md)

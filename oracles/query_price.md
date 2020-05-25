@@ -3,8 +3,10 @@
 Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Oracle](https://github.com/dfinance/dvm/blob/master/lang/stdlib/oracle.mvir) module:
 
 ```rust
-module Oracle {
-    native public get_price(ticker: u64): u64;
+address 0x0 {
+    module Oracle {
+        native public fun get_price(ticker: u64): u64;
+    }
 }
 ```
 
@@ -23,21 +25,18 @@ ticker = xxHash(to_lower("ETH_USDT"))
 In your code you can write already with hashed value:
 
 ```rust
-let price : u64;
-price = Oracle.get_price(#"ETH_USDT");
+let price = Oracle::get_price(#"ETH_USDT");
 ```
 
 In the case of passing arguments, you can make a script that receives ticket id as **u64** argument:
 
-**Mvir**
-
 ```rust
-import 0x0.Oracle;
+script {
+    use 0x0::Oracle;
 
-main(ticker: u64) {
-    let price: u64;
-    price = Oracle.get_price(move(ticker));
-    return; 
+    fun main(ticker: u64) {
+        let price = Oracle.get_price(move(ticker));
+    }
 }
 ```
 
@@ -61,22 +60,18 @@ To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/curr
 
 Let's write a script that takes any price ticker, getting a price and fire event with the price.
 
-**Mvir**
-
 ```rust
-import 0x0.Oracle;
-import 0x0.Account;
+script {
+    use 0x0::Event;
+    use 0x0::Oracle;
 
-main(ticker: u64) {
-    let handle: Account.EventHandle<u64>;
-    let price: u64;
+    fun main(ticker: u64) {
+        let price = Oracle.get_price(move(ticker));
 
-    price = Oracle.get_price(move(ticker));
-
-    handle = Account.new_event_handle<u64>();
-    Account.emit_event<u64>(&mut handle, move(price));
-    Account.destroy_handle<u64>(move(handle));
-    return;
+        let event_handle = Event::new_event_handle<u64>();
+		Event::emit_event(&mut event_handle, price);
+		Event::destroy_handle(event_handle);
+    }
 }
 ```
 
@@ -98,7 +93,7 @@ Something like:
 
 ```rust
 module PriceRequest {
-    import 0x0.Oracle;
+    use 0x0::Oracle;
 
     public get_eth_usdt_price(): u64 {
         return Oracle.get_price(#"ETH_USDT");
