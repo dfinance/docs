@@ -9,4 +9,3 @@ dncli tx currencies destroy-currency [chainID] [symbol] [amount] [recipient] [fl
 ```
 
 In the case of Ethereum, **chainID** will be **ETH**, and **symbol** also **ETH**, **recipient** is your address in Ethereum network \(e.g. **0x01849...**\).
-

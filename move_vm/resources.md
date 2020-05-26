@@ -1,123 +1,202 @@
 # Resources
 
-Resources are the main new future brings by **Move VM**. Resources are a special type of data in Move VM, that controls belongs to accounts and to state storage.
+Resource is the main feature of **Move VM**. Resource is a special type in Move VM, which has strict rules of usage - therefore more safety, and is created to work with digital assets.
 
-It means, when you create a new resource in your smart contract, you can bring your resource to your account, or another user account in case your module allows it, also, you can check if resource exists on account, and also destroys it. Everything in within your module rules.
+Resource type can only be defined and managed in a single module. This module sets rules for accessing, destroying, transfering and checking existence of resources defined in it.
 
 ## Develop a resource
 
-Let's try to create a new module contains resource, let's say it will be just hold your coins and withdraw them from account only in case your ask you provide right secret value.
+Let's create a swap module, that will allow us to swap coins between users.
 
-Secret value in your case can be anything encoded with sha3\_256 script. Let's call this module **MyColdStorage**. To make it easy, we will hold only one coin resources, deposited once, not multiplay:
-
-**Important: Mvir is very low level language, so could contains very specific constructions, you can use Move language instead.**
-
-**Mvir**
+We will make it easy, it will support only one swap per coin pair, which means, you can't create multiple swaps using the same pair in the same account. Just two functions - to publish your offer and to allow other users to swap it for specified price.
 
 ```rust
-module MyColdStorage {
-    import 0x0.Hash;
-    import 0x0.Coins;
+module Swap {
+    use 0x0::Dfinance;
+    use 0x0::Transaction;
+    use 0x0::Account;
 
-    resource T {
-        secretKey: bytearray, 
-        deposit: Coins.Coin,
+    // The resource of module which contains swap parameters.
+    resource struct T<Offered, Expected>{
+        offered: Dfinance::T<Offered>,
+        price: u128,
     }
 
-    public deposit(secretKey: bytearray, deposit: Coins.Coin) acquires T {
-        let d_ref: &mut Self.T;
+    // Create a swap deal with two coin pairs: Offered and Expected.
+    public fun create<Offered, Expected>(offered: Dfinance::T<Offered>, price: u128) {
+        let sender = Transaction::sender();
+        Transaction::assert(!exists<Offered, Expected>(sender), 101);
 
-        assert(copy(secretKey) != h"", 101);
+        move_to_sender<T<Offered, Expected>>(
+            T<Offered, Expected> {
+                offered: offered,
+                price
+            }
+        );
+    }
 
-        if (exists<T>(get_txn_sender())) {
-            d_ref = borrow_global_mut<T>(get_txn_sender());
-            assert(*(&copy(d_ref).secretKey) == h"", 102);
+    // Get the price of the swap deal.
+    public fun get_price<Offered, Expected>(seller: address): u128 acquires T {
+        let offer = borrow_global<T<Offered, Expected>>(seller);
+        offer.price
+    }
 
-            *(&mut copy(d_ref).secretKey) = move(secretKey);
-            *(&mut move(d_ref).deposit) = move(deposit);
-        } else {
-            move_to_sender<T>(T {
-                secretKey: move(secretKey),
-                deposit: move(deposit),
-            });
+    // Change price before swap happens.
+    public fun change_price<Offered, Expected>(new_price: u128) acquires T {
+        let offer = borrow_global_mut<T<Offered, Expected>>(Transaction::sender());
+        offer.price = new_price;
+    }
+
+    // Swap coins and deposit them to accounts: both creator and buyer.
+    public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) acquires T {
+       let T<Offered, Expected> { offered, price } = move_from<T<Offered, Expected>>(seller);
+       let exp_value = Dfinance::value<Expected>(&exp);
+
+       Transaction::assert(exp_value == price, 102);
+       Account::deposit(seller, exp);
+       Account::deposit_to_sender(offered);
+    }
+
+    // Check if the swap pair already exists for the account.
+    public fun exists<Offered, Expected>(addr: address): bool {
+        ::exists<T<Offered, Expected>>(addr)
+    }
+}
+```
+
+Provided code creates new module **"Swap"** and resource named **"T"** \(default name for default resource in modules\), which holds information about the deal.
+
+To create a swap use **"create"** function, to make an exchange use **"swap"** function. Other methods in this module provide ability to get/set price, check if swap option already exists at specific address. All methods use generics Offered and Expected, which allow them to make unique resources for each swap.
+
+Even though there's a lot of code inside, we'll focus on 4 main methods: `borrow_global_mut`, `move_to_sender`, `move_from`, `exists` and on `acquires` keyword.
+
+### move_to_sender\<T\>(T)
+
+When resource is created, it needs to be moved to address (otherwise it will never be actually created - there's no 'contract storage' - only accounts). It is important to note that newly created resource can be moved only to the sender of transaction - this makes initalization of resource impossible at someone else's address.
+
+To move resource to sender `move_to_sender<T>(T)` method is used - as obvious as it is - where T is a generic type and instance of this type - a resource:
+
+```rust
+// Create a swap deal with two coin pairs: Offered and Expected.
+public fun create<Offered, Expected>(offered: Dfinance::T<Offered>, price: u128) {
+    let sender = Transaction::sender();
+    Transaction::assert(!exists<Offered, Expected>(sender), 101);
+
+    move_to_sender<T<Offered, Expected>>(
+        T<Offered, Expected> {
+            offered: offered,
+            price
         }
-
-        return;
-    }
-
-    public withdraw(rawKey: bytearray): Coins.Coin acquires T {
-        let hash: bytearray;
-        let d_ref: &mut Self.T;
-        let to_withdraw: Coins.Coin;
-
-        assert(exists<T>(get_txn_sender()), 103);
-
-        d_ref = borrow_global_mut<T>(get_txn_sender());
-
-        hash = Hash.sha3_256(move(rawKey));
-        assert(move(hash) == *(&copy(d_ref).secretKey), 104);
-
-        to_withdraw = *(&copy(d_ref).deposit);
-        *(&mut copy(d_ref).secretKey) = h"";
-        *(&mut move(d_ref).deposit) = Coins.zero_coin();
-
-        return move(to_withdraw);
-    }
+    );
 }
 ```
 
-Provided code create new module **"MyColdStorage"** and resource named **"T"** \(default name for default resource in modules\), that contains secret key and also your coins deposit.
+In `create` function we created new resource which contains information about the swap, and moved it to sender. After this, we can start working with our resources.
 
-Don't look for now at scary pointers and references, we just interesting in few methods, indeed: **borrow\_global\_mut**, **move\_to\_sender**, **exists**, and also **acquires** notation.
+### exists\<T\>(address)
 
-### move\_to\_sender
-
-So created resource should be stored under account, indeed here we call **move\_to\_sender** to move resource under sender of account. **move\_to\_sender** restrict cases when someone else can move resource to your account, and in such case secure it.
-
-Let's see how it's done in **Mvir**:
+Allow us to check if the resource already exists on the specific address or not:
 
 ```rust
-move_to_sender<T>(T {
-    secretKey: move(secretKey),
-    deposit: move(deposit),
-});
-```
-
-In **"deposit"** function we move created resource to sender. After this, we can start work with our resource.
-
-### exists
-
-```rust
-if (exists<T>(get_txn_sender())) {
-    ...
+// Check if swap pair already exists for account.
+public fun exists<Offered, Expected>(addr: address): bool {
+    ::exists<T<Offered, Expected>>(addr)
 }
 ```
 
-Also, in **"deposit"** function we verifies that resource already exists, in such case, we verify with assert, that current secret key is empty \(means deposit already withdrawn\), and then fill borrowed resource with new deposit and secret key.
-
-### borrow\_global\_mut
+### borrow_global_mut\<T\>(address)
 
 ```rust
-d_ref = borrow_global_mut<T>(get_txn_sender());
+// Change price before swap happens.
+public fun change_price<Offered, Expected>(new_price: u128) acquires T {
+    let offer = borrow_global_mut<T<Offered, Expected>>(Transaction::sender());
+    offer.price = new_price;
+}
 ```
 
-Allows to get a mutable reference to a resource, that could be changed then. There is also just **borrow\_global**, that allows to borrow just reference, not mutable.
+Allows getting a mutable reference to a resource, that could be changed then. There is also just `borrow_global` to get immutable reference:
+
+```rust
+// Get the price of the swap deal.
+public fun get_price<Offered, Expected>(seller: address): u128 acquires T {
+    let offer = borrow_global<T<Offered, Expected>>(seller);
+    offer.price
+}
+```
+
+`borrow_global` gives immutable reference to a resource stored under address. You can use this reference to read resource but can't change it.
 
 ### acquires
 
+Every function which accesses already created resource must have `acquires` keyword in it signature after which acquired resources are listed. Look at the usage of `borrow_global` and `borrow_global_mut` again. Resource `T` is acquired by both methods `get_price` and `change_price`.
+
+### move_from\<T\>(address)
+
 ```rust
-public deposit(secretKey: bytearray, deposit: Coins.Coin) acquires T {
-    ...
+public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) acquires T {
+    let T<Offered, Expected> { offered, price } = move_from<T<Offered, Expected>>(seller);
+    let exp_value = Dfinance::value<Expected>(&exp);
+
+    Transaction::assert(exp_value == price, 102);
+    Account::deposit(seller, exp);
+    Account::deposit_to_sender(offered);
 }
 ```
 
-Acquires notation after function definition means that current function can change exists resource, this why both **"deposit"** and **"withdraw"** functions has this notation.
+`move_from<T>(address)` function moves the resource from address. After taking resource off account, it must be used - either destructured (like in example below) or passed to another function. Resources are not automatically destroyed like regular variables and their lifetime must be specified.
 
-So deposit function creates a new resource, while withdraw check if resource existing, borrow a resource, withdraw deposit, if hashes matches, and then put empty **bytearray** to **secretKey** \(so resource can be reused\).
+### Summary
+
+So `create` function creates a new resource, `swap` function allows to swap (deposit coins to both accounts and *destroy* resource T); we've also added methods to get price of the deal and to change it.
 
 ### Deploy
 
-You can try to compile and deploy module, and then via script call deposit with your hash of your secret value, and then withdraw by passing your secret value.
+You can try to compile and deploy module, and then via script call deposit with hash of your secret value, and then withdraw by passing your secret value.
 
-Here is [repository](https://github.com/borispovod/cold-storage-example) to help you, contains module and scripts examples.
+[Here is repository](https://github.com/borispovod/cold-storage-example) to help you. It already contains module and scripts examples.
 
+### Scripts
+
+Here are a few scripts examples, of how you can work with Swap module (don't forget to replace {{sender}} with your address):
+
+**Create**
+
+```rust
+script {
+    use {{sender}}::Swap;
+    use 0x0::DFI;
+    use 0x0::Coins;
+    use 0x0::Account;
+
+    fun main(amount: u128, price: u128) {
+        let dfi = Account::withdraw_from_sender(amount);
+
+        // Deposit DFI coins in exchange to UDST.
+        Swap::create<DFI::T, Coins::USDT>(dfi, price);
+    }
+}
+```
+
+**Swap**
+
+```rust
+script {
+    use {{sender}}::Swap;
+    use 0x0::DFI;
+    use 0x0::Coins;
+    use 0x0::Account;
+
+    fun main(seller:address, price: u128) {
+        let usdt = Account::withdraw_from_sender(price);
+
+        // Deposit USDT to swap coins.
+        Swap::swap<DFI::T, Coins::USDT>(seller, usdt);
+    }
+}
+```
+
+### More about resources
+
+Resources are the most interesting and the most complex topic in Move language. But once you've gotten the idea, the rest is easy.
+
+To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/chapters/resource.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.

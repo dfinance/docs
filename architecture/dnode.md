@@ -46,7 +46,7 @@ curl rpc.testnet.dfinance.co:26657/genesis | jq '.result.genesis' > ~/.dnode/con
 Then open config file (_~/.dnode/config.toml_) find `persistent_peers` line and replace it with:
 
 ```bash
-persistent_peers = "53bf6ba6dc6ec8024a10392deeeacf75d39aeae8@rpc.testnet.dfinance.co:26656"
+persistent_peers = "07cca7d6934f87c0fa72c430c9e52717bcc525b9@rpc.testnet.dfinance.co:26656"
 ```
 
 More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.

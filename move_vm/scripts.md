@@ -2,36 +2,32 @@
 
 As already mentioned, **dfinance** supports transaction scripting. It means users can compile and execute scripts. Different between modules here is that you can't deploy script and use it again in the future, each script executing by new transaction every time.
 
+The Move Book also has a section about [scripts](https://move-book.com/chapters/function.html) in Move language.
+
 ## Write a script
 
 Let's write a basic script, accepts two arguments, a and b values, and then using module math make a sum from these two numbers and then fire events.
 
-**Mvir**
-
 ```rust
-import 0x0.Account;
-import <address>.Math;
+script {
+   use 0x0::Event;
+   use {{sender}}::Math;
 
-main(a: u64, b: u64) {
-    let sum: u64;
-    let handle: Account.EventHandle<u64>;
-
-    sum = Math.add(move(a), move(b));
-
-    handle = Account.new_event_handle<u64>();
-    Account.emit_event<u64>(&mut handle, move(sum));
-    Account.destroy_handle<u64>(move(handle));
-    return;
+   fun main(a: u64, b: u64) {
+      let sum = Math::add(a, b);
+   
+      let event_handle = Event::new_event_handle<u64>();
+		Event::emit_event(&mut event_handle, sum);
+		Event::destroy_handle(event_handle);
+   }
 }
 ```
 
-Replace **&lt;address&gt;** with the address you used during deploy of the module in previous part of current documentation.
+Replace `{{sender}}` with the address you used during deploy of the module in the previous part of current documentation.
 
 The script accepts two arguments in function **"main"**, then calculate sum with provided arguments, and fire event with this sum. Both arguments are **u64** integers.
 
-Compile using [VSCode](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide) plugin or **dncli**.
-
-With **dncli**:
+Compile the script using **dncli**:
 
 ```text
 dncli query vm compile-script <script file> <address> --to-file <output file>
@@ -81,4 +77,3 @@ There will be even fired event, that will contain **"keep"** status and the resu
    }
 ]
 ```
-

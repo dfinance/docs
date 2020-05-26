@@ -1,8 +1,8 @@
 # Script Arguments
 
-Each script contains **"main"** function, and there could be arguments.
+Each script can contain only one function, usually, it's **"main"**, but you can define it however you want, This function can have arguments and will be executed when you send a transaction with your script.
 
-So, with **execute-script** command you can pass arguments, see:
+With **execute-script** command you can pass arguments to script function, see help:
 
 ```text
 dncli tx vm execute-script --help
@@ -16,4 +16,3 @@ dncli tx vm execute-script --help
 * Strings \(pseudo support via ByteArray type\). Example: **"hello, world!"**.
 * Address values. Example: **wallet1jk4ld0uu6wdrj9t8u3gghm9jt583hxx7xp7he8**.
 * Hashed values. Currently used mostly to get ID of ticker for oracles. Example: **\#"DFI\_ETH"**. The value will be converted to **u64** using [xxHash](https://github.com/Cyan4973/xxHash), e.g. **xxHash\(lower\_case\(string\)\)**.
-

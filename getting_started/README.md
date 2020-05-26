@@ -47,8 +47,9 @@ dncli config chain-id dn-testnet
 dncli config output json
 dncli config indent true
 dncli config trust-node true
-dncli config compiler rpc.testnet.dfinance.co:50053
-dncli config node rpc.testnet.dfinance.co:26657
+dncli config compiler tcp://rpc.testnet.dfinance.co:50053
+dncli config node http://rpc.testnet.dfinance.co:26657
+dncli config keyring-backend file
 ```
 
 These configurations will connect your local **dncli** with remote testnet nodes.
@@ -101,4 +102,3 @@ Command must execute fine, after it you can run **dncli**:
 ```text
 ./dncli version --long
 ```
-

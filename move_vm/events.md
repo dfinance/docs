@@ -1,22 +1,22 @@
 # Events
 
-Each transaction processed by **dfinance** blockchain could have events.
+Each transaction processed by **dfinance** blockchain can have events.
 
-You can easily check it by querying transaction by id and find events array:
+You can see them by querying transaction by id, they're stored under 'events' key:
 
-```javascript
+```json
 "events": [
     ...
 ]
 ```
 
-For example, you can look at [transactions](https://explorer.testnet.dfinance.co/txs?page=1) in explorer.
+You can also see events in transaction logs in [block explorer](https://explorer.testnet.dfinance.co/txs?page=1).
 
 ## VM related events
 
-For smart contracts related transactions, there are reserved types for events, as:
+For smart contracts related transactions, there are reserved types for events, such as:
 
-* **contract\_status** - contains contract execution status. Usually contains attribute **"status"**, that represents one of the possible statuses:
+* **contract\_status** - contains contract execution status. Usually contains **"status"** attribute, which represents one of the possible statuses:
   * **"keep"** - when transaction executed via VM \(means passed pre-verification, byte code, arguments, etc\), but still can contain error and exists together with status **"error"**.
   * **"discard"** - when transaction not passed via VM, because of fail on pre-validation.
   * **"error"** - when transaction contains an error, happens together with status **"keep"**, contains attributes:
@@ -31,11 +31,9 @@ For smart contracts related transactions, there are reserved types for events, a
 
 The **data** field always using LCS encoding \(Libra Canonical Serialization\). There is a community [description](https://github.com/librastartup/libra-canonical-serialization/blob/master/DOCUMENTATION.md) of how it works. Also, Golang [library](https://github.com/the729/lcs), where you can see examples and use for your own projects. So decoding of the **"data"** field should happen with LCS.
 
-The temporary solution to catch events is using events guids. There are two reserved events: withdraw and deposit from an account. The implementation you can found in standard lib in [account.mvir](https://github.com/dfinance/dvm/blob/4a35f84f04f7c313f65e3dc6463c28e06b4537ea/lang/stdlib/account.mvir#L8).
+There are two reserved events: sent and received events that fire when withdrawing or depositing of resources happens. The implementation you can found in the standard library in [Account](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/account.move#L14) module.
 
-Guid is a unique id, contains a sequence number of EventHandler for the current account and address of this account. You can look at the [function](https://github.com/dfinance/dvm/blob/4a35f84f04f7c313f65e3dc6463c28e06b4537ea/lang/stdlib/account.mvir#L129) that generates guids for events.
-
-So, you can write your own version of the function to generate guid of reserved events, and then use it in your project. We prepared an [example](https://github.com/borispovod/guid) Golang repository for you.
+Guid is a unique id, contains a sequence number of EventHandler for the current account and address of this account. You can look at the [Event](https://github.com/dfinance/dvm/blob/4a35f84f04f7c313f65e3dc6463c28e06b4537ea/lang/stdlib/account.mvir#L129) module that generates guids for events. Also, it handles the creation of new `EventHandle` resources, that can be used by your module or script to create new kinds of events. Look at [standard library](/move_vm/standard_lib.md#events) documentation.
 
 To catch events you can use REST API, using guid, for example, look at this URL to see how filters works:
 
@@ -44,4 +42,3 @@ https://rest.testnet.dfinance.co/txs?contract_events.guid=0x06000000000000007761
 ```
 
 Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) for details.
-
