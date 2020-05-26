@@ -2,7 +2,7 @@
 
 There are two types of smart contracts in **dfinance**: module and script.
 
-Difference between them that module could be deployed into blockchain storage and be stored under the deployer account, while scripts exist only within one transaction and can't be deployed.
+Difference between them that module is deployed (published) into blockchain storage and is stored under the deployer account, while script is simply a transaction-as-script and can only operate with existing modules.
 
 The Move Book also has a section about [modules](https://move-book.com/chapters/module.html) in Move language.
 
@@ -18,34 +18,31 @@ module Math {
 }
 ```
 
-Let's compile this module using **dncli**. As during compilation, the compiler requires an address of module owner, to keep the owner in compiled code and verify during deploy \(that transaction sender and address using during compilation match\), we will need to provide an address.
 
-Using **dncli**, we can do it so:
+Let's compile this module using **dncli**. Compiler requires sender's address as it's included into bytecode. This address will then be verified on module publish.
 
 ```text
 dncli query vm compile-module <path-to-mvir> <address> --to-file <output file>
 ```
 
-After you replace variables with your own, you will get a compiled module to the output file.
-
-After compilation, you can try to deploy the module:
+Replace variables in this pattern with your own and you will get a compiled module in the specified output file. When it's done, you can publish your module:
 
 ```text
 dncli tx vm deploy-module <output file> --from <account> --fees 1dfi
 ```
 
-Check transaction execution by its id returned in the output.
+Check your transaction by querying its id, which was returned in the output.
 
 ```text
 dncli tx query <id>
 ```
 
-If you see a **contract\_status** event, that contains status **keep**, everything deployed fine.
+If you see a **contract\_status** event, with status **keep** inside, everything deployed fine!
 
-After this, you can import your module in other modules and scripts, like:
+When it's done your module is be published under your address, and you and other users can access it in their modules or scripts:
 
 ```rust
 use {{address}}::Math;
 ```
 
-Just replace `{{address}}` with your correct address and you can do an import.
+Just replace `{{address}}` with yours and you can use this module.

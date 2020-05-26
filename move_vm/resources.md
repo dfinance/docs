@@ -183,7 +183,7 @@ script {
 
     fun main(seller:address, price: u128) {
         let usdt = Account::withdraw_from_sender(price);
-        
+
         // Deposit USDT to swap coins.
         Swap::swap<DFI::T, Coins::USDT>(seller, usdt);
     }
@@ -192,7 +192,7 @@ script {
 
 ### More about resources
 
-Resources are the most interesting and in the same time complex thing in Move language. We are trying to explain it better, this why 
+Resources are the most interesting and in the same time complex thing in Move language. We are trying to explain it better, this why
 we created a section in [Move Book](https://move-book.com/chapters/resource.html) dedicated to resources. It has a great explanations, other useful examples and recommendations.
 
 Must to read! You can continue learning about resources there.

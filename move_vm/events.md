@@ -1,22 +1,22 @@
 # Events
 
-Each transaction processed by **dfinance** blockchain could have events.
+Each transaction processed by **dfinance** blockchain can have events.
 
-You can easily check it by querying transaction by id and find events array:
+You can see them by querying transaction by id, they're stored under 'events' key:
 
-```javascript
+```json
 "events": [
     ...
 ]
 ```
 
-For example, you can look at [transactions](https://explorer.testnet.dfinance.co/txs?page=1) in explorer.
+You can also see events in transaction logs in [block explorer](https://explorer.testnet.dfinance.co/txs?page=1).
 
 ## VM related events
 
-For smart contracts related transactions, there are reserved types for events, as:
+For smart contracts related transactions, there are reserved types for events, such as:
 
-* **contract\_status** - contains contract execution status. Usually contains attribute **"status"**, that represents one of the possible statuses:
+* **contract\_status** - contains contract execution status. Usually contains **"status"** attribute, which represents one of the possible statuses:
   * **"keep"** - when transaction executed via VM \(means passed pre-verification, byte code, arguments, etc\), but still can contain error and exists together with status **"error"**.
   * **"discard"** - when transaction not passed via VM, because of fail on pre-validation.
   * **"error"** - when transaction contains an error, happens together with status **"keep"**, contains attributes:
