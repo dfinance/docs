@@ -15,4 +15,4 @@ Move VM is developed by [Libra](https://libra.org/), a blockchain platform by Fa
 
 All this makes Move VM much safer than other blockchains VMs. For example, the famous DAO hack just couldn't happen, because of the resource model and bytecode verification.
 
-We recommend reading next parts of this documentation together with [Move book](/move_vm/move_book.md) which is written by our team members.
+We recommend reading next parts of this documentation together with [Move book](/move_vm/move_book.md) which is written by one of our team members.
