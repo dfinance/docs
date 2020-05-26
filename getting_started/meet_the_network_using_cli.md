@@ -20,4 +20,4 @@ After this let's query our account with **dncli**:
 dncli query account <address>
 ```
 
-Replace **&lt;address&gt;** with your address. You will see output with your address and with your balances, balances should contains DFI coins if we want to continue to next steps
+Replace **\<address\>** with your address. You will see output with your address and with your balances, balances should contains DFI coins if we want to continue to next steps
