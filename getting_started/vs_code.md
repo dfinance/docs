@@ -4,7 +4,7 @@ Out of date.
 
 Repository is here: [https://github.com/damirka/vscode-move-ide](https://github.com/damirka/vscode-move-ide)
 
-VSCode marketplace link: [https://marketplace.visualstudio.com/items?itemName=damirka.move-ide](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
+VSCode marketplace link: [https://marketplace.visualstudio.com/items?itemName=damirka.move-ide](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide).
 
 First, go to plugin settings and update default account and compiler URL:
 

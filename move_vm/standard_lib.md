@@ -9,13 +9,14 @@ use 0x0::Account;
 use 0x0::Events;
 use 0x0::DFI;
 use 0x0::Coins;
+...
 ```
 
 You can look for actual standard modules in [dvm](https://github.com/dfinance/dvm/tree/master/lang) repository.
 
 ## Time
 
-[Time](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/time.move#L3) module allows to get current UNIX timestamp of latest block.
+[Time](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/time.move#L3) module allows get current UNIX timestamp of latest block.
 
 Example:
 
@@ -29,11 +30,11 @@ script {
 }
 ```
 
-Method will return u64 value as UNIX timestamp of latest block.
+The method will return u64 value as UNIX timestamp of the latest block.
 
 ## Block
 
-[Block](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/block.move#L3) module allows to get current blockchain height.
+[Block](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/block.move#L3) module allows getting current blockchain height.
 
 ```rust
 script {
@@ -45,7 +46,7 @@ script {
 }
 ```
 
-Function will return u64 value as height of latest block.
+The method will return u64 value as the height of the latest block.
 
 ## Transaction
 
@@ -77,13 +78,13 @@ script {
 }
 ```
 
-In case you pass `false` as first argument of `assert(bool, u64)` or result of your expression, transaction will fail and return "sub_status" in event of transaction that will equal to your code provided as second argument.
+In case you pass `false` as the first argument of `assert(bool, u64)` or the result of your expression, the transaction will fail and return "sub_status" in event of transaction that will equal your code provided as the second argument.
 
 ## Compare
 
-[Compare](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/compare.move#L10) module allows to compare two vectors of u8 values (bytes).
+[Compare](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/compare.move#L10) module allows comparing two vectors of u8 values (bytes).
 
-Comparing two byte vectors:
+Comparing two-byte vectors:
 
 ```rust
 script {
@@ -119,7 +120,7 @@ script {
 
 ## Oracle
 
-[Oracle](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/oracle.move#L3) module allows to get current price of asset pair.
+[Oracle](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/oracle.move#L3) module allows to get the current price of an asset pair.
 
 ```rust
 script {
@@ -135,7 +136,7 @@ More about work with oracles can see in our [oracles documentation](/oracles/REA
 
 ## Event
 
-Event module allows to work with events: generate new event handlers, and fire events.
+Event module allows us to work with events: generate new event handlers and fire events.
 
 Example with firing event contains provided number:
 
@@ -181,25 +182,202 @@ module MyEvent {
 
 ## Account
 
+[Account](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/account.move#L6) module allows to work with user balances: get balances, deposit coins/tokens to balances, withdraw them to deposit in another module, etc.
+
+Also, it creates an account, if the account doesn't exist yet, and related data, like event handlers for sending/receiving payments.
+
+A lot of different methods can be used to send tokens from account A to account B, as these one-line methods:
+
+```rust
+script {
+    use 0x0::Account;
+    use 0x0::DFI;
+
+    fun main(recipient: address, amount: u128, metadata: vector<u8>) {
+        // Move DFI from sender account to recipient.
+        Account::pay_from_sender<DFI::T>(recipient, amount);
+
+        // Again move DFI, but with metadata.
+        Account::pay_from_sender_with_metadata<DFI::T>(recipient, amount, metadata);
+    }
+}
+```
+
+Also, you can just withdraw from sender balance and deposit to recipient:
+
+```rust
+script {
+    use 0x0::Account;
+    use 0x0::DFI;
+
+    fun main(recipient: address, amount: u128) {
+        // Move DFI from sender account to recipient.
+        let dfi = Account::withdraw_from_sender<DFI::T>(amount);
+
+        // Again move DFI, but with metadata.
+        Account::deposit(recipient, dfi);
+    }
+}
+```
+
+Or deposit to another module:
+
+```rust
+script {
+    use {{address}}::Swap;
+    use 0x0::DFI;
+    use 0x0::Coins;
+    use 0x0::Account;
+
+    fun main(seller:address, price: u128) {
+        let dfi = Account::withdraw_from_sender(price);
+
+        // Deposit USDT to swap coins.
+        Swap::swap<Coins::USDT, DFI::T>(seller, dfi);
+    }
+}
+```
+
+Also, get a balance:
+
+```rust
+script {
+    use 0x0::Coins;
+    use 0x0::Account;
+    use 0x0::Transaction;
+
+    fun main(addr: address) {
+        // My balance.
+        let my_balance = Account::balance<Coins::ETH>();
+
+        // Someone balance.
+        let someone_balance = Account::balance_for<Coins::ETH>(addr);
+
+        Transaction::assert(my_balance > 0, 101);
+        Transaction::assert(someone_balance > 0, 102);
+    }
+}
+```
+
+The rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/account.move#L6). 
+
 ## Dfinance
 
-[Dfinance] module allows you to work with coins balances, get coins info, also register new tokens, etc.
+[Dfinance](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/dfinance.move#L6) module allows you to work with coins balances, get coins info, also register new tokens, etc.
 
-First of all, Dfinance module presents type for all balances in the system, it's Dfinance::T:
+First of all, Dfinance module presents type for all balances in the system, it's `Dfinance::T`:
 
+```rust
 resource struct T<Coin> {
     value: u128
 }
+```
 
 The value field contains information about actual balance for specific coin/token, e.g.:
 
-Also, you can create empty coin:
+```rust
+script {
+    use 0x0::Account;
+    use 0x0::DFI;
 
-Get denom, decimals and actual value:
+    fun main(amount: u128) {
+        // Use DFI::T to get Dfinance::T<DFI::T> contains balance.
+        let dfi : Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(amount);
+        Account::deposit_to_sender(dfi);
+    }
+}
+```
 
-And check if it's user token:
+Also, you can create an empty coin:
 
-Also, you can create you own reasource and make it token too!
+```rust
+module BankDFI {
+    use 0x0::Dfinance;
+    use 0x0::DFI;
+
+    resource struct T {
+        balance: Dfinance::T<DFI::T>,
+    }
+
+    public fun create()  {
+        move_to_sender<T>(T {
+            balance: Dfinance::zero<DFI::T>()
+        })
+    }
+}
+```
+
+Get denom, decimals, and actual value:
+
+```rust
+script {
+    use 0x0::Dfinance;
+    use 0x0::Account;
+    use 0x0::DFI;
+    use 0x0::Transaction;
+
+    fun main(amount: u128) {
+        let dfi = Account::withdraw_from_sender<DFI::T>(amount);
+
+        // Get denom vector<8>.
+        let _ = Dfinance::denom<DFI::T>();
+
+        // Get value of withdrawed dfi.
+        let value = Dfinance::value(&dfi);
+
+        Transaction::assert(amount == value, 101);
+
+        Account::deposit_to_sender(dfi);
+    }
+}
+```
+
+And check if it's user token or system coin:
+
+```rust
+script {
+    use {{address}}::MyToken;
+    use 0x0::Dfinance;
+    use 0x0::DFI;
+
+    fun main() {
+        Transaction::assert(Dfinance::is_token<DFI::T>() == false, 101);
+        Transaction::assert(Dfinance::is_token<MyToken::T>(), 102);
+    }
+}
+```
+
+Also, you can create your resource and make it token too!
+
+```rust
+module MyToken {
+    use 0x0::Dfinance;
+
+    resource struct Token {
+    }
+
+    public fun create(): Dfinance::T<Token>  {
+        // Create new token with denom "wow" (hex == 776f77).
+        Dfinance::tokenize<Token>(10, 0, x"776f77")
+    }
+}
+```
+
+And also deposit it to your balance:
+
+```rust
+script {
+    use wallet16ehqyls5mn73kk54vvh6kyjlsrkwh37tjtzesu::MyToken;
+    use 0x0::Account;
+
+    fun main() {
+        let new_tokens = MyToken::create();
+        Account::deposit_to_sender(new_tokens);
+    }
+}
+```
+
+More documentation about the feature provided by Dfinance module see in [dfinance.move](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/dfinance.move#L6). 
 
 ## Vector
 
