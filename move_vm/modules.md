@@ -2,7 +2,7 @@
 
 There are two types of smart contracts in **dfinance**: module and script.
 
-Difference between them that module is deployed (published) into blockchain storage and is stored under the deployer account, while script is simply a transaction-as-script and can only operate with existing modules.
+Difference between them that module is deployed \(published\) into blockchain storage and is stored under the deployer account, while script is simply a transaction-as-script and can only operate with existing modules.
 
 The Move Book also has a section about [modules](https://move-book.com/chapters/module.html) in Move language.
 
@@ -17,7 +17,6 @@ module Math {
     }
 }
 ```
-
 
 Let's compile this module using **dncli**. Compiler requires sender's address as it's included into bytecode. This address will then be verified on module publish.
 
@@ -46,3 +45,4 @@ use {{address}}::Math;
 ```
 
 Just replace `{{address}}` with yours and you can use this module.
+

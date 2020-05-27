@@ -32,3 +32,4 @@ Parameters of **exchange** function:
 ## Contracts
 
 Currenty deployed Bridge contract can be found by address: [0xE2FD9D943FFC4adD2F5952025f32E9a984B3637b](https://ropsten.etherscan.io/address/0xE2FD9D943FFC4adD2F5952025f32E9a984B3637b).
+
