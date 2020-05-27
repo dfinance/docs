@@ -35,3 +35,4 @@ dncli query account <address>
 ```
 
 Replace **&lt;address&gt;** with recipient address to see updated balance.
+

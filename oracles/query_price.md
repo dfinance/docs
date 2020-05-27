@@ -69,8 +69,8 @@ script {
         let price = Oracle::get_price(ticker);
 
         let event_handle = Event::new_event_handle<u64>();
-		Event::emit_event(&mut event_handle, price);
-		Event::destroy_handle(event_handle);
+        Event::emit_event(&mut event_handle, price);
+        Event::destroy_handle(event_handle);
     }
 }
 ```
@@ -102,3 +102,4 @@ module PriceRequest {
 ```
 
 And then just use it in your scripts.
+

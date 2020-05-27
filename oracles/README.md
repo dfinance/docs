@@ -20,3 +20,4 @@ Currently oracles nodes fetching price from Binance only. Oracle node applicatio
 Every block dfinance platform collect posted prices from whitelisted oracles and then choose median to store final price for the last block.
 
 This functional implemented by dnode in [x/oracle](https://github.com/dfinance/dnode/tree/master/x/oracle) module.
+

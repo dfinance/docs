@@ -102,3 +102,4 @@ Command must execute fine, after it you can run **dncli**:
 ```text
 ./dncli version --long
 ```
+

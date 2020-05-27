@@ -70,9 +70,9 @@ To create a swap use **"create"** function, to make an exchange use **"swap"** f
 
 Even though there's a lot of code inside, we'll focus on 4 main methods: `borrow_global_mut`, `move_to_sender`, `move_from`, `exists` and on `acquires` keyword.
 
-### move_to_sender\<T\>(T)
+### move\_to\_sender&lt;T&gt;\(T\)
 
-When resource is created, it needs to be moved to address (otherwise it will never be actually created - there's no 'contract storage' - only accounts). It is important to note that newly created resource can be moved only to the sender of transaction - this makes initalization of resource impossible at someone else's address.
+When resource is created, it needs to be moved to address \(otherwise it will never be actually created - there's no 'contract storage' - only accounts\). It is important to note that newly created resource can be moved only to the sender of transaction - this makes initalization of resource impossible at someone else's address.
 
 To move resource to sender `move_to_sender<T>(T)` method is used - as obvious as it is - where T is a generic type and instance of this type - a resource:
 
@@ -93,7 +93,7 @@ public fun create<Offered, Expected>(offered: Dfinance::T<Offered>, price: u128)
 
 In `create` function we created new resource which contains information about the swap, and moved it to sender. After this, we can start working with our resources.
 
-### exists\<T\>(address)
+### exists&lt;T&gt;\(address\)
 
 Allow us to check if the resource already exists on the specific address or not:
 
@@ -104,7 +104,7 @@ public fun exists<Offered, Expected>(addr: address): bool {
 }
 ```
 
-### borrow_global_mut\<T\>(address)
+### borrow\_global\_mut&lt;T&gt;\(address\)
 
 ```rust
 // Change price before swap happens.
@@ -130,7 +130,7 @@ public fun get_price<Offered, Expected>(seller: address): u128 acquires T {
 
 Every function which accesses already created resource must have `acquires` keyword in it signature after which acquired resources are listed. Look at the usage of `borrow_global` and `borrow_global_mut` again. Resource `T` is acquired by both methods `get_price` and `change_price`.
 
-### move_from\<T\>(address)
+### move\_from&lt;T&gt;\(address\)
 
 ```rust
 public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) acquires T {
@@ -143,11 +143,11 @@ public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) 
 }
 ```
 
-`move_from<T>(address)` function moves the resource from address. After taking resource off account, it must be used - either destructured (like in example below) or passed to another function. Resources are not automatically destroyed like regular variables and their lifetime must be specified.
+`move_from<T>(address)` function moves the resource from address. After taking resource off account, it must be used - either destructured \(like in example below\) or passed to another function. Resources are not automatically destroyed like regular variables and their lifetime must be specified.
 
 ### Summary
 
-So `create` function creates a new resource, `swap` function allows to swap (deposit coins to both accounts and *destroy* resource T); we've also added methods to get price of the deal and to change it.
+So `create` function creates a new resource, `swap` function allows to swap \(deposit coins to both accounts and _destroy_ resource T\); we've also added methods to get price of the deal and to change it.
 
 ### Deploy
 
@@ -157,7 +157,7 @@ You can try to compile and deploy module, and then via script call deposit with 
 
 ### Scripts
 
-Here are a few scripts examples, of how you can work with Swap module (don't forget to replace {{sender}} with your address):
+Here are a few scripts examples, of how you can work with Swap module \(don't forget to replace  with your address\):
 
 **Create**
 
@@ -200,3 +200,4 @@ script {
 Resources are the most interesting and the most complex topic in Move language. But once you've gotten the idea, the rest is easy.
 
 To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/chapters/resource.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.
+

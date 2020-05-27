@@ -4,7 +4,7 @@ Each transaction processed by **dfinance** blockchain can have events.
 
 You can see them by querying transaction by id, they're stored under 'events' key:
 
-```json
+```javascript
 "events": [
     ...
 ]
@@ -33,7 +33,7 @@ The **data** field always using LCS encoding \(Libra Canonical Serialization\). 
 
 There are two reserved events: sent and received events that fire when withdrawing or depositing of resources happens. The implementation you can found in the standard library in [Account](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/account.move#L14) module.
 
-Guid is a unique id, contains a sequence number of EventHandler for the current account and address of this account. You can look at the [Event](https://github.com/dfinance/dvm/blob/4a35f84f04f7c313f65e3dc6463c28e06b4537ea/lang/stdlib/account.mvir#L129) module that generates guids for events. Also, it handles the creation of new `EventHandle` resources, that can be used by your module or script to create new kinds of events. Look at [standard library](/move_vm/standard_lib.md#events) documentation.
+Guid is a unique id, contains a sequence number of EventHandler for the current account and address of this account. You can look at the [Event](https://github.com/dfinance/dvm/blob/4a35f84f04f7c313f65e3dc6463c28e06b4537ea/lang/stdlib/account.mvir#L129) module that generates guids for events. Also, it handles the creation of new `EventHandle` resources, that can be used by your module or script to create new kinds of events. Look at [standard library](standard_lib.md#events) documentation.
 
 To catch events you can use REST API, using guid, for example, look at this URL to see how filters works:
 
@@ -42,3 +42,4 @@ https://rest.testnet.dfinance.co/txs?contract_events.guid=0x06000000000000007761
 ```
 
 Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) for details.
+

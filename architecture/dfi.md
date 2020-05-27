@@ -3,6 +3,7 @@
 **DFI** is the main currency in **dfinance** network.
 
 DFI is used for:
+
 * PoS - to stake or delegate DFI.
 * Fees - to pay fees in DFI to process transactions.
 * Gov - to vote with DFI per proposals: updates, improvements, etc.
@@ -14,11 +15,11 @@ DFI coin has 18 decimals places, which means 1.0 DFI can be represented as integ
 
 When working with **dncli** amounts need to be integers, so convert your amount to integer before executing any command.
 
-As it's the same 18 decimals places, like in ETH, you can use same resources to convert amounts, [like this one](https://www.etherchain.org/tools/unitConverter) (use ether-wei pair).
+As it's the same 18 decimals places, like in ETH, you can use same resources to convert amounts, [like this one](https://www.etherchain.org/tools/unitConverter) \(use ether-wei pair\).
 
 ## Smart contracts
 
-DFI is a built-in type inside Dfinance's standard library which you can use to send transactions envolving DFI coin. Here's how it looks like ([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/dfi.move#L8)):
+DFI is a built-in type inside Dfinance's standard library which you can use to send transactions envolving DFI coin. Here's how it looks like \([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/dfi.move#L8)\):
 
 ```rust
 module DFI {
@@ -59,7 +60,7 @@ You can learn more about generics in Move in the [Move book](https://move-book.c
 
 Current testnet supports other coins along with DFI:
 
-* **ETH** - ETH representation, can be transfered through [PegZone](/pegzone/README.md).
+* **ETH** - ETH representation, can be transfered through [PegZone](../pegzone/).
 * **BTC** - simulation of BTC, can be recieved by [faucet](https://testnet.dfinance.co).
 * **USDT** - simulation of Tether USDT, can be recieved also by [faucet](https://testnet.dfinance.co).
 
@@ -76,18 +77,18 @@ Also, coins types can be imported from `0x0::Coins` module to use in smart contr
 
 ```rust
 script {
-	use 0x0::Account;
-	use 0x0::Coins;
+    use 0x0::Account;
+    use 0x0::Coins;
 
-	fun main(recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
-		Account::pay_from_sender<Coins::ETH>(recipient, eth_amount);
-		Account::pay_from_sender<Coins::BTC>(recipient, btc_amount);
-		Account::pay_from_sender<Coins::USDT>(recipient, usdt_amount);
-	}
+    fun main(recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
+        Account::pay_from_sender<Coins::ETH>(recipient, eth_amount);
+        Account::pay_from_sender<Coins::BTC>(recipient, btc_amount);
+        Account::pay_from_sender<Coins::USDT>(recipient, usdt_amount);
+    }
 }
 ```
 
-Coins module follows the same pattern as DFI but has multiple types ([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145/lang/stdlib/coins.move)):
+Coins module follows the same pattern as DFI but has multiple types \([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145/lang/stdlib/coins.move)\):
 
 ```rust
 module Coins {
@@ -96,5 +97,4 @@ module Coins {
     struct USDT {}
 }
 ```
-
 
