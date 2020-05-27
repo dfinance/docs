@@ -1,6 +1,6 @@
-# dncli
+# Dncli
 
-**dncli** (dfinance node CLI) is a CLI application developed to work with **dnode**. With dncli you can query blockchain data, post transactions, and query network status.
+**dncli** \(dfinance node CLI\) is a CLI application developed to work with **dnode**. With dncli you can query blockchain data, post transactions, and query network status.
 
 It comes as binary application and can be downloaded from [GitHub release page](https://github.com/dfinance/dnode/releases). Alternatively you can [build it from sources](https://github.com/dfinance/dnode).
 
@@ -48,7 +48,7 @@ dncli query vm compile-script --help
 
 ## Testnet configuration
 
-**dncli** by default connects to local **dnode** (at localhost:26657) and **compiler** (at localhost:50053). To connect to remote node or launched testnet, change these configuration settings:
+**dncli** by default connects to local **dnode** \(at localhost:26657\) and **compiler** \(at localhost:50053\). To connect to remote node or launched testnet, change these configuration settings:
 
 ```bash
 dncli config compiler tcp://rpc.testnet.dfinance.co:50053
@@ -62,3 +62,4 @@ Also, **compiler** address could be passed as `--compiler` option during executi
 dncli query vm compile-script <file> <account>
 dncli query vm compile-module <file> <account>
 ```
+

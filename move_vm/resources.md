@@ -1,14 +1,14 @@
 # Resources
 
-Resources are the main new future brings by **Move VM**. Resources are a special type of data in Move VM, that controls belongs to accounts and to state storage.
+Resource is the main feature of **Move VM**. Resource is a special type in Move VM, which has strict rules of usage - therefore more safety, and is created to work with digital assets.
 
-It means, when you create a new resource in your smart contract, you can bring your resource to your account, or another user account in case your module allows it, also, you can check if resource exists on account, and also destroys it. Everything in within your module rules.
+Resource type can only be defined and managed in a single module. This module sets rules for accessing, destroying, transfering and checking existence of resources defined in it.
 
 ## Develop a resource
 
 Let's create a swap module, that will allow us to swap coins between users.
 
-We will make it easy, it will support only one swap per coin pair, which means, you can't create multiplay swaps using the same pair in the same account. Just two functions - to publish your offer and to allow other users to swap it.
+We will make it easy, it will support only one swap per coin pair, which means, you can't create multiple swaps using the same pair in the same account. Just two functions - to publish your offer and to allow other users to swap it for specified price.
 
 ```rust
 module Swap {
@@ -64,17 +64,17 @@ module Swap {
 }
 ```
 
-Provided code create new module **"Swap"** and resource named **"T"** \(default name for default resource in modules\), that information about the deal.
+Provided code creates new module **"Swap"** and resource named **"T"** \(default name for default resource in modules\), which holds information about the deal.
 
-To create a swap use **"create"** function, to make an exchange use **"swap"** function. Other methods allow us to get/set price, check if swap already exists for a specific address. All methods use generics Offered and Expected, which allows them to make unique resources for each swap.
+To create a swap use **"create"** function, to make an exchange use **"swap"** function. Other methods in this module provide ability to get/set price, check if swap option already exists at specific address. All methods use generics Offered and Expected, which allow them to make unique resources for each swap.
 
-We mostly interesting in resource related methods: **borrow\_global\_mut**, **move\_to\_sender**, **move\_from**, **exists**, and also **acquires** notation.
+Even though there's a lot of code inside, we'll focus on 4 main methods: `borrow_global_mut`, `move_to_sender`, `move_from`, `exists` and on `acquires` keyword.
 
-### move\_to\_sender
+### move\_to\_sender&lt;T&gt;\(T\)
 
-So created resource T<Offered, Expected> should be stored under sender account because of **move\_to\_sender** call. **move\_to\_sender** restrict cases when someone else can move resources to your account, and in such case secure it.
+When resource is created, it needs to be moved to address \(otherwise it will never be actually created - there's no 'contract storage' - only accounts\). It is important to note that newly created resource can be moved only to the sender of transaction - this makes initalization of resource impossible at someone else's address.
 
-Let's see how it's done:
+To move resource to sender `move_to_sender<T>(T)` method is used - as obvious as it is - where T is a generic type and instance of this type - a resource:
 
 ```rust
 // Create a swap deal with two coin pairs: Offered and Expected.
@@ -91,30 +91,9 @@ public fun create<Offered, Expected>(offered: Dfinance::T<Offered>, price: u128)
 }
 ```
 
-In **"create"** function we move created resource contains information about the swap to sender. After this, we can start work with our resources.
+In `create` function we created new resource which contains information about the swap, and moved it to sender. After this, we can start working with our resources.
 
-### borrow\_global\_mut
-
-```rust
-// Change price before swap happens.
-public fun change_price<Offered, Expected>(new_price: u128) acquires T {
-    let offer = borrow_global_mut<T<Offered, Expected>>(Transaction::sender());
-    offer.price = new_price;
-}
-```
-
-Allows getting a mutable reference to a resource, that could be changed then. There is also just **borrow\_global**, that allows borrowing just reference, not mutable:
-
-```rust
-// Get the price of the swap deal.
-public fun get_price<Offered, Expected>(seller: address): u128 acquires T {
-    let offer = borrow_global<T<Offered, Expected>>(seller);
-    offer.price
-}
-```
-
-As you see, **borrow\_global** doesn't allow to change the resource, but allows us to read it.
-### exists
+### exists&lt;T&gt;\(address\)
 
 Allow us to check if the resource already exists on the specific address or not:
 
@@ -125,7 +104,33 @@ public fun exists<Offered, Expected>(addr: address): bool {
 }
 ```
 
-### move_from & acquires
+### borrow\_global\_mut&lt;T&gt;\(address\)
+
+```rust
+// Change price before swap happens.
+public fun change_price<Offered, Expected>(new_price: u128) acquires T {
+    let offer = borrow_global_mut<T<Offered, Expected>>(Transaction::sender());
+    offer.price = new_price;
+}
+```
+
+Allows getting a mutable reference to a resource, that could be changed then. There is also just `borrow_global` to get immutable reference:
+
+```rust
+// Get the price of the swap deal.
+public fun get_price<Offered, Expected>(seller: address): u128 acquires T {
+    let offer = borrow_global<T<Offered, Expected>>(seller);
+    offer.price
+}
+```
+
+`borrow_global` gives immutable reference to a resource stored under address. You can use this reference to read resource but can't change it.
+
+### acquires
+
+Every function which accesses already created resource must have `acquires` keyword in it signature after which acquired resources are listed. Look at the usage of `borrow_global` and `borrow_global_mut` again. Resource `T` is acquired by both methods `get_price` and `change_price`.
+
+### move\_from&lt;T&gt;\(address\)
 
 ```rust
 public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) acquires T {
@@ -138,21 +143,21 @@ public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) 
 }
 ```
 
-**"move_from"** moves the resource from the user account.
+`move_from<T>(address)` function moves the resource from address. After taking resource off account, it must be used - either destructured \(like in example below\) or passed to another function. Resources are not automatically destroyed like regular variables and their lifetime must be specified.
 
-Acquires notation after function definition means that current function can change exists resource or read it, this why **"swap"** and **"get_price"**, **"set_price"** functions have this notation.
+### Summary
 
-So **"create"** function creates a new resource, swap function allows to swap (deposit coins to both accounts and destroy T resource), get the price, and set price to change information about the deal.
+So `create` function creates a new resource, `swap` function allows to swap \(deposit coins to both accounts and _destroy_ resource T\); we've also added methods to get price of the deal and to change it.
 
 ### Deploy
 
-You can try to compile and deploy module, and then via script call deposit with your hash of your secret value, and then withdraw by passing your secret value.
+You can try to compile and deploy module, and then via script call deposit with hash of your secret value, and then withdraw by passing your secret value.
 
-Here is [repository](https://github.com/borispovod/cold-storage-example) to help you, contains module and scripts examples.
+[Here is repository](https://github.com/borispovod/cold-storage-example) to help you. It already contains module and scripts examples.
 
 ### Scripts
 
-Here are a few scripts examples, how possible to work with Swap module (don't forget to replace {{sender}} with your address):
+Here are a few scripts examples, of how you can work with Swap module \(don't forget to replace  with your address\):
 
 **Create**
 
@@ -192,7 +197,7 @@ script {
 
 ### More about resources
 
-Resources are the most interesting and in the same time complex thing in Move language. We are trying to explain it better, this why
-we created a section in [Move Book](https://move-book.com/chapters/resource.html) dedicated to resources. It has a great explanations, other useful examples and recommendations.
+Resources are the most interesting and the most complex topic in Move language. But once you've gotten the idea, the rest is easy.
 
-Must to read! You can continue learning about resources there.
+To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/chapters/resource.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.
+

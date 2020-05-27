@@ -94,7 +94,7 @@ dncli version --long
 And let's build **dncli**:
 
 ```text
-GO111MODULE=on go build -o dncli cmd/dncli/main.go dncli
+GO111MODULE=on go build -o dncli cmd/dncli/main.go
 ```
 
 Command must execute fine, after it you can run **dncli**:
@@ -102,3 +102,4 @@ Command must execute fine, after it you can run **dncli**:
 ```text
 ./dncli version --long
 ```
+

@@ -1,6 +1,6 @@
 # Query Price
 
-Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Oracle](https://github.com/dfinance/dvm/blob/master/lang/stdlib/oracle.mvir) module:
+Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Oracle module](https://github.com/dfinance/dvm/blob/master/lang/stdlib/oracle.mvir):
 
 ```rust
 address 0x0 {
@@ -10,7 +10,7 @@ address 0x0 {
 }
 ```
 
-This is native function, that you can import into your module or script and use. It accepts the **u64** parameter as ticker id, because **dfinance** encode ticker name in case of smart contract to unique **u64** id, and returns u64 number as the current price of pair.
+This is native function, that you can import into your module or script and use. It accepts the **u64** parameter as ticker id, because **dfinance** encodes ticker pair as unique **u64** id, and returns u64 number as the current price of pair.
 
 ## Ticker id
 
@@ -58,7 +58,7 @@ To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/curr
 
 ## Write a script
 
-Let's write a script that takes any price ticker, getting a price and fire event with the price.
+Let's write a script which will take in ticker as argument and will emit event with this ticker's price.
 
 ```rust
 script {
@@ -69,8 +69,8 @@ script {
         let price = Oracle::get_price(ticker);
 
         let event_handle = Event::new_event_handle<u64>();
-		Event::emit_event(&mut event_handle, price);
-		Event::destroy_handle(event_handle);
+        Event::emit_event(&mut event_handle, price);
+        Event::destroy_handle(event_handle);
     }
 }
 ```
@@ -102,3 +102,4 @@ module PriceRequest {
 ```
 
 And then just use it in your scripts.
+

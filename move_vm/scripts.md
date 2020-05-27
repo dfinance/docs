@@ -15,10 +15,10 @@ script {
 
    fun main(a: u64, b: u64) {
       let sum = Math::add(a, b);
-   
+
       let event_handle = Event::new_event_handle<u64>();
-		Event::emit_event(&mut event_handle, sum);
-		Event::destroy_handle(event_handle);
+        Event::emit_event(&mut event_handle, sum);
+        Event::destroy_handle(event_handle);
    }
 }
 ```
@@ -43,7 +43,7 @@ You can verify execution with querying transaction by id.
 
 There will be even fired event, that will contain **"keep"** status and the resulting sum, like:
 
-```json
+```javascript
 [
    {
       "type":"contract_events",
@@ -77,3 +77,4 @@ There will be even fired event, that will contain **"keep"** status and the resu
    }
 ]
 ```
+
