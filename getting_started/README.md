@@ -22,7 +22,7 @@ For Windows:
 2. Create there **"dn"** directory.
 3. Rename the downloaded file to **"dncli"** and put it into **"dn"** directory.
 
-Now **"cmd"** and execute
+Now **"cmd"** and execute:
 
 ```text
 setx path "%path%;%ProgramFiles%\dn"
