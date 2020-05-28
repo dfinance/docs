@@ -16,7 +16,7 @@ You can look for actual standard modules in [dvm](https://github.com/dfinance/dv
 
 ## Time
 
-[Time](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/time.move#L3) module allows get current UNIX timestamp of latest block.
+[Time](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/time.move#L3) module allows getting current UNIX timestamp of latest block.
 
 Example:
 
@@ -109,11 +109,11 @@ script {
 	use 0x0::DFI;
 	use 0x0::Coins;
 
-	fun main(recipient: address, dfi_amount: u128, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
-		Account::pay_from_sender<DFI::T>(recipient, dfi_amount);
-		Account::pay_from_sender<Coins::BTC>(recipient, eth_amount);
-	    Account::pay_from_sender<Coins::BTC>(recipient, btc_amount);
-	    Account::pay_from_sender<Coins::USDT>(recipient, usdt_amount);
+	fun main(payee: address, dfi_amount: u128, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
+        Account::pay_from_sender<DFI::T>(payee, dfi_amount);
+        Account::pay_from_sender<Coins::ETH>(payee, eth_amount);
+        Account::pay_from_sender<Coins::BTC>(payee, btc_amount);
+        Account::pay_from_sender<Coins::USDT>(payee, usdt_amount);
 	}
 }
 ```
@@ -146,8 +146,8 @@ script {
 
     fun main(a: u64) {
         let event_handle = Event::new_event_handle<u64>();
-		Event::emit_event(&mut event_handle, a);
-		Event::destroy_handle(event_handle);
+        Event::emit_event(&mut event_handle, a);
+        Event::destroy_handle(event_handle);
     }
 }
 ```
@@ -192,30 +192,30 @@ A lot of different methods can be used to send tokens from account A to account 
 script {
     use 0x0::Account;
     use 0x0::DFI;
-
-    fun main(recipient: address, amount: u128, metadata: vector<u8>) {
-        // Move DFI from sender account to recipient.
-        Account::pay_from_sender<DFI::T>(recipient, amount);
+    
+    fun main(payee: address, amount: u128, metadata: vector<u8>) {
+        // Move DFI from sender account to payee.
+        Account::pay_from_sender<DFI::T>(payee, amount);
 
         // Again move DFI, but with metadata.
-        Account::pay_from_sender_with_metadata<DFI::T>(recipient, amount, metadata);
+        Account::pay_from_sender_with_metadata<DFI::T>(payee, amount, metadata);
     }
 }
 ```
 
-Also, you can just withdraw from sender balance and deposit to recipient:
+Also, you can just withdraw from sender balance and deposit to payee:
 
 ```rust
 script {
     use 0x0::Account;
     use 0x0::DFI;
 
-    fun main(recipient: address, amount: u128) {
-        // Move DFI from sender account to recipient.
+    fun main(payee: address, amount: u128) {
+        // Move DFI from sender account to payee.
         let dfi = Account::withdraw_from_sender<DFI::T>(amount);
 
         // Again move DFI, but with metadata.
-        Account::deposit(recipient, dfi);
+        Account::deposit(payee, dfi);
     }
 }
 ```
