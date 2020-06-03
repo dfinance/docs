@@ -12,6 +12,12 @@ dncli tx bank send <sender> <recipient> <amount> --gas <value>
 
 The default gas parameter in **dncli** is `500000`, if you see errors related to **"out of gas"** issue, try to increase gas until you find the optimal one for your transaction.
 
+### Block gas limit
+
+The current testnet block gas limit is `10000000` gas. Means, a transaction with gas limit setup great than `10000000` will be not accepted by validators nodes.
+
+Protocol users can update this limit in the future by the gov voting mechanism.
+
 ## Fees
 
 Although **dfinance** supports different currencies \(like ETH\), transaction fees can be paid only in **DFI** currency.
