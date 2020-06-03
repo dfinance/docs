@@ -14,9 +14,9 @@ The default gas parameter in **dncli** is `500000`, if you see errors related to
 
 ### Block gas limit
 
-The current testnet block gas limit is `10000000` gas. Means, a transaction with gas limit setup great than `10000000` will be not accepted by validators nodes.
+The current testnet block gas limit is `10000000` gas. Means that transaction with gas limit greater than `10000000` will be not accepted by validators nodes.
 
-Protocol users can update this limit in the future by the gov voting mechanism.
+In future this setting will become changeable via Government voting mechanism.
 
 ## Fees
 
