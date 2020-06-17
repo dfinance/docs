@@ -38,23 +38,23 @@ The type `DFI::T` inside module `0x0::DFI` can be used as type parameter in gene
 
 ```rust
 script {
-    use 0x0::Dfinance;
-    use 0x0::Account;
-    use 0x0::DFI;
+     use 0x0::Dfinance;
+     use 0x0::Account;
+     use 0x0::DFI;
 
-    fun main(recipient: address, amount: u128) {
-        // Withdraw DFI resource from sender balance with provided amount.
-        let withdraw : Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(amount);
+     fun main(account: &signer, recipient: address, amount: u128) {
+         // Withdraw DFI resource from sender balance with provided amount.
+         let withdraw : Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(account, amount);
 
-        // Deposit withdrawn DFI balance to recipient address.
-        Account::deposit<DFI::T>(recipient, withdraw);
-    }
-}
+         // Deposit withdrawn DFI balance to recipient address.
+         Account::deposit<DFI::T>(account, recipient, withdraw);
+     }
+ }
 ```
 
 Provided script uses functions `withdraw_from_sender<T>` and `deposit<T>` which contain generic type `T`. By passing `DFI::T` as type parameter into these generic functions, we make them work with DFI balances. Note that other coin types can too be passed as type parameters.
 
-You can learn more about generics in Move in the [Move book](https://move-book.com/chapters/generics.html)
+You can learn more about generics in Move in the [Move book](https://move-book.com/advanced-topics/understanding-generics.html).
 
 ## Other coins
 
@@ -80,10 +80,10 @@ script {
     use 0x0::Account;
     use 0x0::Coins;
 
-    fun main(recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
-        Account::pay_from_sender<Coins::ETH>(recipient, eth_amount);
-        Account::pay_from_sender<Coins::BTC>(recipient, btc_amount);
-        Account::pay_from_sender<Coins::USDT>(recipient, usdt_amount);
+    fun main(account: &signer, recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
+        Account::pay_from_sender<Coins::ETH>(account, recipient, eth_amount);
+        Account::pay_from_sender<Coins::BTC>(account, recipient, btc_amount);
+        Account::pay_from_sender<Coins::USDT>(account, recipient, usdt_amount);
     }
 }
 ```
@@ -97,4 +97,3 @@ module Coins {
     struct USDT {}
 }
 ```
-
