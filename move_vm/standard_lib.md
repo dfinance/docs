@@ -195,7 +195,7 @@ script {
 }
 ```
 
-Signer type required for functions that work with resources, address of signer could be useful in case of resource related functions: `borrow_global`, `borrow_global_mut`, `exists`. 
+Signer type required for functions that work with resources, address of signer could be useful in case of resource related functions: `borrow_global`, `borrow_global_mut`, `exists`, `move_from`. 
 
 Read more about the signer type in [Move Book](https://move-book.com/resources/signer-type.html).
 
