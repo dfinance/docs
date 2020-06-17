@@ -205,4 +205,3 @@ script {
 Resources are the most interesting and the most complex topic in Move language. But once you've gotten the idea, the rest is easy.
 
 To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/resources/index.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.
-
