@@ -42,12 +42,12 @@ script {
      use 0x0::Account;
      use 0x0::DFI;
 
-     fun main(account: &signer, recipient: address, amount: u128) {
+     fun main(sender: &signer, recipient: address, amount: u128) {
          // Withdraw DFI resource from sender balance with provided amount.
-         let withdraw : Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(account, amount);
+         let withdraw : Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(sender, amount);
 
          // Deposit withdrawn DFI balance to recipient address.
-         Account::deposit<DFI::T>(account, recipient, withdraw);
+         Account::deposit<DFI::T>(sender, recipient, withdraw);
      }
  }
 ```
@@ -80,10 +80,10 @@ script {
     use 0x0::Account;
     use 0x0::Coins;
 
-    fun main(account: &signer, recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
-        Account::pay_from_sender<Coins::ETH>(account, recipient, eth_amount);
-        Account::pay_from_sender<Coins::BTC>(account, recipient, btc_amount);
-        Account::pay_from_sender<Coins::USDT>(account, recipient, usdt_amount);
+    fun main(sender: &signer, recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
+        Account::pay_from_sender<Coins::ETH>(sender, recipient, eth_amount);
+        Account::pay_from_sender<Coins::BTC>(sender, recipient, btc_amount);
+        Account::pay_from_sender<Coins::USDT>(sender, recipient, usdt_amount);
     }
 }
 ```

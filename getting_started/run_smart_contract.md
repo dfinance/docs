@@ -15,8 +15,8 @@ script {
     use 0x0::Account;
     use 0x0::DFI;
 
-    fun main(account: &signer, recipient: address, dfi_amount: u128) {
-        Account::pay_from_sender<DFI::T>(account, recipient, dfi_amount);
+    fun main(sender: &signer, recipient: address, dfi_amount: u128) {
+        Account::pay_from_sender<DFI::T>(sender, recipient, dfi_amount);
     }
 }
 ```
