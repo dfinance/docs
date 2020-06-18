@@ -195,7 +195,7 @@ script {
 }
 ```
 
-Signer type required for functions that work with resources, address of signer could be useful in case of resource related functions: `borrow_global`, `borrow_global_mut`, `exists`, `move_from`. 
+Signer type is required for functions which work with resources, address of signer could be useful in case of resource related functions: `borrow_global`, `borrow_global_mut`, `exists`, `move_from`. 
 
 Read more about the signer type in [Move Book](https://move-book.com/resources/signer-type.html).
 
@@ -278,7 +278,7 @@ script {
 }
 ```
 
-The rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move). 
+For the rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move). 
 
 ## Dfinance
 
