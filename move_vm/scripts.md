@@ -13,12 +13,12 @@ script {
    use 0x0::Event;
    use {{sender}}::Math;
 
-   fun main(a: u64, b: u64) {
+   fun main(sender: &signer, a: u64, b: u64) {
       let sum = Math::add(a, b);
 
-      let event_handle = Event::new_event_handle<u64>();
-        Event::emit_event(&mut event_handle, sum);
-        Event::destroy_handle(event_handle);
+      let event_handle = Event::new_event_handle<u64>(sender);
+      Event::emit_event(&mut event_handle, sum);
+      Event::destroy_handle(event_handle);
    }
 }
 ```

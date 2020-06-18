@@ -1,56 +1,39 @@
 # Query Price
 
-Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Oracle module](https://github.com/dfinance/dvm/blob/master/lang/stdlib/oracle.mvir):
+Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Oracle module](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/oracle.move):
 
 ```rust
 address 0x0 {
     module Oracle {
-        native public fun get_price(ticker: u64): u64;
+        native public fun get_price<Curr1, Curr2>(): u64;
     }
 }
 ```
 
-This is native function, that you can import into your module or script and use. It accepts the **u64** parameter as ticker id, because **dfinance** encodes ticker pair as unique **u64** id, and returns u64 number as the current price of pair.
+This is native function, that you can import into your module or script and use. It requires two generics (pairs) to call a function, e.g.: BTC_USDT, ETH_USDT, DFI_BTC.
 
-## Ticker id
-
-Ticker id is a hash from string contains a description, pseudo-code to generate id looks so:
-
-```text
-ticker = xxHash(to_lower("ETH_USDT"))
-```
-
-**Dnode** and **dncli** already support everything from the box, so you don't need to worry and do any manipulations.
-
-In your code you can write already with hashed value:
+Let's try to query BTC_USDT price:
 
 ```rust
-let price = Oracle::get_price(#"ETH_USDT");
+let price = Oracle::get_price<Coins::BTC, Coins::USDT>();
 ```
 
-In the case of passing arguments, you can make a script that receives ticket id as **u64** argument:
+As script it looks so:
 
 ```rust
 script {
+    use 0x0::Coins;
     use 0x0::Oracle;
 
     fun main(ticker: u64) {
-        let _ = Oracle::get_price(ticker);
+        let _ = Oracle::get_price<Coins::BTC, Coins::USDT>();
     }
 }
 ```
 
-You can easily pass a ticker id argument so \(ticker id will be converted automatically\):
-
-```text
-dncli tx vm execute-script <script file> #"ETH_USDT" --from <account> --fees 1dfi
-```
-
-So **dncli** detects that it hashed value and automatically makes a right hash from it.
-
 ## Price
 
-By default returned u64 price has reserved **8 decimals places**.
+By default returned **u64** price has reserved **8 decimals places**.
 
 Means price for ETH\_USDT as **100.02** will be presented as **10002000000**.
 
@@ -58,32 +41,31 @@ To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/curr
 
 ## Write a script
 
-Let's write a script which will take in ticker as argument and will emit event with this ticker's price.
+Let's write a script that will take BTC_USDT price and will emit an event with this ticker's price:
 
 ```rust
 script {
     use 0x0::Event;
+    use 0x0::Coins;
     use 0x0::Oracle;
 
-    fun main(ticker: u64) {
-        let price = Oracle::get_price(ticker);
+    fun main(sender: &signer) {
+        let price = Oracle::get_price<Coins::BTC, Coins::USDT>();
 
-        let event_handle = Event::new_event_handle<u64>();
+        let event_handle = Event::new_event_handle<u64>(sender);
         Event::emit_event(&mut event_handle, price);
         Event::destroy_handle(event_handle);
     }
 }
 ```
 
-Compile it, and let's execute several transactions with different tickers:
+Compile the script and execute:
 
 ```text
-dncli tx vm execute-script <compiled file> #"ETH_USDT" --from <account> --fees 1dfi
-dncli tx vm execute-script <compiled file> #"BTC_USDT" --from <account> --fees 1dfi
-dncli tx vm execute-script <compiled file> #"DFI_ETH"  --from <account> --fees 1dfi
+dncli tx vm execute-script <compiled file> --from <account> --fees 1dfi
 ```
 
-You can query transaction ids to see how events with price fired.
+You can query results by transaction id to see how events with price fired.
 
 ## Usage in module
 
@@ -94,12 +76,12 @@ Something like:
 ```rust
 module PriceRequest {
     use 0x0::Oracle;
+    use 0x0::Coins;
 
     public fun get_eth_usdt_price(): u64 {
-        Oracle::get_price(#"ETH_USDT")
+        Oracle::get_price<Coins::ETH, Coins::USDT>()
     }
 }
 ```
 
 And then just use it in your scripts.
-

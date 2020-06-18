@@ -15,6 +15,7 @@ module Swap {
     use 0x0::Dfinance;
     use 0x0::Transaction;
     use 0x0::Account;
+    use 0x0::Signer;
 
     // The resource of module which contains swap parameters.
     resource struct T<Offered, Expected>{
@@ -23,11 +24,13 @@ module Swap {
     }
 
     // Create a swap deal with two coin pairs: Offered and Expected.
-    public fun create<Offered, Expected>(offered: Dfinance::T<Offered>, price: u128) {
-        let sender = Transaction::sender();
-        Transaction::assert(!exists<Offered, Expected>(sender), 101);
+    public fun create<Offered, Expected>(sender: &signer, offered: Dfinance::T<Offered>, price: u128) {
+        let sender_addr = Signer::address_of(sender);
 
-        move_to_sender<T<Offered, Expected>>(
+        Transaction::assert(!exists<Offered, Expected>(sender_addr), 101);
+
+        move_to<T<Offered, Expected>>(
+            sender,
             T<Offered, Expected> {
                 offered: offered,
                 price
@@ -42,19 +45,19 @@ module Swap {
     }
 
     // Change price before swap happens.
-    public fun change_price<Offered, Expected>(new_price: u128) acquires T {
-        let offer = borrow_global_mut<T<Offered, Expected>>(Transaction::sender());
+    public fun change_price<Offered, Expected>(sender: &signer, new_price: u128) acquires T {
+        let offer = borrow_global_mut<T<Offered, Expected>>(Signer::address_of(sender));
         offer.price = new_price;
     }
 
     // Swap coins and deposit them to accounts: both creator and buyer.
-    public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) acquires T {
+    public fun swap<Offered, Expected>(sender: &signer, seller: address, exp: Dfinance::T<Expected>) acquires T {
        let T<Offered, Expected> { offered, price } = move_from<T<Offered, Expected>>(seller);
        let exp_value = Dfinance::value<Expected>(&exp);
 
        Transaction::assert(exp_value == price, 102);
-       Account::deposit(seller, exp);
-       Account::deposit_to_sender(offered);
+       Account::deposit(sender, seller, exp);
+       Account::deposit_to_sender(sender, offered);
     }
 
     // Check if the swap pair already exists for the account.
@@ -70,19 +73,21 @@ To create a swap use **"create"** function, to make an exchange use **"swap"** f
 
 Even though there's a lot of code inside, we'll focus on 4 main methods: `borrow_global_mut`, `move_to_sender`, `move_from`, `exists` and on `acquires` keyword.
 
-### move\_to\_sender&lt;T&gt;\(T\)
+### move\_to&lt;T&gt;\(&signer, T\)
 
 When resource is created, it needs to be moved to address \(otherwise it will never be actually created - there's no 'contract storage' - only accounts\). It is important to note that newly created resource can be moved only to the sender of transaction - this makes initalization of resource impossible at someone else's address.
 
-To move resource to sender `move_to_sender<T>(T)` method is used - as obvious as it is - where T is a generic type and instance of this type - a resource:
+To move resource to sender `move_to<T>(&signer, T)` method is used - as obvious as it is - where T is a generic type and instance of this type - a resource:
 
 ```rust
 // Create a swap deal with two coin pairs: Offered and Expected.
-public fun create<Offered, Expected>(offered: Dfinance::T<Offered>, price: u128) {
-    let sender = Transaction::sender();
-    Transaction::assert(!exists<Offered, Expected>(sender), 101);
+public fun create<Offered, Expected>(sender: &signer, offered: Dfinance::T<Offered>, price: u128) {
+    let sender_addr = Signer::address_of(sender);
 
-    move_to_sender<T<Offered, Expected>>(
+    Transaction::assert(!exists<Offered, Expected>(sender_addr), 101);
+
+    move_to<T<Offered, Expected>>(
+        sender,
         T<Offered, Expected> {
             offered: offered,
             price
@@ -108,8 +113,8 @@ public fun exists<Offered, Expected>(addr: address): bool {
 
 ```rust
 // Change price before swap happens.
-public fun change_price<Offered, Expected>(new_price: u128) acquires T {
-    let offer = borrow_global_mut<T<Offered, Expected>>(Transaction::sender());
+public fun change_price<Offered, Expected>(sender: &signer, new_price: u128) acquires T {
+    let offer = borrow_global_mut<T<Offered, Expected>>(Signer::address_of(sender));
     offer.price = new_price;
 }
 ```
@@ -133,13 +138,13 @@ Every function which accesses already created resource must have `acquires` keyw
 ### move\_from&lt;T&gt;\(address\)
 
 ```rust
-public fun swap<Offered, Expected>(seller: address, exp: Dfinance::T<Expected>) acquires T {
+public fun swap<Offered, Expected>(sender: &signer, seller: address, exp: Dfinance::T<Expected>) acquires T {
     let T<Offered, Expected> { offered, price } = move_from<T<Offered, Expected>>(seller);
     let exp_value = Dfinance::value<Expected>(&exp);
 
     Transaction::assert(exp_value == price, 102);
-    Account::deposit(seller, exp);
-    Account::deposit_to_sender(offered);
+    Account::deposit(sender, seller, exp);
+    Account::deposit_to_sender(sender, offered);
 }
 ```
 
@@ -168,11 +173,11 @@ script {
     use 0x0::Coins;
     use 0x0::Account;
 
-    fun main(amount: u128, price: u128) {
-        let dfi = Account::withdraw_from_sender(amount);
+    fun main(sender: &signer, amount: u128, price: u128) {
+        let dfi = Account::withdraw_from_sender(sender, amount);
 
         // Deposit DFI coins in exchange to UDST.
-        Swap::create<DFI::T, Coins::USDT>(dfi, price);
+        Swap::create<DFI::T, Coins::USDT>(sender, dfi, price);
     }
 }
 ```
@@ -186,11 +191,11 @@ script {
     use 0x0::Coins;
     use 0x0::Account;
 
-    fun main(seller:address, price: u128) {
-        let usdt = Account::withdraw_from_sender(price);
+    fun main(sender: &signer, seller: address, price: u128) {
+        let usdt = Account::withdraw_from_sender(sender, price);
 
         // Deposit USDT to swap coins.
-        Swap::swap<DFI::T, Coins::USDT>(seller, usdt);
+        Swap::swap<DFI::T, Coins::USDT>(sender, seller, usdt);
     }
 }
 ```
@@ -199,5 +204,4 @@ script {
 
 Resources are the most interesting and the most complex topic in Move language. But once you've gotten the idea, the rest is easy.
 
-To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/chapters/resource.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.
-
+To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/resources/index.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.

@@ -22,8 +22,8 @@ You can build **dnode** from source, to do so fetch and build dnode from [Github
 
 After that you need to:
 
-* Install **dvm** and **compiler**, from [dvm repository](https://github.com/dfinance/dvm).
-* Launch **dvm** and **compiler** with recommended port setting \(or configure your own ports in both dnode and dvm+compiler\).
+* Install **dvm** from [dvm repository](https://github.com/dfinance/dvm).
+* Launch **dvm** with recommended port setting \(or configure your own ports in both dnode and dvm\).
 
 ## Testnet configuration \(for docker or manual run\)
 
@@ -43,13 +43,21 @@ rm ~/.dnode/config/genesis.json
 curl rpc.testnet.dfinance.co:26657/genesis | jq '.result.genesis' > ~/.dnode/config/genesis.json
 ```
 
-Then open config file \(_~/.dnode/config.toml_\) find `persistent_peers` line and replace it with:
+Now let's get testnet seed node address:
 
 ```bash
-persistent_peers = "07cca7d6934f87c0fa72c430c9e52717bcc525b9@rpc.testnet.dfinance.co:26656"
+# this solution requires 'jq' util to be installed
+curl rpc.testnet.dfinance.co:26657/genesis | jq -r '.result.genesis.app_state.genutil.gentxs[].value | select(.msg[0].value.description.moniker == "bootnode") | try(.memo |= split("@")) | .memo[0] + "@rpc.testnet.dfinance.co:26656"'
+```
+
+Previous command prints testnet seed node address.
+
+Now replace seeds in \(_~/.dnode/config.toml_\):
+
+```bash
+persistent_peers = "put seed address here" # e.g. "25c5340ac11a7b383f5a8a0d13f346b12fcf21a4@rpc.testnet.dfinance.co:26656"
 ```
 
 More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.
 
 If you'd like to contribute - [see contributors section](https://github.com/dfinance/dnode#contributors). If you have any questions feel free to open [new issue](https://github.com/dfinance/dnode/issues/new).
-
