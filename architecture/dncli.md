@@ -46,6 +46,12 @@ dncli query vm --help
 dncli query vm compile-script --help
 ```
 
+In case, your VM transaction contains an error, you always can query detailed information about the happened error, check next command:
+
+```bash
+dncli query vm tx [txId]
+```
+
 ## Testnet configuration
 
 **dncli** by default connects to local **dnode** \(at localhost:26657\) and **compiler** (inside **dvm**) \(at localhost:50051\). To connect to remote node or launched testnet, change these configuration settings:
