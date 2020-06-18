@@ -186,7 +186,7 @@ script {
 
 ```rust
 script {
-    use wallet1074u4lh5zzytznjm0g3r4whp5ce4dqyfvelsxa::Swap;
+    use {{sender}}::Swap;
     use 0x0::DFI;
     use 0x0::Coins;
     use 0x0::Account;

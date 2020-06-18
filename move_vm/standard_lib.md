@@ -386,7 +386,7 @@ And also deposit it to your balance:
 
 ```rust
 script {
-    use wallet1074u4lh5zzytznjm0g3r4whp5ce4dqyfvelsxa::MyToken;
+    use {{sender}}::MyToken;
     use 0x0::Account;
 
     fun main(sender: &signer) {

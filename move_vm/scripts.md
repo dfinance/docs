@@ -11,7 +11,7 @@ Let's write a basic script, accepts two arguments, a and b values, and then usin
 ```rust
 script {
    use 0x0::Event;
-   use wallet1074u4lh5zzytznjm0g3r4whp5ce4dqyfvelsxa::Math;
+   use {{sender}}::Math;
 
    fun main(sender: &signer, a: u64, b: u64) {
       let sum = Math::add(a, b);
