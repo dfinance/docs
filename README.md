@@ -15,3 +15,4 @@ We proudly offer you to employ the **dfinance** infrastructure to deploy your id
 * Libra's **Move language** and virtual machine to enable the creation of a powerful code execution environment on decentralized nodes with all the security offered by language's strict semantics, syntax and ownership model.
 * **Decentralized oracles** providing connection between DeFinance platform and the real world financial instruments and sources of data.
 * Powerful **high-level visual language** empowering a safe way to design, deploy and run your own financial instruments, with no prior knowledge in programming required
+

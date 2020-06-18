@@ -54,7 +54,7 @@ dncli query vm tx [txId]
 
 ## Testnet configuration
 
-**dncli** by default connects to local **dnode** \(at localhost:26657\) and **compiler** (inside **dvm**) \(at localhost:50051\). To connect to remote node or launched testnet, change these configuration settings:
+**dncli** by default connects to local **dnode** \(at localhost:26657\) and **compiler** \(inside **dvm**\) \(at localhost:50051\). To connect to remote node or launched testnet, change these configuration settings:
 
 ```bash
 dncli config compiler tcp://rpc.testnet.dfinance.co:50051
@@ -68,3 +68,4 @@ Also, **compiler** address could be passed as `--compiler` option during executi
 dncli query vm compile-script <file> <account>
 dncli query vm compile-module <file> <account>
 ```
+

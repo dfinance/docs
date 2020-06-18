@@ -50,7 +50,7 @@ The method will return u64 value as the height of the latest block.
 
 ## Transaction
 
-[Transaction](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/transaction.move) module contains functions to work with transaction data, currently supports two functions: `sender()`, `assert(bool, u64)`. 
+[Transaction](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/transaction.move) module contains functions to work with transaction data, currently supports two functions: `sender()`, `assert(bool, u64)`.
 
 Getting sender address of transaction:
 
@@ -78,11 +78,11 @@ script {
 }
 ```
 
-In case you pass `false` as the first argument of `assert(bool, u64)` or the result of your expression, the transaction will fail and return "sub_status" in event of transaction that will equal your code provided as the second argument.
+In case you pass `false` as the first argument of `assert(bool, u64)` or the result of your expression, the transaction will fail and return "sub\_status" in event of transaction that will equal your code provided as the second argument.
 
 ## Compare
 
-[Compare](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/compare.move) module allows comparing two vectors of u8 values (bytes).
+[Compare](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/compare.move) module allows comparing two vectors of u8 values \(bytes\).
 
 Comparing two-byte vectors:
 
@@ -105,16 +105,16 @@ script {
 
 ```rust
 script {
-	use 0x0::Account;
-	use 0x0::DFI;
-	use 0x0::Coins;
+    use 0x0::Account;
+    use 0x0::DFI;
+    use 0x0::Coins;
 
-	fun main(sender: &signer, payee: address, dfi_amount: u128, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
+    fun main(sender: &signer, payee: address, dfi_amount: u128, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
         Account::pay_from_sender<DFI::T>(sender, payee, dfi_amount);
         Account::pay_from_sender<Coins::ETH>(sender, payee, eth_amount);
         Account::pay_from_sender<Coins::BTC>(sender, payee, btc_amount);
         Account::pay_from_sender<Coins::USDT>(sender, payee, usdt_amount);
-	}
+    }
 }
 ```
 
@@ -133,7 +133,7 @@ script {
 }
 ```
 
-More about work with oracles can see in our [oracles documentation](/oracles/README.md).
+More about work with oracles can see in our [oracles documentation](../oracles/).
 
 ## Event
 
@@ -195,7 +195,7 @@ script {
 }
 ```
 
-Signer type is required for functions which work with resources, address of signer could be useful in case of resource related functions: `borrow_global`, `borrow_global_mut`, `exists`, `move_from`. 
+Signer type is required for functions which work with resources, address of signer could be useful in case of resource related functions: `borrow_global`, `borrow_global_mut`, `exists`, `move_from`.
 
 Read more about the signer type in [Move Book](https://move-book.com/resources/signer-type.html).
 
@@ -211,7 +211,7 @@ A lot of different methods can be used to send tokens from account A to account 
 script {
     use 0x0::Account;
     use 0x0::DFI;
-    
+
     fun main(sender: &signer, payee: address, amount: u128, metadata: vector<u8>) {
         // Move DFI from sender account to payee.
         Account::pay_from_sender<DFI::T>(sender, payee, amount);
@@ -278,7 +278,7 @@ script {
 }
 ```
 
-For the rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move). 
+For the rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move).
 
 ## Dfinance
 
@@ -396,12 +396,11 @@ script {
 }
 ```
 
-More documentation about the feature provided by Dfinance module see in [dfinance.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfinance.move). 
+More documentation about the feature provided by Dfinance module see in [dfinance.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfinance.move).
 
 ## Vector
 
-[Vector](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/vector.move) module contains functions to work with `vector`
- type.
+[Vector](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/vector.move) module contains functions to work with `vector` type.
 
 For example:
 
@@ -442,3 +441,4 @@ script {
     }
 }
 ```
+

@@ -61,3 +61,4 @@ persistent_peers = "put seed address here" # e.g. "25c5340ac11a7b383f5a8a0d13f34
 More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.
 
 If you'd like to contribute - [see contributors section](https://github.com/dfinance/dnode#contributors). If you have any questions feel free to open [new issue](https://github.com/dfinance/dnode/issues/new).
+

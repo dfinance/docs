@@ -26,11 +26,14 @@
   * [Deposit](pegzone/deposit.md)
   * [Usage](pegzone/usage.md)
   * [Withdraw](pegzone/withdraw.md)
+
 ## Useful Resources
+
 * [Dfinance Website](https://dfinance.co)
+* [Wallet](https://testnet.dfinance.co)
 * [Move Book](https://move-book.com)
 * [Block Explorer](https://explorer.testnet.dfinance.co)
-* [Wallet](https://testnet.dfinance.co)
-* [VSCode Move IDE](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
 * [Swagger UI](https://swagger.testnet.dfinance.co)
 * [Community](https://community.dfinance.co)
+* [VSCode Move IDE](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
+

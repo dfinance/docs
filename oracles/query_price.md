@@ -10,9 +10,9 @@ address 0x0 {
 }
 ```
 
-This is native function, that you can import into your module or script and use. It requires two generics (pairs) to call a function, e.g.: BTC_USDT, ETH_USDT, DFI_BTC.
+This is native function, that you can import into your module or script and use. It requires two generics \(pairs\) to call a function, e.g.: BTC\_USDT, ETH\_USDT, DFI\_BTC.
 
-Let's try to query BTC_USDT price:
+Let's try to query BTC\_USDT price:
 
 ```rust
 let price = Oracle::get_price<Coins::BTC, Coins::USDT>();
@@ -41,7 +41,7 @@ To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/curr
 
 ## Write a script
 
-Let's write a script that will take BTC_USDT price and will emit an event with this ticker's price:
+Let's write a script that will take BTC\_USDT price and will emit an event with this ticker's price:
 
 ```rust
 script {
@@ -85,3 +85,4 @@ module PriceRequest {
 ```
 
 And then just use it in your scripts.
+

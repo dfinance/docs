@@ -15,3 +15,4 @@ dncli tx vm execute-script --help
 * ByteArray values \(hex\). Example: **"68656c6c6f2c20776f726c6421"**.
 * Strings \(pseudo support via ByteArray type\). Example: **"hello, world!"**.
 * Address values. Example: **wallet1jk4ld0uu6wdrj9t8u3gghm9jt583hxx7xp7he8**.
+

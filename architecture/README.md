@@ -7,3 +7,4 @@ Dfinance network consists of several main components:
 * **dvm** - Move Virtual Machine by [Libra](https://developers.libra.org/) packed as gRPC server. Allows smart constracts execution via gRPC. Connects to **dnode** to read data from storage, **dnode** connects to VM to execute smart contracts. [See repository](https://github.com/dfinance/dvm). Also, contains compiler of Move language. Requires **dnode** for correct functioning.
 
 You'll find more precise description of every component in other sections of this documentation.
+

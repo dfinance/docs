@@ -97,3 +97,4 @@ module Coins {
     struct USDT {}
 }
 ```
+

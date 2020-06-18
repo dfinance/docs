@@ -162,7 +162,7 @@ You can try to compile and deploy module, and then via script call deposit with 
 
 ### Scripts
 
-Here are a few scripts examples, of how you can work with Swap module \(don't forget to replace  with your address\):
+Here are a few scripts examples, of how you can work with Swap module \(don't forget to replace with your address\):
 
 **Create**
 
@@ -205,3 +205,4 @@ script {
 Resources are the most interesting and the most complex topic in Move language. But once you've gotten the idea, the rest is easy.
 
 To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/resources/index.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.
+
