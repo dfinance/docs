@@ -62,7 +62,7 @@ script {
 Compile the script and execute:
 
 ```text
-dncli tx vm execute-script <compiled file> --from <account> --fees 1dfi
+dncli tx vm execute <compiled file> --from <account> --fees 1dfi
 ```
 
 You can query results by transaction id to see how events with price fired.

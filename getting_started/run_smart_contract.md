@@ -37,7 +37,7 @@ Put the script under **'./send.move'** name or use [VSCode plugin](https://marke
 
 ```text
 mkdir out
-dncli query vm compile-script ./send.move <address> --to-file ./out/send.move.json
+dncli query vm compile ./send.move <address> --to-file ./out/send.move.json
 ```
 
 Replace **&lt;address&gt;** with your **dfinance** address and execute the command.
@@ -53,12 +53,12 @@ We should make a transaction that will contain compiled byte code and put the ri
 Do it with the command:
 
 ```text
-dncli tx vm execute-script ./out/send.move.json <recipient> 10000000000000000000 --from my-account --fees 1dfi
+dncli tx vm execute ./out/send.move.json <recipient> 10000000000000000000 --from my-account --fees 1dfi
 ```
 
 Replace **&lt;recipient&gt;** with recipient address account and execute, you can see the result of command execution by querying txId.
 
-As you see arguments passed to execute-script match arguments in script function **"main"**.
+As you see arguments passed to `execute` match arguments in script function **"main"**.
 
 In nutshell, we have done the same, but instead of using **dncli** native functional for sending coins, we used a smart contract.
 

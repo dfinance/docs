@@ -2,13 +2,13 @@
 
 Each script can contain only one function, usually, it's **"main"**, but you can define it however you want, This function can have arguments and will be executed when you send a transaction with your script.
 
-With **execute-script** command you can pass arguments to script function, see help:
+With **execute** command you can pass arguments to script function, see help:
 
 ```text
-dncli tx vm execute-script --help
+dncli tx vm execute --help
 ```
 
-**Dncli** **"execute-script"** supports different kind of arguments, as:
+**Dncli** **"execute"** supports different kind of arguments, as:
 
 * Boolean values. Example: **true, false**.
 * U64, U8, U128 values \(unsigned integers\).

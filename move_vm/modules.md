@@ -2,7 +2,7 @@
 
 There are two types of smart contracts in **dfinance**: module and script.
 
-Difference between them that module is deployed \(published\) into blockchain storage and is stored under the deployer account, while script is simply a transaction-as-script and can only operate with existing modules.
+Difference between them that module is published into blockchain storage and is stored under the publisher account, while script is simply a transaction-as-script and can only operate with existing modules.
 
 The Move Book also has a section about [modules](https://move-book.com/chapters/module.html) in Move language.
 
@@ -21,13 +21,13 @@ module Math {
 Let's compile this module using **dncli**. Compiler requires sender's address as it's included into bytecode. This address will then be verified on module publish.
 
 ```text
-dncli query vm compile-module <path-to-mvir> <address> --to-file <output file>
+dncli query vm compile <path-to-mvir> <address> --to-file <output file>
 ```
 
 Replace variables in this pattern with your own and you will get a compiled module in the specified output file. When it's done, you can publish your module:
 
 ```text
-dncli tx vm deploy-module <output file> --from <account> --fees 1dfi
+dncli tx vm publish <output file> --from <account> --fees 1dfi
 ```
 
 Check your transaction by querying its id, which was returned in the output.
@@ -36,7 +36,7 @@ Check your transaction by querying its id, which was returned in the output.
 dncli tx query <id>
 ```
 
-If you see a **contract\_status** event, with status **keep** inside, everything deployed fine!
+If you see a **contract\_status** event, with status **keep** inside, everything published fine!
 
 When it's done your module is be published under your address, and you and other users can access it in their modules or scripts:
 

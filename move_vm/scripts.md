@@ -1,6 +1,6 @@
 # Scripts
 
-As already mentioned, **dfinance** supports transaction scripting. It means users can compile and execute scripts. Different between modules here is that you can't deploy script and use it again in the future, each script executing by new transaction every time.
+As already mentioned, **dfinance** supports transaction scripting. It means users can compile and execute scripts. Different between modules here is that you can't publish script and use it again in the future, each script executing by new transaction every time.
 
 The Move Book also has a section about [scripts](https://move-book.com/chapters/function.html) in Move language.
 
@@ -23,20 +23,20 @@ script {
 }
 ```
 
-Replace `{{sender}}` with the address you used during deploy of the module in the previous part of current documentation.
+Replace `{{sender}}` with the address you used during publish of the module in the previous part of current documentation.
 
 The script accepts two arguments in function **"main"**, then calculate sum with provided arguments, and fire event with this sum. Both arguments are **u64** integers.
 
 Compile the script using **dncli**:
 
 ```text
-dncli query vm compile-script <script file> <address> --to-file <output file>
+dncli query vm compile <script file> <address> --to-file <output file>
 ```
 
 And then execute with arguments:
 
 ```text
-dncli tx vm execute-script <output file> 15 20 --from <my address> --fees 1dfi
+dncli tx vm execute <output file> 15 20 --from <my address> --fees 1dfi
 ```
 
 You can verify execution with querying transaction by id.

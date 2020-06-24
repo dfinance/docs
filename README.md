@@ -6,7 +6,7 @@
 
 Our infrastructure on the one hand adopts all the properties of a good blockchain: high transaction throughput with low latency, unconstrained scalability, granular security and quite well designed smart contracts engine. On the other hand it proposes a simple and solid set of instruments to engage all you knowledge in finances on the way to success of your project.
 
-We proudly offer you to employ the **dfinance** infrastructure to deploy your ideas and focus on your aim.
+We proudly offer you to employ the **dfinance** infrastructure to publish your ideas and focus on your aim.
 
 ## Parts
 
@@ -14,5 +14,5 @@ We proudly offer you to employ the **dfinance** infrastructure to deploy your id
 * **PegZone** which enables an interoperability with 1st layer blockchains such as Ethereum, EOS, and Bitcoin and others, tapping into the liquidity captured by these blockchains coins and tokens.
 * Libra's **Move language** and virtual machine to enable the creation of a powerful code execution environment on decentralized nodes with all the security offered by language's strict semantics, syntax and ownership model.
 * **Decentralized oracles** providing connection between DeFinance platform and the real world financial instruments and sources of data.
-* Powerful **high-level visual language** empowering a safe way to design, deploy and run your own financial instruments, with no prior knowledge in programming required
+* Powerful **high-level visual language** empowering a safe way to design, publish and run your own financial instruments, with no prior knowledge in programming required
 

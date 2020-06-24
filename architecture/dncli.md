@@ -40,10 +40,10 @@ You can use `--help` option for any command, e.g.:
 
 ```bash
 dncli tx vm --help
-dncli tx vm execute-script --help
+dncli tx vm execute --help
 
 dncli query vm --help
-dncli query vm compile-script --help
+dncli query vm compile --help
 ```
 
 In case, your VM transaction contains an error, you always can query detailed information about the happened error, check next command:
@@ -61,11 +61,10 @@ dncli config compiler tcp://rpc.testnet.dfinance.co:50051
 dncli config node http://rpc.testnet.dfinance.co:26657
 ```
 
-Also, **compiler** address could be passed as `--compiler` option during execution of commands requiring compilation. Those are:
+Also, **compiler** address could be passed as `--compiler` option during execution of command requiring compilation, this is: 
 
 ```bash
 # use --help to see full list of options
-dncli query vm compile-script <file> <account>
-dncli query vm compile-module <file> <account>
+dncli query vm compile <file> <account>
 ```
 

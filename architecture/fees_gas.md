@@ -28,6 +28,6 @@ So when you send any transaction, you must provide minimal feee in **1 DFI**. In
 
 ```bash
 # 1dfi MUST be written without spaces between amount and denom
-dncli tx vm execute-script <script.mvir.json> <args,...> --fees 1dfi
+dncli tx vm execute <script.mvir.json> <args,...> --fees 1dfi
 ```
 

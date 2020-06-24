@@ -154,9 +154,9 @@ public fun swap<Offered, Expected>(sender: &signer, seller: address, exp: Dfinan
 
 So `create` function creates a new resource, `swap` function allows to swap \(deposit coins to both accounts and _destroy_ resource T\); we've also added methods to get price of the deal and to change it.
 
-### Deploy
+### Publish
 
-You can try to compile and deploy module, and then via script call deposit with hash of your secret value, and then withdraw by passing your secret value.
+You can try to compile and publish module, and then via script call deposit with hash of your secret value, and then withdraw by passing your secret value.
 
 [Here is repository](https://github.com/borispovod/cold-storage-example) to help you. It already contains module and scripts examples.
 
