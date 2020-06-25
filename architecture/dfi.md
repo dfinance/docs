@@ -31,16 +31,16 @@ module DFI {
 Module can be imported from standard library:
 
 ```rust
-use 0x0::DFI;
+use 0x1::DFI;
 ```
 
-The type `DFI::T` inside module `0x0::DFI` can be used as type parameter in generic functions, like in this example:
+The type `DFI::T` inside module `0x1::DFI` can be used as type parameter in generic functions, like in this example:
 
 ```rust
 script {
-     use 0x0::Dfinance;
-     use 0x0::Account;
-     use 0x0::DFI;
+     use 0x1::Dfinance;
+     use 0x1::Account;
+     use 0x1::DFI;
 
      fun main(sender: &signer, recipient: address, amount: u128) {
          // Withdraw DFI resource from sender balance with provided amount.
@@ -73,12 +73,12 @@ dncli tx bank send <sender> <recipient> 1btc
 dncli tx bank send <sender> <recipient> 1usdt
 ```
 
-Also, coins types can be imported from `0x0::Coins` module to use in smart contracts:
+Also, coins types can be imported from `0x1::Coins` module to use in smart contracts:
 
 ```rust
 script {
-    use 0x0::Account;
-    use 0x0::Coins;
+    use 0x1::Account;
+    use 0x1::Coins;
 
     fun main(sender: &signer, recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
         Account::pay_from_sender<Coins::ETH>(sender, recipient, eth_amount);
@@ -97,4 +97,3 @@ module Coins {
     struct USDT {}
 }
 ```
-

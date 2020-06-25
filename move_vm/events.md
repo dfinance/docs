@@ -38,8 +38,7 @@ Guid is a unique id, contains a sequence number of EventHandler for the current 
 To catch events you can use REST API, using guid, for example, look at this URL to see how filters works:
 
 ```text
-https://rest.testnet.dfinance.co/txs?contract_events.guid=0x060000000000000077616c6c657400000000000095abf6bf9cd39a391567e4508becb25d0f1b98de
+https://rest.testnet.dfinance.co/txs?contract_events.guid=0x160000000000000077616c6c657400000000000095abf6bf9cd39a391567e4508becb25d0f1b98de
 ```
 
 Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) for details.
-

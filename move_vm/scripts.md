@@ -10,7 +10,7 @@ Let's write a basic script, accepts two arguments, a and b values, and then usin
 
 ```rust
 script {
-   use 0x0::Event;
+   use 0x1::Event;
    use {{sender}}::Math;
 
    fun main(sender: &signer, a: u64, b: u64) {
@@ -50,7 +50,7 @@ There will be even fired event, that will contain **"keep"** status and the resu
       "attributes":[
          {
             "key":"guid",
-            "value":"0x030000000000000077616c6c657400000000000095abf6bf9cd39a391567e4508becb25d0f1b98de"
+            "value":"0x130000000000000077616c6c657400000000000095abf6bf9cd39a391567e4508becb25d0f1b98de"
          },
          {
             "key":"sequence_number",
@@ -77,4 +77,3 @@ There will be even fired event, that will contain **"keep"** status and the resu
    }
 ]
 ```
-
