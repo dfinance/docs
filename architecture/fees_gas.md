@@ -24,10 +24,10 @@ Although **dfinance** supports different currencies \(like ETH\), transaction fe
 
 Currently, minimal fee amount is **1 DFI**. Though this value may vary for each validator in the network as it's for validator to decide his minimal fee. This means that even if your transaction fee was too low for current validator, it still may be added in one of the next few blocks by validators whose minimal fee matches your value.
 
-So when you send any transaction, you must provide minimal feee in **1 DFI**. In `dncli` use `--fees` option to set it, e.g.:
+**Dncli** setup default fees for tx commands as **1 DFI**, so you can ignore `--fees` flag, otherwise, if you want to speed up your transaction confirmation time you can provide more fees using the same flag, e.g.:
 
 ```bash
-# 1dfi MUST be written without spaces between amount and denom
-dncli tx vm execute <script.mvir.json> <args,...> --fees 1dfi
+# Fees amount MUST be written without spaces between amount and denom
+dncli tx vm execute <script.mvir.json> <args,...> --fees 1000000000000000000dfi
 ```
 

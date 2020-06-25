@@ -15,7 +15,7 @@ dncli keys add recipient
 To send **10 DFI** coins to this account needs to execute the next command:
 
 ```text
-dncli tx bank send <sender> <recipient> 10000000000000000000dfi --fees 1dfi
+dncli tx bank send <sender> <recipient> 10000000000000000000dfi
 ```
 
 Replace **&lt;sender&gt;** with your account address and **&lt;recipient&gt;** with **&lt;recipient&gt;** address.

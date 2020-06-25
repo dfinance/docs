@@ -53,7 +53,7 @@ We should make a transaction that will contain compiled byte code and put the ri
 Do it with the command:
 
 ```text
-dncli tx vm execute ./out/send.move.json <recipient> 10000000000000000000 --from my-account --fees 1dfi
+dncli tx vm execute ./out/send.move.json <recipient> 10000000000000000000 --from my-account
 ```
 
 Replace **&lt;recipient&gt;** with recipient address account and execute, you can see the result of command execution by querying txId.

@@ -36,7 +36,7 @@ dncli query vm compile <script file> <address> --to-file <output file>
 And then execute with arguments:
 
 ```text
-dncli tx vm execute <output file> 15 20 --from <my address> --fees 1dfi
+dncli tx vm execute <output file> 15 20 --from <my address>
 ```
 
 You can verify execution with querying transaction by id.

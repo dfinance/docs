@@ -27,7 +27,7 @@ dncli query vm compile <path-to-mvir> <address> --to-file <output file>
 Replace variables in this pattern with your own and you will get a compiled module in the specified output file. When it's done, you can publish your module:
 
 ```text
-dncli tx vm publish <output file> --from <account> --fees 1dfi
+dncli tx vm publish <output file> --from <account>
 ```
 
 Check your transaction by querying its id, which was returned in the output.

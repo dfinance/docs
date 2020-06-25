@@ -67,10 +67,10 @@ Current testnet supports other coins along with DFI:
 Same as DFI, all coins can be sent between accounts with CLI:
 
 ```text
-dncli tx bank send <sender> <recipient> 1dfi  --fees 1dfi
-dncli tx bank send <sender> <recipient> 1eth  --fees 1dfi
-dncli tx bank send <sender> <recipient> 1btc  --fees 1dfi
-dncli tx bank send <sender> <recipient> 1usdt --fees 1dfi
+dncli tx bank send <sender> <recipient> 1dfi
+dncli tx bank send <sender> <recipient> 1eth
+dncli tx bank send <sender> <recipient> 1btc
+dncli tx bank send <sender> <recipient> 1usdt
 ```
 
 Also, coins types can be imported from `0x0::Coins` module to use in smart contracts:
