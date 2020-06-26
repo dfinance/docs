@@ -6,7 +6,7 @@ They all placed on the address **0x1**. So when you import something from **0x1*
 
 ```rust
 use 0x1::Account;
-use 0x1::Events;
+use 0x1::Event;
 use 0x1::DFI;
 use 0x1::Coins;
 ...
@@ -104,46 +104,34 @@ More about work with oracles can see in our [oracles documentation](../oracles/)
 
 ## Event
 
-[Event](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/event.move) module allows us to work with events: generate new event handlers and fire events.
+[Event](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/event.move) module allows us to emit events.
 
-Example with firing event contains provided number:
+Example with emitting event contains provided number:
 
 ```rust
 script {
     use 0x1::Event;
 
-    fun main(sender: &signer, a: u64) {
-        let event_handle = Event::new_event_handle<u64>(sender);
-        Event::emit_event(&mut event_handle, a);
-        Event::destroy_handle(event_handle);
+    fun main(a: u64) {
+        Event::emit<u64>(a);
     }
 }
 ```
 
-Or you can store event handler in resource and fire events when you need:
+Or you you can emit event from your module:
 
 ```rust
 module MyEvent {
     use 0x1::Event;
-    use 0x1::Signer;
 
-    resource struct T {
-        eh: Event::EventHandle<u64>,
+    struct MyStruct {
+        value: u64
     }
 
-    public fun init(account: &signer) {
-        move_to<T>(account, T {
-            eh: Event::new_event_handle(account),
+    public fun my_event(a: u64) {
+        Event::emit(MyStruct {
+            value: a
         });
-    }
-
-    public fun fire_event(account: &signer, a: u64) acquires T {
-        let i = borrow_global_mut<T>(Signer::address_of(account));
-
-        Event::emit_event(
-            &mut i.eh,
-            a
-        );
     }
 }
 ```

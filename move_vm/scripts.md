@@ -13,12 +13,9 @@ script {
    use 0x1::Event;
    use {{sender}}::Math;
 
-   fun main(sender: &signer, a: u64, b: u64) {
+   fun main(a: u64, b: u64) {
       let sum = Math::add(a, b);
-
-      let event_handle = Event::new_event_handle<u64>(sender);
-      Event::emit_event(&mut event_handle, sum);
-      Event::destroy_handle(event_handle);
+      Event::emit(sum);
    }
 }
 ```
@@ -43,26 +40,26 @@ You can verify execution with querying transaction by id.
 
 There will be even fired event, that will contain **"keep"** status and the resulting sum, like:
 
-```javascript
+```json
 [
    {
       "type":"contract_events",
       "attributes":[
          {
-            "key":"guid",
-            "value":"0x130000000000000077616c6c657400000000000095abf6bf9cd39a391567e4508becb25d0f1b98de"
+            "key":"sender_address",
+            "value":"wallet1qjgqxwk55p9ejlupmeza0r02hyextys9rrthgg"
          },
          {
-            "key":"sequence_number",
-            "value":"0"
+            "key":"source",
+            "value":"script"
          },
          {
             "key":"type",
-            "value":"U64"
+            "value":"u64"
          },
          {
             "key":"data",
-            "value":"0x2300000000000000"
+            "value":"2300000000000000"
          }
       ]
    },
@@ -72,6 +69,32 @@ There will be even fired event, that will contain **"keep"** status and the resu
          {
             "key":"status",
             "value":"keep"
+         }
+      ]
+   },
+   {
+      "type":"message",
+      "attributes":[
+         {
+            "key":"action",
+            "value":"execute_script"
+         },
+         {
+            "key":"sender",
+            "value":"wallet1qjgqxwk55p9ejlupmeza0r02hyextys9rrthgg"
+         }
+      ]
+   },
+   {
+      "type":"transfer",
+      "attributes":[
+         {
+            "key":"recipient",
+            "value":"wallet17xpfvakm2amg962yls6f84z3kell8c5la07d0l"
+         },
+         {
+            "key":"amount",
+            "value":"1dfi"
          }
       ]
    }

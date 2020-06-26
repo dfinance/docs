@@ -49,12 +49,10 @@ script {
     use 0x1::Coins;
     use 0x1::Oracle;
 
-    fun main(sender: &signer) {
+    fun main() {
         let price = Oracle::get_price<Coins::BTC, Coins::USDT>();
 
-        let event_handle = Event::new_event_handle<u64>(sender);
-        Event::emit_event(&mut event_handle, price);
-        Event::destroy_handle(event_handle);
+        Event::emit(price);
     }
 }
 ```
