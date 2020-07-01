@@ -31,7 +31,7 @@ For smart contracts related transactions, there are reserved types for events, s
 
 The **data** field always using LCS encoding \(Libra Canonical Serialization\). There is a community [description](https://github.com/librastartup/libra-canonical-serialization/blob/master/DOCUMENTATION.md) of how it works. Also, Golang [library](https://github.com/the729/lcs), where you can see examples and use for your own projects. So decoding of the **"data"** field should happen with LCS.
 
-There are two reserved events: sent and received events that fire when withdrawing or depositing of resources happens. The implementation you can found in the standard library in [Account](https://github.com/dfinance/dvm/release-v0.4.0/lang/stdlib/account.move) module.
+There are two reserved events: sent and received events that fire when withdrawing or depositing of resources happens. The implementation you can found in the standard library in [Account](https://github.com/dfinance/dvm/master/lang/stdlib/account.move) module.
 
 Events example:
 

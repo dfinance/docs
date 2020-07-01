@@ -4,7 +4,7 @@ There are two types of smart contracts in **dfinance**: module and script.
 
 Difference between them that module is published into blockchain storage and is stored under the publisher account, while script is simply a transaction-as-script and can only operate with existing modules.
 
-The Move Book also has a section about [modules](https://move-book.com/chapters/module.html) in Move language.
+The Move Book also has a section about [modules](https://move-book.com/syntax-basics/module.html) in Move language.
 
 ## Write a module
 

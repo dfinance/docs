@@ -26,7 +26,7 @@ module Swap {
     public fun create<Offered, Expected>(sender: &signer, offered: Dfinance::T<Offered>, price: u128) {
         let sender_addr = Signer::address_of(sender);
 
-        assert(!exists<Offered, Expected>(sender_addr), 101);
+        assert(!exists_at<Offered, Expected>(sender_addr), 101);
 
         move_to<T<Offered, Expected>>(
             sender,
@@ -60,8 +60,8 @@ module Swap {
     }
 
     // Check if the swap pair already exists for the account.
-    public fun exists<Offered, Expected>(addr: address): bool {
-        ::exists<T<Offered, Expected>>(addr)
+    public fun exists_at<Offered, Expected>(addr: address): bool {
+        exists<T<Offered, Expected>>(addr)
     }
 }
 ```
@@ -103,8 +103,8 @@ Allow us to check if the resource already exists on the specific address or not:
 
 ```rust
 // Check if swap pair already exists for account.
-public fun exists<Offered, Expected>(addr: address): bool {
-    ::exists<T<Offered, Expected>>(addr)
+public fun exists_at<Offered, Expected>(addr: address): bool {
+    exists<T<Offered, Expected>>(addr)
 }
 ```
 

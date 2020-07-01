@@ -16,7 +16,7 @@ You can look for actual standard modules in [dvm](https://github.com/dfinance/dv
 
 ## Time
 
-[Time](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/time.move) module allows getting current UNIX timestamp of latest block.
+[Time](https://github.com/dfinance/dvm/blob/master/stdlib/modules/time.move) module allows getting current UNIX timestamp of latest block.
 
 Example:
 
@@ -34,7 +34,7 @@ The method will return u64 value as UNIX timestamp of the latest block.
 
 ## Block
 
-[Block](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/block.move) module allows getting current blockchain height.
+[Block](https://github.com/dfinance/dvm/blob/master/stdlib/modules/block.move) module allows getting current blockchain height.
 
 ```rust
 script {
@@ -50,7 +50,7 @@ The method will return u64 value as the height of the latest block.
 
 ## Compare
 
-[Compare](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/compare.move) module allows comparing two vectors of u8 values \(bytes\).
+[Compare](https://github.com/dfinance/dvm/blob/master/stdlib/modules/compare.move) module allows comparing two vectors of u8 values \(bytes\).
 
 Comparing two-byte vectors:
 
@@ -68,7 +68,7 @@ script {
 
 ## DFI && Coins
 
-[DFI](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfi.move) and [Coins](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/coins.move) modules allow to get a type of currency that you going to use in your code.
+[DFI](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfi.move) and [Coins](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move) modules allow to get a type of currency that you going to use in your code.
 
 ```rust
 script {
@@ -87,7 +87,7 @@ script {
 
 ## Oracle
 
-[Oracle](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/oracle.move) module allows to get the current price of an asset pair.
+[Oracle](https://github.com/dfinance/dvm/blob/master/stdlib/modules/oracle.move) module allows to get the current price of an asset pair.
 
 ```rust
 script {
@@ -104,7 +104,7 @@ More about work with oracles can see in our [oracles documentation](../oracles/)
 
 ## Event
 
-[Event](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/event.move) module allows us to emit events.
+[Event](https://github.com/dfinance/dvm/blob/master/stdlib/modules/event.move) module allows us to emit events.
 
 Example with emitting event contains provided number:
 
@@ -138,7 +138,7 @@ module MyEvent {
 
 ## Signer
 
-[Signer](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/signer.move) module allows to work with the `signer` type. To get address of signer:
+[Signer](https://github.com/dfinance/dvm/blob/master/stdlib/modules/signer.move) module allows to work with the `signer` type. To get address of signer:
 
 ```rust
 script {
@@ -156,7 +156,7 @@ Read more about the signer type in [Move Book](https://move-book.com/resources/s
 
 ## Account
 
-[Account](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move) module allows to work with user balances: get balances, deposit coins/tokens to balances, withdraw them to deposit in another module, etc.
+[Account](https://github.com/dfinance/dvm/blob/master/stdlib/modules/account.move) module allows to work with user balances: get balances, deposit coins/tokens to balances, withdraw them to deposit in another module, etc.
 
 Also, it creates an account, if the account doesn't exist yet, and related data, like event handlers for sending/receiving payments.
 
@@ -232,11 +232,11 @@ script {
 }
 ```
 
-For the rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move).
+For the rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/master/stdlib/modules/account.move).
 
 ## Dfinance
 
-[Dfinance](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfinance.move) module allows you to work with coins balances, get coins info, also register new tokens, etc.
+[Dfinance](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfinance.move) module allows you to work with coins balances, get coins info, also register new tokens, etc.
 
 First of all, Dfinance module presents type for all balances in the system, it's `Dfinance::T`:
 
@@ -349,11 +349,11 @@ script {
 }
 ```
 
-More documentation about the feature provided by Dfinance module see in [dfinance.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfinance.move).
+More documentation about the feature provided by Dfinance module see in [dfinance.move](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfinance.move).
 
 ## Vector
 
-[Vector](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/vector.move) module contains functions to work with `vector` type.
+[Vector](https://github.com/dfinance/dvm/blob/master/stdlib/modules/vector.move) module contains functions to work with `vector` type.
 
 For example:
 
@@ -377,11 +377,11 @@ script {
 }
 ```
 
-Vector module great describe in [Move Book](https://move-book.com/chapters/vector.html).
+Vector module great describe in [Move Book](https://move-book.com/advanced-topics/managing-collections-with-vectors.html).
 
 ## Signature
 
-[Signature](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/signature.move) module allows to verify ed25519 signature:
+[Signature](https://github.com/dfinance/dvm/blob/master/stdlib/modules/signature.move) module allows to verify ed25519 signature:
 
 ```rust
 script {

@@ -2,7 +2,7 @@
 
 As already mentioned, **dfinance** supports transaction scripting. It means users can compile and execute scripts. Different between modules here is that you can't publish script and use it again in the future, each script executing by new transaction every time.
 
-The Move Book also has a section about [scripts](https://move-book.com/chapters/function.html) in Move language.
+The Move Book also has a section about [scripts](https://move-book.com/syntax-basics/function.html) in Move language.
 
 ## Write a script
 

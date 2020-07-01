@@ -24,7 +24,7 @@ Although **dfinance** supports different currencies \(like ETH\), transaction fe
 
 Currently, minimal fee amount is **1 DFI**. Though this value may vary for each validator in the network as it's for validator to decide his minimal fee. This means that even if your transaction fee was too low for current validator, it still may be added in one of the next few blocks by validators whose minimal fee matches your value.
 
-**Dncli** setup default fees for tx commands as **1 DFI**, so you can ignore `--fees` flag, otherwise, if you want to speed up your transaction confirmation time you can provide more fees using the same flag, e.g.:
+**dncli** sets fees automatically, so you can ignore `--fees` flag, alternatively, if you want to speed up your transaction confirmation time you can can set fees manually by using `--fees` flag, e.g.:
 
 ```bash
 # Fees amount MUST be written without spaces between amount and denom

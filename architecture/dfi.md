@@ -19,7 +19,7 @@ As it's the same 18 decimals places, like in ETH, you can use same resources to 
 
 ## Smart contracts
 
-DFI is a built-in type inside Dfinance's standard library which you can use to send transactions envolving DFI coin. Here's how it looks like \([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/dfi.move#L8)\):
+DFI is a built-in type inside Dfinance's standard library which you can use to send transactions envolving DFI coin. Here's how it looks like \([link to GitHub](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfi.move)\):
 
 ```rust
 module DFI {
@@ -88,7 +88,7 @@ script {
 }
 ```
 
-Coins module follows the same pattern as DFI but has multiple types \([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145/lang/stdlib/coins.move)\):
+Coins module follows the same pattern as DFI but has multiple types \([link to GitHub](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move)\):
 
 ```rust
 module Coins {
