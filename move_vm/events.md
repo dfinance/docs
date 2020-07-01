@@ -23,23 +23,117 @@ For smart contracts related transactions, there are reserved types for events, s
     * **major\_status** - the major status of error, integer.
     * **sub\_status** - the sub status of error, integer, optional.
     * **message** - text message, optional.
-* **contract\_events** -  contains events generated during smart contract execution. In our example of the script, we generated such an event using EventHandler. Contains next attributes:
-  * **guid** - the unique id of the event.
-  * **sequence\_number** - sequence number of this event within current EvenHandler.
-  * **type** - contains data type, similar to contract arguments, but also could be a struct. A struct could be decoded using [lcs](https://github.com/the729/lcs).
-  * **data** - [lcs](https://github.com/the729/lcs) encoded data in hex \(with prefix - "0x"\). It could be decoded using [lcs](https://github.com/the729/lcs).
+* **contract\_events** -  contains events generated during smart contract execution. In our example of the script, we generated such an event using `Event::emit`. Contains next attributes \(attributes always sorted in the same sequence\):
+  * **sender_address** - address of account which sent transaction that sent event.
+  * **source** - the place where the event was sent, it could be `script` (in case it sent from user script), or path to module which sent event, e.g.: `0x1::Account`.
+  * **type** - contains data type, similar to contract arguments, but also could be a struct \(in such case there will be reference to which indeed struct used in the event\). A struct could be decoded using [lcs](https://github.com/the729/lcs).
+  * **data** - [lcs](https://github.com/the729/lcs) encoded data in hex. It could be decoded using [lcs](https://github.com/the729/lcs).
 
 The **data** field always using LCS encoding \(Libra Canonical Serialization\). There is a community [description](https://github.com/librastartup/libra-canonical-serialization/blob/master/DOCUMENTATION.md) of how it works. Also, Golang [library](https://github.com/the729/lcs), where you can see examples and use for your own projects. So decoding of the **"data"** field should happen with LCS.
 
-There are two reserved events: sent and received events that fire when withdrawing or depositing of resources happens. The implementation you can found in the standard library in [Account](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/account.move#L14) module.
+There are two reserved events: sent and received events that fire when withdrawing or depositing of resources happens. The implementation you can found in the standard library in [Account](https://github.com/dfinance/dvm/master/lang/stdlib/account.move) module.
 
-Guid is a unique id, contains a sequence number of EventHandler for the current account and address of this account. You can look at the [Event](https://github.com/dfinance/dvm/blob/4a35f84f04f7c313f65e3dc6463c28e06b4537ea/lang/stdlib/account.mvir#L129) module that generates guids for events. Also, it handles the creation of new `EventHandle` resources, that can be used by your module or script to create new kinds of events. Look at [standard library](standard_lib.md#events) documentation.
+Events example:
 
-To catch events you can use REST API, using guid, for example, look at this URL to see how filters works:
+```json
+[
+   {
+      "type":"contract_events",
+      "attributes":[
+         {
+            "key":"sender_address",
+            "value":"wallet1qjgqxwk55p9ejlupmeza0r02hyextys9rrthgg"
+         },
+         {
+            "key":"source",
+            "value":"0x1::Account"
+         },
+         {
+            "key":"type",
+            "value":"0x1::Account::SentPaymentEvent"
+         },
+         {
+            "key":"data",
+            "value":"4d01000000000000000000000000000003646669db4b0ed53d2fd0a74ce8f0d106e7ab144eb0fbab00"
+         },
+         {
+            "key":"sender_address",
+            "value":"wallet1qjgqxwk55p9ejlupmeza0r02hyextys9rrthgg"
+         },
+         {
+            "key":"source",
+            "value":"0x1::Account"
+         },
+         {
+            "key":"type",
+            "value":"0x1::Account::ReceivedPaymentEvent"
+         },
+         {
+            "key":"data",
+            "value":"4d010000000000000000000000000000036466690490033ad4a04b997f81de45d78deab93265920500"
+         },
+         {
+            "key":"sender_address",
+            "value":"wallet1qjgqxwk55p9ejlupmeza0r02hyextys9rrthgg"
+         },
+         {
+            "key":"source",
+            "value":"script"
+         },
+         {
+            "key":"type",
+            "value":"u64"
+         },
+         {
+            "key":"data",
+            "value":"0a00000000000000"
+         }
+      ]
+   },
+   {
+      "type":"contract_status",
+      "attributes":[
+         {
+            "key":"status",
+            "value":"keep"
+         }
+      ]
+   },
+   {
+      "type":"message",
+      "attributes":[
+         {
+            "key":"action",
+            "value":"execute_script"
+         },
+         {
+            "key":"sender",
+            "value":"wallet1qjgqxwk55p9ejlupmeza0r02hyextys9rrthgg"
+         }
+      ]
+   },
+   {
+      "type":"transfer",
+      "attributes":[
+         {
+            "key":"recipient",
+            "value":"wallet17xpfvakm2amg962yls6f84z3kell8c5la07d0l"
+         },
+         {
+            "key":"amount",
+            "value":"1dfi"
+         }
+      ]
+   }
+]
+```
+
+Events attributes always sorted in the same sequence, so you can go over `contract_events` attributes to parse event objects.
+
+To catch events you can use REST API, for example, all events from Account module, look at this URL to see how filters work:
 
 ```text
-https://rest.testnet.dfinance.co/txs?contract_events.guid=0x060000000000000077616c6c657400000000000095abf6bf9cd39a391567e4508becb25d0f1b98de
+https://rest.testnet.dfinance.co/txs?contract_events.source=0x1::Account
 ```
 
 Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) for details.
-

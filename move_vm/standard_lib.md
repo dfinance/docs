@@ -2,13 +2,13 @@
 
 Standard **Move VM** library is default modules that already developed and developers can use in developing new modules, scripts.
 
-They all placed on the address **0x0**. So when you import something from **0x0**, you import standard modules, like:
+They all placed on the address **0x1**. So when you import something from **0x1**, you import standard modules, like:
 
 ```rust
-use 0x0::Account;
-use 0x0::Events;
-use 0x0::DFI;
-use 0x0::Coins;
+use 0x1::Account;
+use 0x1::Event;
+use 0x1::DFI;
+use 0x1::Coins;
 ...
 ```
 
@@ -16,13 +16,13 @@ You can look for actual standard modules in [dvm](https://github.com/dfinance/dv
 
 ## Time
 
-[Time](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/time.move) module allows getting current UNIX timestamp of latest block.
+[Time](https://github.com/dfinance/dvm/blob/master/stdlib/modules/time.move) module allows getting current UNIX timestamp of latest block.
 
 Example:
 
 ```rust
 script {
-    use 0x0::Time;
+    use 0x1::Time;
 
     fun main() {
         let _ = Time::now();
@@ -34,11 +34,11 @@ The method will return u64 value as UNIX timestamp of the latest block.
 
 ## Block
 
-[Block](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/block.move) module allows getting current blockchain height.
+[Block](https://github.com/dfinance/dvm/blob/master/stdlib/modules/block.move) module allows getting current blockchain height.
 
 ```rust
 script {
-    use 0x0::Block;
+    use 0x1::Block;
 
     fun main() {
         let _ = Block::get_current_block_height();
@@ -48,66 +48,33 @@ script {
 
 The method will return u64 value as the height of the latest block.
 
-## Transaction
-
-[Transaction](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/transaction.move) module contains functions to work with transaction data, currently supports two functions: `sender()`, `assert(bool, u64)`.
-
-Getting sender address of transaction:
-
-```rust
-script {
-    use 0x0::Transaction;
-
-    fun main() {
-        let _ = Transaction::sender();
-    }
-}
-```
-
-Assert:
-
-```rust
-script {
-    use 0x0::Transaction;
-
-    fun main() {
-        let a = 10;
-        let b = 11;
-        Transaction::assert(a == b, 101);
-    }
-}
-```
-
-In case you pass `false` as the first argument of `assert(bool, u64)` or the result of your expression, the transaction will fail and return "sub\_status" in event of transaction that will equal your code provided as the second argument.
-
 ## Compare
 
-[Compare](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/compare.move) module allows comparing two vectors of u8 values \(bytes\).
+[Compare](https://github.com/dfinance/dvm/blob/master/stdlib/modules/compare.move) module allows comparing two vectors of u8 values \(bytes\).
 
 Comparing two-byte vectors:
 
 ```rust
 script {
-    use 0x0::Compare;
-    use 0x0::Transaction;
+    use 0x1::Compare;
 
     fun main() {
         let a = x"00";
         let b = x"01";
-        Transaction::assert(Compare::cmp_lcs_bytes(&a, &b) == 0, 101);
+        assert(Compare::cmp_lcs_bytes(&a, &b) == 0, 101);
     }
 }
 ```
 
 ## DFI && Coins
 
-[DFI](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfi.move) and [Coins](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/coins.move) modules allow to get a type of currency that you going to use in your code.
+[DFI](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfi.move) and [Coins](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move) modules allow to get a type of currency that you going to use in your code.
 
 ```rust
 script {
-    use 0x0::Account;
-    use 0x0::DFI;
-    use 0x0::Coins;
+    use 0x1::Account;
+    use 0x1::DFI;
+    use 0x1::Coins;
 
     fun main(sender: &signer, payee: address, dfi_amount: u128, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
         Account::pay_from_sender<DFI::T>(sender, payee, dfi_amount);
@@ -120,12 +87,12 @@ script {
 
 ## Oracle
 
-[Oracle](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/oracle.move) module allows to get the current price of an asset pair.
+[Oracle](https://github.com/dfinance/dvm/blob/master/stdlib/modules/oracle.move) module allows to get the current price of an asset pair.
 
 ```rust
 script {
-    use 0x0::Oracle;
-    use 0x0::Coins;
+    use 0x1::Oracle;
+    use 0x1::Coins;
 
     fun main() {
         let _ = Oracle::get_price<Coins::ETH, Coins::USDT>();
@@ -137,57 +104,45 @@ More about work with oracles can see in our [oracles documentation](../oracles/)
 
 ## Event
 
-[Event](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/event.move) module allows us to work with events: generate new event handlers and fire events.
+[Event](https://github.com/dfinance/dvm/blob/master/stdlib/modules/event.move) module allows us to emit events.
 
-Example with firing event contains provided number:
+Example with emitting event contains provided number:
 
 ```rust
 script {
-    use 0x0::Event;
+    use 0x1::Event;
 
-    fun main(sender: &signer, a: u64) {
-        let event_handle = Event::new_event_handle<u64>(sender);
-        Event::emit_event(&mut event_handle, a);
-        Event::destroy_handle(event_handle);
+    fun main(a: u64) {
+        Event::emit<u64>(a);
     }
 }
 ```
 
-Or you can store event handler in resource and fire events when you need:
+Or you you can emit event from your module:
 
 ```rust
 module MyEvent {
-    use 0x0::Event;
-    use 0x0::Signer;
+    use 0x1::Event;
 
-    resource struct T {
-        eh: Event::EventHandle<u64>,
+    struct MyStruct {
+        value: u64
     }
 
-    public fun init(account: &signer) {
-        move_to<T>(account, T {
-            eh: Event::new_event_handle(account),
+    public fun my_event(a: u64) {
+        Event::emit(MyStruct {
+            value: a
         });
-    }
-
-    public fun fire_event(account: &signer, a: u64) acquires T {
-        let i = borrow_global_mut<T>(Signer::address_of(account));
-
-        Event::emit_event(
-            &mut i.eh,
-            a
-        );
     }
 }
 ```
 
 ## Signer
 
-[Signer](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/signer.move) module allows to work with the `signer` type. To get address of signer:
+[Signer](https://github.com/dfinance/dvm/blob/master/stdlib/modules/signer.move) module allows to work with the `signer` type. To get address of signer:
 
 ```rust
 script {
-    use 0x0::Signer;
+    use 0x1::Signer;
 
     fun main(sender: &signer) {
         let _ = Signer::address_of(sender);
@@ -201,7 +156,7 @@ Read more about the signer type in [Move Book](https://move-book.com/resources/s
 
 ## Account
 
-[Account](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move) module allows to work with user balances: get balances, deposit coins/tokens to balances, withdraw them to deposit in another module, etc.
+[Account](https://github.com/dfinance/dvm/blob/master/stdlib/modules/account.move) module allows to work with user balances: get balances, deposit coins/tokens to balances, withdraw them to deposit in another module, etc.
 
 Also, it creates an account, if the account doesn't exist yet, and related data, like event handlers for sending/receiving payments.
 
@@ -209,8 +164,8 @@ A lot of different methods can be used to send tokens from account A to account 
 
 ```rust
 script {
-    use 0x0::Account;
-    use 0x0::DFI;
+    use 0x1::Account;
+    use 0x1::DFI;
 
     fun main(sender: &signer, payee: address, amount: u128, metadata: vector<u8>) {
         // Move DFI from sender account to payee.
@@ -226,8 +181,8 @@ Also, you can just withdraw from sender balance and deposit to payee:
 
 ```rust
 script {
-    use 0x0::Account;
-    use 0x0::DFI;
+    use 0x1::Account;
+    use 0x1::DFI;
 
     fun main(sender: &signer, payee: address, amount: u128) {
         // Move DFI from sender account to payee.
@@ -244,9 +199,9 @@ Or deposit to another module:
 ```rust
 script {
     use {{address}}::Swap;
-    use 0x0::DFI;
-    use 0x0::Coins;
-    use 0x0::Account;
+    use 0x1::DFI;
+    use 0x1::Coins;
+    use 0x1::Account;
 
     fun main(sender: &signer, seller: address, price: u128) {
         let dfi = Account::withdraw_from_sender(sender, price);
@@ -261,9 +216,8 @@ Also, get a balance:
 
 ```rust
 script {
-    use 0x0::Coins;
-    use 0x0::Account;
-    use 0x0::Transaction;
+    use 0x1::Coins;
+    use 0x1::Account;
 
     fun main(sender: &signer, addr: address) {
         // My balance.
@@ -272,17 +226,17 @@ script {
         // Someone balance.
         let someone_balance = Account::balance_for<Coins::ETH>(addr);
 
-        Transaction::assert(my_balance > 0, 101);
-        Transaction::assert(someone_balance > 0, 102);
+        assert(my_balance > 0, 101);
+        assert(someone_balance > 0, 102);
     }
 }
 ```
 
-For the rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/account.move).
+For the rest of the features of Account module look at [account.move](https://github.com/dfinance/dvm/blob/master/stdlib/modules/account.move).
 
 ## Dfinance
 
-[Dfinance](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfinance.move) module allows you to work with coins balances, get coins info, also register new tokens, etc.
+[Dfinance](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfinance.move) module allows you to work with coins balances, get coins info, also register new tokens, etc.
 
 First of all, Dfinance module presents type for all balances in the system, it's `Dfinance::T`:
 
@@ -296,12 +250,12 @@ The value field contains information about actual balance for specific coin/toke
 
 ```rust
 script {
-    use 0x0::Account;
-    use 0x0::DFI;
+    use 0x1::Account;
+    use 0x1::DFI;
 
     fun main(sender: &signer, amount: u128) {
         // Use DFI::T to get Dfinance::T<DFI::T> contains balance.
-        let dfi : 0x0::Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(sender, amount);
+        let dfi : 0x1::Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(sender, amount);
         Account::deposit_to_sender(sender, dfi);
     }
 }
@@ -311,8 +265,8 @@ Also, you can create an empty coin:
 
 ```rust
 module BankDFI {
-    use 0x0::Dfinance;
-    use 0x0::DFI;
+    use 0x1::Dfinance;
+    use 0x1::DFI;
 
     resource struct T {
         balance: Dfinance::T<DFI::T>,
@@ -330,10 +284,9 @@ Get denom, decimals, and actual value:
 
 ```rust
 script {
-    use 0x0::Dfinance;
-    use 0x0::Account;
-    use 0x0::DFI;
-    use 0x0::Transaction;
+    use 0x1::Dfinance;
+    use 0x1::Account;
+    use 0x1::DFI;
 
     fun main(sender: &signer, amount: u128) {
         let dfi = Account::withdraw_from_sender<DFI::T>(sender, amount);
@@ -344,7 +297,7 @@ script {
         // Get value of withdrawed dfi.
         let value = Dfinance::value(&dfi);
 
-        Transaction::assert(amount == value, 101);
+        assert(amount == value, 101);
 
         Account::deposit_to_sender(sender, dfi);
     }
@@ -356,12 +309,12 @@ And check if it's user token or system coin:
 ```rust
 script {
     use {{address}}::MyToken;
-    use 0x0::Dfinance;
-    use 0x0::DFI;
+    use 0x1::Dfinance;
+    use 0x1::DFI;
 
     fun main() {
-        Transaction::assert(Dfinance::is_token<DFI::T>() == false, 101);
-        Transaction::assert(Dfinance::is_token<MyToken::T>(), 102);
+        assert(Dfinance::is_token<DFI::T>() == false, 101);
+        assert(Dfinance::is_token<MyToken::T>(), 102);
     }
 }
 ```
@@ -370,7 +323,7 @@ Also, you can create your resource and make it token too!
 
 ```rust
 module MyToken {
-    use 0x0::Dfinance;
+    use 0x1::Dfinance;
 
     resource struct Token {
     }
@@ -387,7 +340,7 @@ And also deposit it to your balance:
 ```rust
 script {
     use {{sender}}::MyToken;
-    use 0x0::Account;
+    use 0x1::Account;
 
     fun main(sender: &signer) {
         let new_tokens = MyToken::create(sender);
@@ -396,17 +349,17 @@ script {
 }
 ```
 
-More documentation about the feature provided by Dfinance module see in [dfinance.move](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/dfinance.move).
+More documentation about the feature provided by Dfinance module see in [dfinance.move](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfinance.move).
 
 ## Vector
 
-[Vector](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/vector.move) module contains functions to work with `vector` type.
+[Vector](https://github.com/dfinance/dvm/blob/master/stdlib/modules/vector.move) module contains functions to work with `vector` type.
 
 For example:
 
 ```rust
 script {
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     fun main() {
         let v = Vector::empty<u64>();
@@ -424,21 +377,19 @@ script {
 }
 ```
 
-Vector module great describe in [Move Book](https://move-book.com/chapters/vector.html).
+Vector module great describe in [Move Book](https://move-book.com/advanced-topics/managing-collections-with-vectors.html).
 
 ## Signature
 
-[Signature](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/signature.move) module allows to verify ed25519 signature:
+[Signature](https://github.com/dfinance/dvm/blob/master/stdlib/modules/signature.move) module allows to verify ed25519 signature:
 
 ```rust
 script {
-    use 0x0::Signature;
-    use 0x0::Transaction;
+    use 0x1::Signature;
 
     fun main(signature: vector<u8>, pub_key: vector<u8>, message: vector<u8>) {
         let is_verified = Signature::ed25519_verify(signature, pub_key, message);
-        Transaction::assert(is_verified, 101);
+        assert(is_verified, 101);
     }
 }
 ```
-

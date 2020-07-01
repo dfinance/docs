@@ -12,10 +12,9 @@ We will make it easy, it will support only one swap per coin pair, which means, 
 
 ```rust
 module Swap {
-    use 0x0::Dfinance;
-    use 0x0::Transaction;
-    use 0x0::Account;
-    use 0x0::Signer;
+    use 0x1::Dfinance;
+    use 0x1::Account;
+    use 0x1::Signer;
 
     // The resource of module which contains swap parameters.
     resource struct T<Offered, Expected>{
@@ -27,7 +26,7 @@ module Swap {
     public fun create<Offered, Expected>(sender: &signer, offered: Dfinance::T<Offered>, price: u128) {
         let sender_addr = Signer::address_of(sender);
 
-        Transaction::assert(!exists<Offered, Expected>(sender_addr), 101);
+        assert(!exists_at<Offered, Expected>(sender_addr), 101);
 
         move_to<T<Offered, Expected>>(
             sender,
@@ -55,14 +54,14 @@ module Swap {
        let T<Offered, Expected> { offered, price } = move_from<T<Offered, Expected>>(seller);
        let exp_value = Dfinance::value<Expected>(&exp);
 
-       Transaction::assert(exp_value == price, 102);
+       assert(exp_value == price, 102);
        Account::deposit(sender, seller, exp);
        Account::deposit_to_sender(sender, offered);
     }
 
     // Check if the swap pair already exists for the account.
-    public fun exists<Offered, Expected>(addr: address): bool {
-        ::exists<T<Offered, Expected>>(addr)
+    public fun exists_at<Offered, Expected>(addr: address): bool {
+        exists<T<Offered, Expected>>(addr)
     }
 }
 ```
@@ -84,7 +83,7 @@ To move resource to sender `move_to<T>(&signer, T)` method is used - as obvious 
 public fun create<Offered, Expected>(sender: &signer, offered: Dfinance::T<Offered>, price: u128) {
     let sender_addr = Signer::address_of(sender);
 
-    Transaction::assert(!exists<Offered, Expected>(sender_addr), 101);
+    assert(!exists<Offered, Expected>(sender_addr), 101);
 
     move_to<T<Offered, Expected>>(
         sender,
@@ -104,8 +103,8 @@ Allow us to check if the resource already exists on the specific address or not:
 
 ```rust
 // Check if swap pair already exists for account.
-public fun exists<Offered, Expected>(addr: address): bool {
-    ::exists<T<Offered, Expected>>(addr)
+public fun exists_at<Offered, Expected>(addr: address): bool {
+    exists<T<Offered, Expected>>(addr)
 }
 ```
 
@@ -142,7 +141,7 @@ public fun swap<Offered, Expected>(sender: &signer, seller: address, exp: Dfinan
     let T<Offered, Expected> { offered, price } = move_from<T<Offered, Expected>>(seller);
     let exp_value = Dfinance::value<Expected>(&exp);
 
-    Transaction::assert(exp_value == price, 102);
+    assert(exp_value == price, 102);
     Account::deposit(sender, seller, exp);
     Account::deposit_to_sender(sender, offered);
 }
@@ -154,9 +153,9 @@ public fun swap<Offered, Expected>(sender: &signer, seller: address, exp: Dfinan
 
 So `create` function creates a new resource, `swap` function allows to swap \(deposit coins to both accounts and _destroy_ resource T\); we've also added methods to get price of the deal and to change it.
 
-### Deploy
+### Publish
 
-You can try to compile and deploy module, and then via script call deposit with hash of your secret value, and then withdraw by passing your secret value.
+You can try to compile and publish module, and then via script call deposit with hash of your secret value, and then withdraw by passing your secret value.
 
 [Here is repository](https://github.com/borispovod/cold-storage-example) to help you. It already contains module and scripts examples.
 
@@ -169,9 +168,9 @@ Here are a few scripts examples, of how you can work with Swap module \(don't fo
 ```rust
 script {
     use {{sender}}::Swap;
-    use 0x0::DFI;
-    use 0x0::Coins;
-    use 0x0::Account;
+    use 0x1::DFI;
+    use 0x1::Coins;
+    use 0x1::Account;
 
     fun main(sender: &signer, amount: u128, price: u128) {
         let dfi = Account::withdraw_from_sender(sender, amount);
@@ -187,9 +186,9 @@ script {
 ```rust
 script {
     use {{sender}}::Swap;
-    use 0x0::DFI;
-    use 0x0::Coins;
-    use 0x0::Account;
+    use 0x1::DFI;
+    use 0x1::Coins;
+    use 0x1::Account;
 
     fun main(sender: &signer, seller: address, price: u128) {
         let usdt = Account::withdraw_from_sender(sender, price);
@@ -205,4 +204,3 @@ script {
 Resources are the most interesting and the most complex topic in Move language. But once you've gotten the idea, the rest is easy.
 
 To know Move better and to learn about resources specifically - see [Move Book](https://move-book.com/resources/index.html). It has a lot to add to the topic and is aimed to make learning Move as easy as possible.
-

@@ -3,7 +3,7 @@
 Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Oracle module](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/oracle.move):
 
 ```rust
-address 0x0 {
+address 0x1 {
     module Oracle {
         native public fun get_price<Curr1, Curr2>(): u64;
     }
@@ -22,8 +22,8 @@ As script it looks so:
 
 ```rust
 script {
-    use 0x0::Coins;
-    use 0x0::Oracle;
+    use 0x1::Coins;
+    use 0x1::Oracle;
 
     fun main(ticker: u64) {
         let _ = Oracle::get_price<Coins::BTC, Coins::USDT>();
@@ -45,16 +45,14 @@ Let's write a script that will take BTC\_USDT price and will emit an event with 
 
 ```rust
 script {
-    use 0x0::Event;
-    use 0x0::Coins;
-    use 0x0::Oracle;
+    use 0x1::Event;
+    use 0x1::Coins;
+    use 0x1::Oracle;
 
-    fun main(sender: &signer) {
+    fun main() {
         let price = Oracle::get_price<Coins::BTC, Coins::USDT>();
 
-        let event_handle = Event::new_event_handle<u64>(sender);
-        Event::emit_event(&mut event_handle, price);
-        Event::destroy_handle(event_handle);
+        Event::emit(price);
     }
 }
 ```
@@ -62,7 +60,7 @@ script {
 Compile the script and execute:
 
 ```text
-dncli tx vm execute-script <compiled file> --from <account> --fees 1dfi
+dncli tx vm execute <compiled file> --from <account>
 ```
 
 You can query results by transaction id to see how events with price fired.
@@ -75,8 +73,8 @@ Something like:
 
 ```rust
 module PriceRequest {
-    use 0x0::Oracle;
-    use 0x0::Coins;
+    use 0x1::Oracle;
+    use 0x1::Coins;
 
     public fun get_eth_usdt_price(): u64 {
         Oracle::get_price<Coins::ETH, Coins::USDT>()
@@ -85,4 +83,3 @@ module PriceRequest {
 ```
 
 And then just use it in your scripts.
-

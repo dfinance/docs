@@ -19,7 +19,7 @@ As it's the same 18 decimals places, like in ETH, you can use same resources to 
 
 ## Smart contracts
 
-DFI is a built-in type inside Dfinance's standard library which you can use to send transactions envolving DFI coin. Here's how it looks like \([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145c5e448ece3258bbf67c22326559a12/lang/stdlib/dfi.move#L8)\):
+DFI is a built-in type inside Dfinance's standard library which you can use to send transactions envolving DFI coin. Here's how it looks like \([link to GitHub](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfi.move)\):
 
 ```rust
 module DFI {
@@ -31,16 +31,16 @@ module DFI {
 Module can be imported from standard library:
 
 ```rust
-use 0x0::DFI;
+use 0x1::DFI;
 ```
 
-The type `DFI::T` inside module `0x0::DFI` can be used as type parameter in generic functions, like in this example:
+The type `DFI::T` inside module `0x1::DFI` can be used as type parameter in generic functions, like in this example:
 
 ```rust
 script {
-     use 0x0::Dfinance;
-     use 0x0::Account;
-     use 0x0::DFI;
+     use 0x1::Dfinance;
+     use 0x1::Account;
+     use 0x1::DFI;
 
      fun main(sender: &signer, recipient: address, amount: u128) {
          // Withdraw DFI resource from sender balance with provided amount.
@@ -67,18 +67,18 @@ Current testnet supports other coins along with DFI:
 Same as DFI, all coins can be sent between accounts with CLI:
 
 ```text
-dncli tx bank send <sender> <recipient> 1dfi  --fees 1dfi
-dncli tx bank send <sender> <recipient> 1eth  --fees 1dfi
-dncli tx bank send <sender> <recipient> 1btc  --fees 1dfi
-dncli tx bank send <sender> <recipient> 1usdt --fees 1dfi
+dncli tx bank send <sender> <recipient> 1dfi
+dncli tx bank send <sender> <recipient> 1eth
+dncli tx bank send <sender> <recipient> 1btc
+dncli tx bank send <sender> <recipient> 1usdt
 ```
 
-Also, coins types can be imported from `0x0::Coins` module to use in smart contracts:
+Also, coins types can be imported from `0x1::Coins` module to use in smart contracts:
 
 ```rust
 script {
-    use 0x0::Account;
-    use 0x0::Coins;
+    use 0x1::Account;
+    use 0x1::Coins;
 
     fun main(sender: &signer, recipient: address, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
         Account::pay_from_sender<Coins::ETH>(sender, recipient, eth_amount);
@@ -88,7 +88,7 @@ script {
 }
 ```
 
-Coins module follows the same pattern as DFI but has multiple types \([link to GitHub](https://github.com/dfinance/dvm/blob/bf457b3145/lang/stdlib/coins.move)\):
+Coins module follows the same pattern as DFI but has multiple types \([link to GitHub](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move)\):
 
 ```rust
 module Coins {
@@ -97,4 +97,3 @@ module Coins {
     struct USDT {}
 }
 ```
-

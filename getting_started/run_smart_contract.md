@@ -12,8 +12,8 @@ Let's do the same we've done in the previous part of documentation, but with sma
 
 ```rust
 script {
-    use 0x0::Account;
-    use 0x0::DFI;
+    use 0x1::Account;
+    use 0x1::DFI;
 
     fun main(sender: &signer, recipient: address, dfi_amount: u128) {
         Account::pay_from_sender<DFI::T>(sender, recipient, dfi_amount);
@@ -21,7 +21,7 @@ script {
 }
 ```
 
-As you can see we import core modules from address 0x0. This address \(0x0\) reserved for core modules. Currently we're importing two modules as part of our standard library: [Account](https://github.com/dfinance/dvm/blob/master/lang/stdlib/account.move) and [DFI](https://github.com/dfinance/dvm/blob/master/lang/stdlib/dfi.move). Account module is developed to work with Dfinance accounts from Move, DFI module contains resources to work with DFI balances of accounts. We will talk more about resources later in this documentation or you can read about them in [Move Book](https://move-book.com) \(the book about Move language developed by our team\).
+As you can see we import core modules from address 0x1. This address \(0x1\) reserved for core modules. Currently we're importing two modules as part of our standard library: [Account](https://github.com/dfinance/dvm/blob/master/lang/stdlib/account.move) and [DFI](https://github.com/dfinance/dvm/blob/master/lang/stdlib/dfi.move). Account module is developed to work with Dfinance accounts from Move, DFI module contains resources to work with DFI balances of accounts. We will talk more about resources later in this documentation or you can read about them in [Move Book](https://move-book.com) \(the book about Move language developed by our team\).
 
 Also, you can see the `signer` type. The signer type represents sender authority. In other words - using signer means accessing the sender's address and resources. It has no direct relation to signatures or literally signing, in terms of Move VM it simply represents sender. If you are going to use the `signer` type in your script, it must be the first argument in your main function. **Important**: you don't need to provide an argument for signer type when executing a script, as it will be done automatically.
 
@@ -37,7 +37,7 @@ Put the script under **'./send.move'** name or use [VSCode plugin](https://marke
 
 ```text
 mkdir out
-dncli query vm compile-script ./send.move <address> --to-file ./out/send.move.json
+dncli query vm compile ./send.move <address> --to-file ./out/send.move.json
 ```
 
 Replace **&lt;address&gt;** with your **dfinance** address and execute the command.
@@ -53,14 +53,13 @@ We should make a transaction that will contain compiled byte code and put the ri
 Do it with the command:
 
 ```text
-dncli tx vm execute-script ./out/send.move.json <recipient> 10000000000000000000 --from my-account --fees 1dfi
+dncli tx vm execute ./out/send.move.json <recipient> 10000000000000000000 --from my-account
 ```
 
 Replace **&lt;recipient&gt;** with recipient address account and execute, you can see the result of command execution by querying txId.
 
-As you see arguments passed to execute-script match arguments in script function **"main"**.
+As you see arguments passed to `execute` match arguments in script function **"main"**.
 
 In nutshell, we have done the same, but instead of using **dncli** native functional for sending coins, we used a smart contract.
 
 Now, once the transaction confirmed and executed, you can query the recipient account again to see how balance changed \(should be increased by 10 DFI\).
-
