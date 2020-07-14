@@ -37,7 +37,7 @@ Put the script under **'./send.move'** name or use [VSCode plugin](https://marke
 
 ```text
 mkdir out
-dncli query vm compile ./send.move <address> --to-file ./out/send.move.json
+dncli q vm compile ./send.move <address> --to-file ./out/send.move.json
 ```
 
 Replace **&lt;address&gt;** with your **dfinance** address and execute the command.

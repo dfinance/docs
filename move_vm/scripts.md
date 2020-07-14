@@ -27,7 +27,7 @@ The script accepts two arguments in function **"main"**, then calculate sum with
 Compile the script using **dncli**:
 
 ```text
-dncli query vm compile <script file> <address> --to-file <output file>
+dncli q vm compile <script file> <address> --to-file <output file>
 ```
 
 And then execute with arguments:

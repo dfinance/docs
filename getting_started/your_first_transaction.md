@@ -25,13 +25,13 @@ We use **"10000000000000000000dfi"** as the amount because by default **DFI** ha
 After execution, you will get transaction id in the output. To see transaction status execute:
 
 ```text
-dncli query tx <txId>
+dncli q tx <txId>
 ```
 
 Also now you can query a recipient account and see how balance updated:
 
 ```text
-dncli query account <address>
+dncli q account <address>
 ```
 
 Replace **&lt;address&gt;** with recipient address to see updated balance.
