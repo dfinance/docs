@@ -38,7 +38,7 @@ Events example:
 ```json
 [
    {
-      "type":"contract_events",
+      "type":"vm.contract_events",
       "attributes":[
          {
             "key":"sender_address",
@@ -91,7 +91,7 @@ Events example:
       ]
    },
    {
-      "type":"contract_status",
+      "type":"vm.contract_status",
       "attributes":[
          {
             "key":"status",
@@ -136,4 +136,5 @@ To catch events you can use REST API, for example, all events from Account modul
 https://rest.testnet.dfinance.co/txs?contract_events.source=0x1::Account
 ```
 
-Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) for details.
+Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) and [Dnode events doc](https://github.com/dfinance/dnode/blob/master/docs/events.md) for details.
+
