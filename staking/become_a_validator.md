@@ -158,11 +158,11 @@ dncli tx staking edit-validator \
 
 Also, important parameter is minimum self delegation (`--min-self-delegation`), you can change it also, as more self delegation you have, as more trust you will have in eyes of delegators. You can only increase `--min-self-delegation`.
 
-Example (min self delegation to 100k DFI):
+Example (min self delegation to 250000 DFI):
 
 ```bash
 dncli tx staking edit-validator \
-  --min-self-delegation="100000000000000000000000" \
+  --min-self-delegation="250000000000000000000000" \
   --from <account>
 ```
 
@@ -170,9 +170,9 @@ dncli tx staking edit-validator \
 
 Validators could have the following statuses:
 
-* `Bonded (2)` - active validators in the top 100. Generate blocks, receiving rewards and fees.
-* `Unbonded (0)` - validators that don't have enough voting power to be in the top 100. Means, can't generate new blocks, get rewards, etc.
-* `Unbonding (1)` - once validator leaves top 101 it becomes unbonding, means, validator and all delegators have to wait during unbonding time to get DFI back, or just redelegate them now. You can read about unbonding period in [delegation manual](/staking/delegate_dfi.md#how-to-unbond-(undelegate)).
+* `Bonded (2)` - active validators in the top 31. Generate blocks, receiving rewards and fees.
+* `Unbonded (0)` - validators that don't have enough voting power to be in the top 31. Means, can't generate new blocks, get rewards, etc.
+* `Unbonding (1)` - once validator leaves top 31 it becomes unbonding, means, validator and all delegators have to wait during unbonding time to get DFI back, or just redelegate them now. You can read about unbonding period in [delegation manual](/staking/delegate_dfi.md#how-to-unbond-(undelegate)).
 
 Once you create a validator, and if you don't have enough power to get to top 101, your validator will get status **Unbonded**, then when it reaches enough voting it will automatically move to **Bonded** status and start generating blocks.
 
@@ -180,7 +180,7 @@ Once you create a validator, and if you don't have enough power to get to top 10
 
 When your validator got **Unbonding** status, that could happen for several reasons:
 
-* Validator goes out from top 100.
+* Validator goes out from top 31.
 * Validator unbound self delegated DFI more then promised (see `--min-self-delegation` parameter). In such a case validator will be also `jailed`.
 * Validator missed too many blocks to sign/propose. The default amount of missed blocks to become unbonding are 50% of blocks during the 31 blocks window. Will be `jailed` also.
 * Validator double sign blocks. In this case validator will be tombstoned and `jailed` forever.
