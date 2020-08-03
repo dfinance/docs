@@ -1,43 +1,48 @@
 # Become a validator
 
-Any user can become a validator on dfinance network. 
+Any user can become a validator on dfinance network.
 
-By becoming a validator means register account as a validator, up a full node, and generate new blocks, if the validator has enough voting power to be in the top active validators.
+Being one means:
 
-## Up full-node.
+1. Having a full-sync (and always-online) node
+2. Having account registered as validator
+3. Generating new blocks when having enough votes to be in the top of active validators
 
-To become a validator, first set up a full node, using a dedicated server or cloud services. The validator machine must have a good performance and latency, be always online.
+<!-- By becoming a validator means register account as a validator, up a full node, and generate new blocks, if the validator has enough voting power to be in the top active validators. -->
 
-Install **dnode**/**dncli** on your node using [dnode](/architecture/dnode.md) and [dncli](../architecture/dncli.md) instructions. 
+## Node Setup
 
-See, that you node correctly in sync with the rest of network by requesting latest testnet block. Request testnet status to see latest block or use [explorer](https://explorer.testnet.dfinance.co/): 
+To become a validator:
+
+1. Set up a full node, using a dedicated server or cloud services. The validator machine must have a good performance and latency and must be always online.
+2. Install **dnode**/**dncli** on your node using [dnode](/architecture/dnode.md) and [dncli](/architecture/dncli.md) instructions.
+3. Ensure, that your node is in sync with the rest of network by requesting latest testnet block. Request testnet status to see latest block or use [explorer](https://explorer.testnet.dfinance.co/):
+
+Use these commands to compare block height on your node and on testnet:
 
 ```bash
-# The command requires jq.
+# Both commands requires jq.
+
+# Get latest block from testnet
 curl https://rest.testnet.dfinance.co/blocks/latest  | jq '.block.header.height'
-```
 
-And compare it with you latest processed block:
-
-```bash
-# The command requires jq.
+# Get latest block from local node
 curl localhost:1317/blocks/latest  | jq '.block.header.height'
-
 # Or with dncli.
 dncli q block
 ```
 
-Once you see a small difference between your height and testnet height, you can start the process to register your validator.
+Once the difference between your height and testnet height is small (just few blocks), you can start the process of registering your account as validator.
 
-**Important**
+### Important
 
-The validator private key stored in `~/.dnode/config/`, contains the key file:
+Validator's private key is stored under `~/.dnode/config/` path and contains the key file:
 
-    * `priv_validator_key.json` - private key of validator, backup it and don't miss, as it's the only way to access your validator.
+* `priv_validator_key.json` - private key of validator, backup it and don't miss, as it's the only way to access your validator.
 
 ## Create validator
 
-After you up a full-node time to create a validator. Make sure you made a backup of `priv_validator_key.json` and store it in a safe place.
+After you setup a full-node time to create a validator. Make sure you made a backup of `priv_validator_key.json` and store it in a safe place.
 
 Requirements for next steps:
 
@@ -86,32 +91,32 @@ dncli tx staking create-validator \
 
 Where:
 
-    * `amount` - DFI amount to self-stake, currently **1.0 DFI**.
-    * `pubkey` - validator consensus public key received during `dnode tendermint show-validator` command.
-    * `moniker` - your dnode moniker, use one you used during `dnode init <moniker>` command. You can see it in `~/.dnode/config/config.toml` file
-    * `commission-rate` - how much your validator going to take a commission from received rewards/fees, currently 10%. 
-    * `commission-max-rate` - maximum that validator can take as comission.
-    * `commission-max-change-rate` - how percent per day validator can change comission, currently 1% per day.
-    * `from` - account that going to send transaction and will self-stake coins for your validator, also, you can use this account to manage your validator later.
+* `amount` - DFI amount to self-stake, currently **1.0 DFI**.
+* `pubkey` - validator consensus public key received during `dnode tendermint show-validator` command.
+* `moniker` - your dnode moniker, use one you used during `dnode init <moniker>` command. You can see it in `~/.dnode/config/config.toml` file
+* `commission-rate` - how much your validator going to take a commission from received rewards/fees, currently 10%.
+* `commission-max-rate` - maximum that validator can take as comission.
+* `commission-max-change-rate` - how percent per day validator can change comission, currently 1% per day.
+* `from` - account that going to send transaction and will self-stake coins for your validator, also, you can use this account to manage your validator later.
 
-Replace command values with your own and send the transaction to the network.  Most interesting parameters are commission related, we will discuss them later. 
-Once the transaction will be confirmed, you will become a validator in the dfinance network. 
+Replace command values with your own and send the transaction to the network.  Most interesting parameters are commission related, we will discuss them later.
+Once the transaction will be confirmed, you will become a validator in the dfinance network.
 
 Congrats!
 
-To see you in validators list use command:
+To see list of validators use command:
 
 ```bash
 dncli q staking validators
 ```
 
-It's the start of the road to become an active validator in the top 100 and start getting rewards and fees for generated blocks. To increase your voting power you can delegate coins to your validator, see [Delegate DFI](/staking/delegate_dfi.md).
+It is the start of the road to become an active validator in the top 100 and start getting rewards and fees for generated blocks. To increase your voting power you can delegate coins to your validator, see [Delegate DFI](/staking/delegate_dfi.md).
 
-By changing commission params, making it less, you become more profitable for delegators to vote for you (see [Rewards & Inflation](/staking/rewards_inflation.md)), so it could be a good start to bring attention. Don't forget always to monitor your validator, it must be online most of the time, if you miss too many blocks, you can be [unbonded](#unbonding) and [slashed](/staking/slashing.md).
+By changing commission params, making it less, you become more profitable for delegators to vote for you (see [Rewards & Inflation](/staking/rewards_inflation.md)), so it could be a good start to bring attention. Don't forget to always monitor your validator, it must be online most of the time, if you miss too many blocks, you can be [unbonded](#unbonding) and [slashed](/staking/slashing.md).
 
 ## Socialize your validator
 
-Having validator in **dfinance** network is not only about up validator node and produce blocks, but it's also public work, delegators (especially from the community) want to know to who they delegate their DFI. 
+Having validator in **dfinance** network is not only about up validator node and produce blocks, but it's also public work, delegators (especially from the community) want to know to who they delegate their DFI.
 
 This way you can update your validator with social parameters, that other network users can read:
 
@@ -135,13 +140,13 @@ All flags are optional. See arguments and then replace them with your own:
 
 ### Generate identity using Keybase
 
-  1. Go to [Keybase.io](https://keybase.io/).
-  2. Create your account and download the app. 
-  3. Add pgp key to your account using the terminal. Click `add a PGP key` and follow instructions.
-  4. After generating keys, you will get a 16 letters ID, like `ID A4094774EFC4F6FC`. 
-  5. Use ID as a value for `identity`.
+1. Go to [Keybase.io](https://keybase.io/).
+2. Create your account and download the app.
+3. Add pgp key to your account using the terminal. Click `add a PGP key` and follow instructions.
+4. After generating keys, you will get a 16 letters ID, like `ID A4094774EFC4F6FC`.
+5. Use ID as a value for `identity`.
 
-## Change comission parameters 
+## Change comission parameters
 
 If you want to reduce/increase your commission as a validator, you can make another transaction with the new commission rate. Don't forget, that you can't change commission more than on `commission-max-change-rate` per day.
 
@@ -157,7 +162,7 @@ Example (min self delegation to 100k DFI):
 
 ```bash
 dncli tx staking edit-validator \
-  --min-self-delegation="100000000000000000000000" \ 
+  --min-self-delegation="100000000000000000000000" \
   --from <account>
 ```
 
@@ -171,15 +176,15 @@ Validators could have the following statuses:
 
 Once you create a validator, and if you don't have enough power to get to top 101, your validator will get status **Unbonded**, then when it reaches enough voting it will automatically move to **Bonded** status and start generating blocks.
 
-### Unbonding 
+### Unbonding
 
-In case validator got **Unbonding** status, that could happen in several cases:
+When your validator got **Unbonding** status, that could happen for several reasons:
 
-  * If validator goes out from top 100.
-  * If validator unbound self delegated DFI more then promised (see `--min-self-delegation` parameter). In such a case validator will be also `jailed`.
-  * If validator missed too many blocks to sign/propose. The default amount of missed blocks to become unbonding are 50% of blocks during the 100 blocks window. Will be `jailed` also.
-  * If validator double sign blocks. In such a case validator will be tombstoned and `jailed` forever. 
+* Validator goes out from top 100.
+* Validator unbound self delegated DFI more then promised (see `--min-self-delegation` parameter). In such a case validator will be also `jailed`.
+* Validator missed too many blocks to sign/propose. The default amount of missed blocks to become unbonding are 50% of blocks during the 100 blocks window. Will be `jailed` also.
+* Validator double sign blocks. In this case validator will be tombstoned and `jailed` forever.
 
-In all cases you still can [redelegate](/staking/delegate_dfi.md#redelegate) your DFI to another validator to don't wait for **Unbonding** period.
+In all cases you still can [redelegate](/staking/delegate_dfi.md#redelegate) your DFI to another validator not to wait **Unbonding** period.
 
 More about jailing and slashing read in [Slashing](/staking/slashing.md) section.
