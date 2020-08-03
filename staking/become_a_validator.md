@@ -116,7 +116,7 @@ By changing commission params, making it less, you become more profitable for de
 
 ## Socialize your validator
 
-Having validator in **dfinance** network is not only about up validator node and produce blocks, but it's also public work, delegators (especially from the community) want to know to who they delegate their DFI.
+Having validator in **dfinance** network is not only about setting up validator node and producing blocks, but it's also public work, delegators (especially from the community) want to know to whom they delegate their DFI.
 
 This way you can update your validator with social parameters, that other network users can read:
 
