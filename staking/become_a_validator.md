@@ -110,7 +110,7 @@ To see list of validators use command:
 dncli q staking validators
 ```
 
-It is the start of the road to become an active validator in the top 100 and start getting rewards and fees for generated blocks. To increase your voting power you can delegate coins to your validator, see [Delegate DFI](/staking/delegate_dfi.md).
+It is the start of the road to become an active validator in the top 31 and start getting rewards and fees for generated blocks. To increase your voting power you can delegate coins to your validator, see [Delegate DFI](/staking/delegate_dfi.md).
 
 By changing commission params, making it less, you become more profitable for delegators to vote for you (see [Rewards & Inflation](/staking/rewards_inflation.md)), so it could be a good start to bring attention. Don't forget to always monitor your validator, it must be online most of the time, if you miss too many blocks, you can be [unbonded](#unbonding) and [slashed](/staking/slashing.md).
 
@@ -182,7 +182,7 @@ When your validator got **Unbonding** status, that could happen for several reas
 
 * Validator goes out from top 100.
 * Validator unbound self delegated DFI more then promised (see `--min-self-delegation` parameter). In such a case validator will be also `jailed`.
-* Validator missed too many blocks to sign/propose. The default amount of missed blocks to become unbonding are 50% of blocks during the 100 blocks window. Will be `jailed` also.
+* Validator missed too many blocks to sign/propose. The default amount of missed blocks to become unbonding are 50% of blocks during the 31 blocks window. Will be `jailed` also.
 * Validator double sign blocks. In this case validator will be tombstoned and `jailed` forever.
 
 In all cases you still can [redelegate](/staking/delegate_dfi.md#redelegate) your DFI to another validator not to wait **Unbonding** period.

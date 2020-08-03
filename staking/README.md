@@ -24,7 +24,7 @@ The procedure of delegation coins to a specific validator or own validator (self
 
 Any user can delegate his coins to validators to support liked validators and get part of fees received by validators they choose to delegate. By delegating user locks his tokens. Delegators should actively participate in choosing validators, because if user delegates to the performance-less validator (let's say validator which misses blocks or double sign blocks/pre-votes). In such cases, both validator and delegator will be exposed to the slashing procedure.
 
-You can't delegate same DFI coins to different validators, only to one, means, if you have for example 1000 DFI, you can delegate 900 DFI to validator A, and the rest, 100 DFI, to delegator B, but you can't delegate already staked DFI to another validator.
+You can't delegate same DFI coins to different validators, only to one, means, if you have for example 1000 DFI, you can delegate 900 DFI to validator A, and the rest, 31 DFI, to delegator B, but you can't delegate already staked DFI to another validator.
 
 **Not ready yet, but planned for next versions:**
 

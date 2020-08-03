@@ -39,7 +39,7 @@ Current testnet configuration looks so:
 Where:
 
   * `min_signed_per_window` - the percent of blocks must be signed by validator during blocks window, currently 50%.
-  * `signed_blocks_window` - size of blocks window, currently 100 blocks.
+  * `signed_blocks_window` - size of blocks window, currently 31 blocks.
   * `downtime_jail_duration` - jail duration while validator can't send unjail transaction, currently 600000000000 nanoseconds (10 minutes).
   * `slash_fraction_double_sign` - the percent of stake that validator/delegator loose in case validator double sign block, currently 5%.
   * `slash_fraction_downtime` - the percentage of stake that validator/delegator loose in case of validator downtime.
