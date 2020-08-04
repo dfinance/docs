@@ -58,7 +58,7 @@ Now replace seeds in \(_~/.dnode/config.toml_\):
 persistent_peers = "put seed address here" # e.g. "25c5340ac11a7b383f5a8a0d13f346b12fcf21a4@rpc.testnet.dfinance.co:26656"
 ```
 
-**Important**: if you up full-node, you must open `26656` port on your machine, otherwise your node will be not able to communicate with other nodes by P2P. 
+**Important**: if you set up full-node, you must open `26656` port on your machine, otherwise your node will be not able to communicate with other nodes by P2P. 
 
 More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.
 

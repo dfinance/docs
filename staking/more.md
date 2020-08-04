@@ -15,7 +15,7 @@ As dfinance is built with Cosmos SDK and inherits standard cosmos modules, you c
 - [mint](https://docs.cosmos.network/master/modules/mint/01_concepts.html)
 - [distribution](https://docs.cosmos.network/master/modules/distribution/)
 
-Some details, that current documentation misses or considers not important you can find there.
+Some details that current documentation misses or considers not important you can find there.
 
 ## Common
 

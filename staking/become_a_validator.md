@@ -16,12 +16,12 @@ To become a validator:
 
 1. Set up a full node, using a dedicated server or cloud services. The validator machine must have a good performance and latency and must be always online.
 2. Install **dnode**/**dncli** on your node using [dnode](/architecture/dnode.md) and [dncli](/architecture/dncli.md) instructions.
-3. Ensure, that your node is in sync with the rest of network by requesting latest testnet block. Request testnet status to see latest block or use [explorer](https://explorer.testnet.dfinance.co/):
+3. Ensure that your node is in sync with the rest of the network by requesting the latest testnet block. Request testnet status to see latest block or use [explorer](https://explorer.testnet.dfinance.co/):
 
 Use these commands to compare block height on your node and on testnet:
 
 ```bash
-# Both commands requires jq.
+# Both commands require jq.
 
 # Get latest block from testnet
 curl https://rest.testnet.dfinance.co/blocks/latest  | jq '.block.header.height'
@@ -32,7 +32,7 @@ curl localhost:1317/blocks/latest  | jq '.block.header.height'
 dncli q block
 ```
 
-Once the difference between your height and testnet height is small (just few blocks), you can start the process of registering your account as validator.
+Once the difference between your height and testnet height is small (just a few blocks), you can start the process of registering your account as a validator.
 
 ### Important
 
@@ -66,7 +66,7 @@ First, let's try to find validator public key:
 dnode tendermint show-validator
 ```
 
-If you see validator consensus public key we can continue, copy validator consensus address, we will need it in the next step. If you don't see validator public key, you have to init your **dnode** instance, see dnode [documentation](/architecture/dnode.md).
+If you see the validator consensus public key we can continue, copy the validator consensus address, we will need it in the next step. If you don't see validator public key, you have to init your **dnode** instance, see dnode [documentation](/architecture/dnode.md).
 
 **dncli** contains staking module, that required both for validator/delegator operations, see help:
 
@@ -94,10 +94,10 @@ Where:
 * `amount` - DFI amount to self-stake, currently **1.0 DFI**.
 * `pubkey` - validator consensus public key received during `dnode tendermint show-validator` command.
 * `moniker` - your dnode moniker, use one you used during `dnode init <moniker>` command. You can see it in `~/.dnode/config/config.toml` file
-* `commission-rate` - how much your validator going to take a commission from received rewards/fees, currently 10%.
+* `commission-rate` - how much your validator is going to take a commission from received rewards/fees, currently 10%.
 * `commission-max-rate` - maximum that validator can take as comission.
 * `commission-max-change-rate` - how percent per day validator can change comission, currently 1% per day.
-* `from` - account that going to send transaction and will self-stake coins for your validator, also, you can use this account to manage your validator later.
+* `from` - an account that is going to send transaction and will self-stake coins for your validator, also, you can use this account to manage your validator later.
 
 Replace command values with your own and send the transaction to the network.  Most interesting parameters are commission related, we will discuss them later.
 Once the transaction will be confirmed, you will become a validator in the dfinance network.
@@ -116,7 +116,7 @@ By changing commission params, making it less, you become more profitable for de
 
 ## Socialize your validator
 
-Having validator in **dfinance** network is not only about up validator node and produce blocks, but it's also public work, delegators (especially from the community) want to know to who they delegate their DFI.
+Having validator in **dfinance** network is not only about setting up validator node and producing blocks, but it's also public work, delegators (especially from the community) want to know to whom they delegate their DFI.
 
 This way you can update your validator with social parameters, that other network users can read:
 
@@ -156,7 +156,7 @@ dncli tx staking edit-validator \
   --from <account>
 ```
 
-Also, important parameter is minimum self delegation (`--min-self-delegation`), you can change it also, as more self delegation you have, as more trust you will have in eyes of delegators. You can only increase `--min-self-delegation`.
+Also, an important parameter is minimum self delegation (`--min-self-delegation`), you can change it also, as more self delegation you have, as more trust you will have in eyes of delegators. You can only increase `--min-self-delegation`.
 
 Example (min self delegation to 250000 DFI):
 
@@ -181,9 +181,9 @@ Once you create a validator, and if you don't have enough power to get to top 10
 When your validator got **Unbonding** status, that could happen for several reasons:
 
 * Validator goes out from top 31.
-* Validator unbound self delegated DFI more then promised (see `--min-self-delegation` parameter). In such a case validator will be also `jailed`.
+* Validator unbound self delegated DFI more than promised (see `--min-self-delegation` parameter). In such a case the validator will be also `jailed`.
 * Validator missed too many blocks to sign/propose. The default amount of missed blocks to become unbonding are 50% of blocks during the 31 blocks window. Will be `jailed` also.
-* Validator double sign blocks. In this case validator will be tombstoned and `jailed` forever.
+* Validator double sign blocks. In this case the validator will be tombstoned and `jailed` forever.
 
 In all cases you still can [redelegate](/staking/delegate_dfi.md#redelegate) your DFI to another validator not to wait **Unbonding** period.
 

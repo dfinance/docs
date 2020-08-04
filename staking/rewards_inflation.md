@@ -1,8 +1,8 @@
 # Rewards & Inflation
 
-For staking users in the dfinance network getting rewards in DFI coins. Validators receiving rewards by generating and signing new blocks, they take a commission, it's their default reward for supporting network. 
+For staking users in the dfinance network getting rewards in DFI coins. Validators receive rewards by generating and signing new blocks, they take a commission, it's their default reward for supporting the network. 
 
-Delegators, that delegate DFI to validators also receiving rewards in proportion to the amount of their staked DFI. 
+Delegators that delegate DFI to validators also receive rewards in proportion to the amount of their staked DFI. 
 
 Read more about the inflation and rewards model supported by the dfinance network in the current documentation.
 
@@ -64,4 +64,4 @@ dncli tx distribution withdraw-all-rewards --from [account]
 
 Where:
 
-    * [account] - is account, that has rewards.
+    * [account] - is an account that has rewards.
