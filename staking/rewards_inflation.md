@@ -42,7 +42,7 @@ dncli tx distribution
 To check if you have any rewards use next command:
 
 ```bash
-dncli query distribution rewards [delegator-addr] [<validator-addr>]
+dncli q distribution rewards [delegator-addr] [<validator-addr>]
 ```
 
 Where:
@@ -53,7 +53,7 @@ Where:
 If you are validator, see earned commission:
 
 ```bash
-dncli query distribution commission [validator]
+dncli q distribution commission [validator]
 ```
 
 To withdraw rewards send transaction:
