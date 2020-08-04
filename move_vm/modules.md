@@ -33,7 +33,7 @@ dncli tx vm publish <output file> --from <account>
 Check your transaction by querying its id, which was returned in the output.
 
 ```text
-dncli tx query <id>
+dncli q tx <id>
 ```
 
 If you see a **contract\_status** event, with status **keep** inside, everything published fine!
