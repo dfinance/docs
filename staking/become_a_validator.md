@@ -66,6 +66,15 @@ First, let's try to find validator public key:
 dnode tendermint show-validator
 ```
 
+In case you are using [testnet-bootstrap](https://github.com/dfinance/testnet-bootstrap) docker-compose:
+
+```bash
+cd testnet-bootstrap # Go to testnet bootstrap directory.
+docker-compose exec dnode bash # Run bash inside a dnode container.
+dnode tendermint show-validator # Print validator public key, copy it.
+exit # Exit from container.
+```
+
 If you see the validator consensus public key we can continue, copy the validator consensus address, we will need it in the next step. If you don't see validator public key, you have to init your **dnode** instance, see dnode [documentation](/architecture/dnode.md).
 
 **dncli** contains staking module, that required both for validator/delegator operations, see help:
