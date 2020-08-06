@@ -21,7 +21,7 @@ module Math {
 Let's compile this module using **dncli**. Compiler requires sender's address as it's included into bytecode. This address will then be verified on module publish.
 
 ```text
-dncli query vm compile <path-to-mvir> <address> --to-file <output file>
+dncli q vm compile <path-to-mvir> <address> --to-file <output file>
 ```
 
 Replace variables in this pattern with your own and you will get a compiled module in the specified output file. When it's done, you can publish your module:

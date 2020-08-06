@@ -18,7 +18,7 @@ Pre-built docker image is available on Docker Hub: [here's the link](https://hub
 
 ### Build from source
 
-You can build **dnode** from source, to do so fetch and build dnode from [Github repository](https://github.com/dfinance/dnode).
+You can build **dnode** from source, to do so fetch and build dnode from [Github repository](https://github.com/dfinance/dnode), use latest stable tag from [releases](https://github.com/dfinance/dnode/releases) page.
 
 After that you need to:
 
@@ -57,6 +57,8 @@ Now replace seeds in \(_~/.dnode/config.toml_\):
 ```bash
 persistent_peers = "put seed address here" # e.g. "25c5340ac11a7b383f5a8a0d13f346b12fcf21a4@rpc.testnet.dfinance.co:26656"
 ```
+
+**Important**: if you set up full-node, you must open `26656` port on your machine, otherwise your node will be not able to communicate with other nodes by P2P. 
 
 More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.
 

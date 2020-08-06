@@ -34,6 +34,8 @@ You can try it yourself and see available commands:
 ```bash
 dncli tx --help
 dncli query --help
+
+dncli q --help # Short version of query.
 ```
 
 You can use `--help` option for any command, e.g.:
@@ -42,14 +44,14 @@ You can use `--help` option for any command, e.g.:
 dncli tx vm --help
 dncli tx vm execute --help
 
-dncli query vm --help
-dncli query vm compile --help
+dncli q vm --help
+dncli q vm compile --help
 ```
 
 In case, your VM transaction contains an error, you always can query detailed information about the happened error, check next command:
 
 ```bash
-dncli query vm tx [txId]
+dncli q vm tx [txId]
 ```
 
 ## Testnet configuration
@@ -65,6 +67,6 @@ Also, **compiler** address could be passed as `--compiler` option during executi
 
 ```bash
 # use --help to see full list of options
-dncli query vm compile <file> <account>
+dncli q vm compile <file> <account>
 ```
 

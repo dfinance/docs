@@ -27,7 +27,7 @@ Go to **dfinance** [**wallet portal**](https://testnet.dfinance.co/), use your *
 After this let's query our account with **dncli**:
 
 ```text
-dncli query account <address>
+dncli q account <address>
 ```
 
 Replace `<address>` with your address. You will see output with your address and with your balances, balances should contains DFI coins if we want to continue to next steps.
