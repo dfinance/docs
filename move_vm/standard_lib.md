@@ -87,15 +87,16 @@ script {
 
 ## Oracle
 
-[Oracle](https://github.com/dfinance/dvm/blob/master/stdlib/modules/oracle.move) module allows to get the current price of an asset pair.
+[Coins](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move) module also contains oracles functions: get price and has price.
 
 ```rust
 script {
-    use 0x1::Oracle;
     use 0x1::Coins;
 
     fun main() {
-        let _ = Oracle::get_price<Coins::ETH, Coins::USDT>();
+        assert(Coins::has_price<Coins::ETH, Coins::USDT>(), 101);
+        
+        let _ = Coins::get_price<Coins::ETH, Coins::USDT>();
     }
 }
 ```
