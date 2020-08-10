@@ -12,7 +12,7 @@ use 0x1::Coins;
 ...
 ```
 
-You can look for actual standard modules in [dvm](https://github.com/dfinance/dvm/tree/master/lang) repository.
+You can look for actual standard modules in [dvm](https://github.com/dfinance/dvm/tree/master/stdlib/modules) repository.
 
 ## Time
 
