@@ -1,6 +1,6 @@
 # Query Price
 
-Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Coins](https://github.com/dfinance/dvm/blob/v0.4.0/lang/stdlib/coins.move) module:
+Current **dfinance** VM implementation supports querying the price for the provided ticker thanks to [Coins](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move) module:
 
 ```rust
 address 0x1 {
