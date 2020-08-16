@@ -49,7 +49,7 @@ Requirements for next steps:
 * Synchronized **dnode** (full-node).
 * Opened **26656 port** on your machine.
 * Installed **dncli** and **dnode** (with docker or not).
-* Account with at least 2.0 DFI.
+* Account with at least 2.0 XFI.
 
 During validator creation we will need both **dnode** and **dncli** working from your machine launched with full-node, so make sure they both available from the console:
 
@@ -88,7 +88,7 @@ Let's create a validator and official register it in the network:
 
 ```bash
 dncli tx staking create-validator \
-  --amount=1000000000000000000dfi \
+  --amount=1000000000000000000xfi \
   --pubkey=<pub_key> \
   --moniker=<moniker> \
   --commission-rate="0.10" \
@@ -100,7 +100,7 @@ dncli tx staking create-validator \
 
 Where:
 
-* `amount` - DFI amount to self-stake, currently **1.0 DFI**.
+* `amount` - XFI amount to self-stake, currently **1.0 XFI**.
 * `pubkey` - validator consensus public key received during `dnode tendermint show-validator` command.
 * `moniker` - your dnode moniker, use one you used during `dnode init <moniker>` command. You can see it in `~/.dnode/config/config.toml` file
 * `commission-rate` - how much your validator is going to take a commission from received rewards/fees, currently 10%.
@@ -119,13 +119,13 @@ To see list of validators use command:
 dncli q staking validators
 ```
 
-It is the start of the road to become an active validator in the top 31 and start getting rewards and fees for generated blocks. To increase your voting power you can delegate coins to your validator, see [Delegate DFI](/staking/delegate_dfi.md).
+It is the start of the road to become an active validator in the top 31 and start getting rewards and fees for generated blocks. To increase your voting power you can delegate coins to your validator, see [Delegate XFI](/staking/delegate_dfi.md).
 
 By changing commission params, making it less, you become more profitable for delegators to vote for you (see [Rewards & Inflation](/staking/rewards_inflation.md)), so it could be a good start to bring attention. Don't forget to always monitor your validator, it must be online most of the time, if you miss too many blocks, you can be [unbonded](#unbonding) and [slashed](/staking/slashing.md).
 
 ## Socialize your validator
 
-Having validator in **dfinance** network is not only about setting up validator node and producing blocks, but it's also public work, delegators (especially from the community) want to know to whom they delegate their DFI.
+Having validator in **dfinance** network is not only about setting up validator node and producing blocks, but it's also public work, delegators (especially from the community) want to know to whom they delegate their XFI.
 
 This way you can update your validator with social parameters, that other network users can read:
 
@@ -167,7 +167,7 @@ dncli tx staking edit-validator \
 
 Also, an important parameter is minimum self delegation (`--min-self-delegation`), you can change it also, as more self delegation you have, as more trust you will have in eyes of delegators. You can only increase `--min-self-delegation`.
 
-Example (min self delegation to 250000 DFI):
+Example (min self delegation to 250000 XFI):
 
 ```bash
 dncli tx staking edit-validator \
@@ -181,7 +181,7 @@ Validators could have the following statuses:
 
 * `Bonded (2)` - active validators in the top 31. Generate blocks, receiving rewards and fees.
 * `Unbonded (0)` - validators that don't have enough voting power to be in the top 31. Means, can't generate new blocks, get rewards, etc.
-* `Unbonding (1)` - once validator leaves top 31 it becomes unbonding, means, validator and all delegators have to wait during unbonding time to get DFI back, or just redelegate them now. You can read about unbonding period in [delegation manual](/staking/delegate_dfi.md#how-to-unbond-(undelegate)).
+* `Unbonding (1)` - once validator leaves top 31 it becomes unbonding, means, validator and all delegators have to wait during unbonding time to get XFI back, or just redelegate them now. You can read about unbonding period in [delegation manual](/staking/delegate_dfi.md#how-to-unbond-(undelegate)).
 
 Once you create a validator, and if you don't have enough power to get to top 101, your validator will get status **Unbonded**, then when it reaches enough voting it will automatically move to **Bonded** status and start generating blocks.
 
@@ -190,10 +190,10 @@ Once you create a validator, and if you don't have enough power to get to top 10
 When your validator got **Unbonding** status, that could happen for several reasons:
 
 * Validator goes out from top 31.
-* Validator unbound self delegated DFI more than promised (see `--min-self-delegation` parameter). In such a case the validator will be also `jailed`.
+* Validator unbound self delegated XFI more than promised (see `--min-self-delegation` parameter). In such a case the validator will be also `jailed`.
 * Validator missed too many blocks to sign/propose. The default amount of missed blocks to become unbonding are 50% of blocks during the 31 blocks window. Will be `jailed` also.
 * Validator double sign blocks. In this case the validator will be tombstoned and `jailed` forever.
 
-In all cases you still can [redelegate](/staking/delegate_dfi.md#redelegate) your DFI to another validator not to wait **Unbonding** period.
+In all cases you still can [redelegate](/staking/delegate_dfi.md#redelegate) your XFI to another validator not to wait **Unbonding** period.
 
 More about jailing and slashing read in [Slashing](/staking/slashing.md) section.

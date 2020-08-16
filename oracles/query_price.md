@@ -27,7 +27,7 @@ module Coins {
 }
 ```
 
-There are two functions, get_price and has_price, both require two generics \(pairs\) to make a call, e.g.: BTC\_USDT, ETH\_USDT, DFI\_BTC.
+There are two functions, get_price and has_price, both require two generics \(pairs\) to make a call, e.g.: BTC\_USDT, ETH\_USDT, XFI\_BTC.
 
 Let's try to query BTC\_USDT price:
 

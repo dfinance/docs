@@ -94,7 +94,7 @@ There will be even fired event, that will contain **"keep"** status and the resu
          },
          {
             "key":"amount",
-            "value":"1dfi"
+            "value":"1xfi"
          }
       ]
    }
