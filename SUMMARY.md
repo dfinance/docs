@@ -11,6 +11,7 @@
   * [Dncli](architecture/dncli.md)
   * [DFI & Other coins](architecture/dfi.md)
   * [Fees & Gas](architecture/fees_gas.md)
+  * [Addresses](architecture/addresses.md)
 * [Staking](staking/README.md)
   * [Delegate DFI](staking/delegate_dfi.md)
   * [Become a validator](staking/become_a_validator.md)
