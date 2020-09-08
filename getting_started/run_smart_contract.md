@@ -4,7 +4,7 @@ Here is guide how to run your first smart contract in dfinance network using **d
 
 ## Smart contracts introduction
 
-**Dfinance** platform allows writing smart contracts in Move language developed by by Facebook's Libra and can be executed by Move VM.
+**Dfinance** platform allows writing smart contracts in Move language developed by Facebook's Libra and can be executed by Move VM.
 
 Also, **Dfinance** provides [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide), so you can download [VSCode](https://code.visualstudio.com/) and then install the plugin for Move language with syntax and errors highlight, compilation support, and language server support from the box.
 
