@@ -77,10 +77,10 @@ script {
     use 0x1::Event;
     use 0x1::Coins;
 
-    fun main() {
+    fun main(account: &signer) {
         let price = Coins::get_price<Coins::BTC, Coins::USDT>();
 
-        Event::emit(price);
+        Event::emit(account, price);
     }
 }
 ```

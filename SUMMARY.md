@@ -6,6 +6,7 @@
   * [Your first transaction](getting_started/your_first_transaction.md)
   * [Run smart contract](getting_started/run_smart_contract.md)
   * [Run your own node](getting_started/run_own_node.md)
+  * [Ledger Support](getting_started/ledger.md)
 * [Architecture](architecture/README.md)
   * [Dnode](architecture/dnode.md)
   * [Dncli](architecture/dncli.md)

@@ -113,8 +113,8 @@ Example with emitting event contains provided number:
 script {
     use 0x1::Event;
 
-    fun main(a: u64) {
-        Event::emit<u64>(a);
+    fun main(account: &signer, a: u64) {
+        Event::emit<u64>(account, a);
     }
 }
 ```
@@ -129,8 +129,8 @@ module MyEvent {
         value: u64
     }
 
-    public fun my_event(a: u64) {
-        Event::emit(MyStruct {
+    public fun my_event(account: &signer, a: u64) {
+        Event::emit(account, MyStruct {
             value: a
         });
     }

@@ -1,5 +1,7 @@
 # PegZone
 
+**THIS DOCUMENTATION IS OUT OF DATE. NEW DOCUMENTATION WILL BE AVAILABLE SOON.**
+
 This document described how PegZone works in the case of **dfinance** protocol.
 
 ## Introduction
