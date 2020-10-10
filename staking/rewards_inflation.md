@@ -1,8 +1,8 @@
 # Rewards & Inflation
 
-For staking users in the dfinance network getting rewards in DFI coins. Validators receive rewards by generating and signing new blocks, they take a commission, it's their default reward for supporting the network. 
+For staking users in the dfinance network getting rewards in XFI coins. Validators receive rewards by generating and signing new blocks, they take a commission, it's their default reward for supporting the network. 
 
-Delegators that delegate DFI to validators also receive rewards in proportion to the amount of their staked DFI. 
+Delegators that delegate XFI to validators also receive rewards in proportion to the amount of their staked XFI. 
 
 Read more about the inflation and rewards model supported by the dfinance network in the current documentation.
 

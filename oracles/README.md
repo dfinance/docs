@@ -10,8 +10,8 @@ Currently, dfinance supports next tickers:
 
 * **ETH\_USDT** - [Binance](https://www.binance.com/en/trade/ETH_USDT).
 * **BTC\_USDT** - [Binance](https://www.binance.com/en/trade/BTC_USDT).
-* **DFI\_ETH** - simulation.
-* **DFI\_BTC** - simulation.
+* **XFI\_ETH** - simulation.
+* **XFI\_BTC** - simulation.
 
 A list of assets could be updated, so the actual one you can get from [API](https://rest.testnet.dfinance.co/oracle/assets).
 

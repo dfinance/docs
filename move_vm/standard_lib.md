@@ -7,7 +7,7 @@ They all placed on the address **0x1**. So when you import something from **0x1*
 ```rust
 use 0x1::Account;
 use 0x1::Event;
-use 0x1::DFI;
+use 0x1::XFI;
 use 0x1::Coins;
 ...
 ```
@@ -66,18 +66,18 @@ script {
 }
 ```
 
-## DFI && Coins
+## XFI && Coins
 
-[DFI](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfi.move) and [Coins](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move) modules allow to get a type of currency that you going to use in your code.
+[XFI](https://github.com/dfinance/dvm/blob/master/stdlib/modules/xfi.move) and [Coins](https://github.com/dfinance/dvm/blob/master/stdlib/modules/coins.move) modules allow to get a type of currency that you going to use in your code.
 
 ```rust
 script {
     use 0x1::Account;
-    use 0x1::DFI;
+    use 0x1::XFI;
     use 0x1::Coins;
 
     fun main(sender: &signer, payee: address, dfi_amount: u128, eth_amount: u128, btc_amount: u128, usdt_amount: u128) {
-        Account::pay_from_sender<DFI::T>(sender, payee, dfi_amount);
+        Account::pay_from_sender<XFI::T>(sender, payee, dfi_amount);
         Account::pay_from_sender<Coins::ETH>(sender, payee, eth_amount);
         Account::pay_from_sender<Coins::BTC>(sender, payee, btc_amount);
         Account::pay_from_sender<Coins::USDT>(sender, payee, usdt_amount);
@@ -166,14 +166,14 @@ A lot of different methods can be used to send tokens from account A to account 
 ```rust
 script {
     use 0x1::Account;
-    use 0x1::DFI;
+    use 0x1::XFI;
 
     fun main(sender: &signer, payee: address, amount: u128, metadata: vector<u8>) {
-        // Move DFI from sender account to payee.
-        Account::pay_from_sender<DFI::T>(sender, payee, amount);
+        // Move XFI from sender account to payee.
+        Account::pay_from_sender<XFI::T>(sender, payee, amount);
 
-        // Again move DFI, but with metadata.
-        Account::pay_from_sender_with_metadata<DFI::T>(sender, payee, amount, metadata);
+        // Again move XFI, but with metadata.
+        Account::pay_from_sender_with_metadata<XFI::T>(sender, payee, amount, metadata);
     }
 }
 ```
@@ -183,14 +183,14 @@ Also, you can just withdraw from sender balance and deposit to payee:
 ```rust
 script {
     use 0x1::Account;
-    use 0x1::DFI;
+    use 0x1::XFI;
 
     fun main(sender: &signer, payee: address, amount: u128) {
-        // Move DFI from sender account to payee.
-        let dfi = Account::withdraw_from_sender<DFI::T>(sender, amount);
+        // Move XFI from sender account to payee.
+        let xfi = Account::withdraw_from_sender<XFI::T>(sender, amount);
 
-        // Again move DFI, but with metadata.
-        Account::deposit(sender, payee, dfi);
+        // Again move XFI, but with metadata.
+        Account::deposit(sender, payee, xfi);
     }
 }
 ```
@@ -200,15 +200,15 @@ Or deposit to another module:
 ```rust
 script {
     use {{address}}::Swap;
-    use 0x1::DFI;
+    use 0x1::XFI;
     use 0x1::Coins;
     use 0x1::Account;
 
     fun main(sender: &signer, seller: address, price: u128) {
-        let dfi = Account::withdraw_from_sender(sender, price);
+        let xfi = Account::withdraw_from_sender(sender, price);
 
         // Deposit USDT to swap coins.
-        Swap::swap<Coins::USDT, DFI::T>(sender, seller, dfi);
+        Swap::swap<Coins::USDT, XFI::T>(sender, seller, xfi);
     }
 }
 ```
@@ -252,12 +252,12 @@ The value field contains information about actual balance for specific coin/toke
 ```rust
 script {
     use 0x1::Account;
-    use 0x1::DFI;
+    use 0x1::XFI;
 
     fun main(sender: &signer, amount: u128) {
-        // Use DFI::T to get Dfinance::T<DFI::T> contains balance.
-        let dfi : 0x1::Dfinance::T<DFI::T> = Account::withdraw_from_sender<DFI::T>(sender, amount);
-        Account::deposit_to_sender(sender, dfi);
+        // Use XFI::T to get Dfinance::T<XFI::T> contains balance.
+        let xfi : 0x1::Dfinance::T<XFI::T> = Account::withdraw_from_sender<XFI::T>(sender, amount);
+        Account::deposit_to_sender(sender, xfi);
     }
 }
 ```
@@ -265,17 +265,17 @@ script {
 Also, you can create an empty coin:
 
 ```rust
-module BankDFI {
+module BankXFI {
     use 0x1::Dfinance;
-    use 0x1::DFI;
+    use 0x1::XFI;
 
     resource struct T {
-        balance: Dfinance::T<DFI::T>,
+        balance: Dfinance::T<XFI::T>,
     }
 
     public fun create(account: &signer)  {
         move_to<T>(account, T {
-            balance: Dfinance::zero<DFI::T>()
+            balance: Dfinance::zero<XFI::T>()
         })
     }
 }
@@ -287,20 +287,20 @@ Get denom, decimals, and actual value:
 script {
     use 0x1::Dfinance;
     use 0x1::Account;
-    use 0x1::DFI;
+    use 0x1::XFI;
 
     fun main(sender: &signer, amount: u128) {
-        let dfi = Account::withdraw_from_sender<DFI::T>(sender, amount);
+        let xfi = Account::withdraw_from_sender<XFI::T>(sender, amount);
 
         // Get denom vector<8>.
-        let _ = Dfinance::denom<DFI::T>();
+        let _ = Dfinance::denom<XFI::T>();
 
-        // Get value of withdrawed dfi.
-        let value = Dfinance::value(&dfi);
+        // Get value of withdrawed xfi.
+        let value = Dfinance::value(&xfi);
 
         assert(amount == value, 101);
 
-        Account::deposit_to_sender(sender, dfi);
+        Account::deposit_to_sender(sender, xfi);
     }
 }
 ```
@@ -311,10 +311,10 @@ And check if it's user token or system coin:
 script {
     use {{address}}::MyToken;
     use 0x1::Dfinance;
-    use 0x1::DFI;
+    use 0x1::XFI;
 
     fun main() {
-        assert(Dfinance::is_token<DFI::T>() == false, 101);
+        assert(Dfinance::is_token<XFI::T>() == false, 101);
         assert(Dfinance::is_token<MyToken::T>(), 102);
     }
 }

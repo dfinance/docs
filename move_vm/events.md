@@ -121,7 +121,7 @@ Events example:
          },
          {
             "key":"amount",
-            "value":"1dfi"
+            "value":"1xfi"
          }
       ]
    }

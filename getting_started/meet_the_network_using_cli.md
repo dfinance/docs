@@ -1,8 +1,8 @@
 # Meet the network using CLI
 
-Here is a step-by-step guide on how to operate with arbitrary **dfinance** node which covers creation of your first account, receiving free testnet DFI tokens and execution of first transaction.
+Here is a step-by-step guide on how to operate with arbitrary **dfinance** node which covers creation of your first account, receiving free testnet XFI tokens and execution of first transaction.
 
-## Account creation and free DFI
+## Account creation and free XFI
 
 Let's create your first **dfinance** account.
 
@@ -22,7 +22,7 @@ dncli keys add -i my-account
 
 Save **passphrase** and keep in safe place. **Without mnemonic and passphrase you can't access your new account!**
 
-Go to **dfinance** [**wallet portal**](https://testnet.dfinance.co/), use your **mnemonic** and **passphrase** to login, and request faucet to send your free DFI. Click there on request **Request Tokens** button and wait for few seconds, DFI coins will appear on your account. Also, the faucet sending testnet BTC and USDT coins besides DFI.
+Go to **dfinance** [**wallet portal**](https://testnet.dfinance.co/), use your **mnemonic** and **passphrase** to login, and request faucet to send your free XFI. Click there on request **Request Tokens** button and wait for few seconds, XFI coins will appear on your account. Also, the faucet sending testnet BTC and USDT coins besides XFI.
 
 After this let's query our account with **dncli**:
 
@@ -30,5 +30,5 @@ After this let's query our account with **dncli**:
 dncli q account <address>
 ```
 
-Replace `<address>` with your address. You will see output with your address and with your balances, balances should contains DFI coins if we want to continue to next steps.
+Replace `<address>` with your address. You will see output with your address and with your balances, balances should contains XFI coins if we want to continue to next steps.
 
