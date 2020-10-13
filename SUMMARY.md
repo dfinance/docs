@@ -14,7 +14,7 @@
   * [Fees & Gas](architecture/fees_gas.md)
   * [Addresses](architecture/addresses.md)
 * [Staking](staking/README.md)
-  * [Delegate XFI](staking/delegate_xfi.md)
+  * [Delegate sXFI & LPT](staking/delegate.md)
   * [Become a validator](staking/become_a_validator.md)
   * [Rewards & Inflation](staking/rewards_inflation.md)
   * [Slashing](staking/slashing.md)

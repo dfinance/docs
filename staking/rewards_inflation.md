@@ -1,21 +1,18 @@
 # Rewards & Inflation
 
-For staking users in the dfinance network getting rewards in XFI coins. Validators receive rewards by generating and signing new blocks, they take a commission, it's their default reward for supporting the network. 
+For staking users in the dfinance network getting rewards in sXFI coins. Validators receive rewards by generating and signing new blocks, they take a commission, it's their default reward for supporting the network. 
 
-Delegators that delegate XFI to validators also receive rewards in proportion to the amount of their staked XFI. 
+Delegators that delegate sXFI or LPT to validators also receive rewards in proportion to the amount of their staked sXFI and LPT. 
 
 Read more about the inflation and rewards model supported by the dfinance network in the current documentation.
 
 ## Inflation
 
-Dfinance inflation model is in the final stage, but not released yet, this why we will not describe it in the current version of the documentation, to don't make misunderstood, we will make an explanation once it released. The release planned during summer 2020.
+Dfinance inflation model is in production version and implemented in current testnet. We are releasing information about it step by step, as dfinance inflation model very innovative and using a lot of parameters.
 
-Current testnet using default inflation from Cosmos network, if you are interested in how it works, we provide links, so you can learn:
+You can read about introduction in our latest [article](https://medium.com/dfinance/token-economics-954874a35252).
 
-    * [Cosmos Mint Module Overview](https://docs.cosmos.network/master/modules/mint/)
-    * [Cosmos Inflation & Staking Rewards](https://figment.network/resources/cosmos-inflation-staking-rewards-how-are-they-related)
-
-Also, the module responsible for inflation is `mint`, so look at currently available commands:
+To see inflation parameters check `mint` module:
 
 ```bash
 # To see query commands.
@@ -24,6 +21,8 @@ dncli q mint --help
 # To see tx commands.
 dncli tx mint --help
 ```
+
+More information will be provided soon with coming documentation updates.
 
 ## Rewards
 
@@ -55,6 +54,8 @@ If you are validator, see earned commission:
 ```bash
 dncli q distribution commission [validator]
 ```
+
+**Important:** in current testnet rewards withdrawing disabled and will become available with mainnet.
 
 To withdraw rewards send transaction:
 
