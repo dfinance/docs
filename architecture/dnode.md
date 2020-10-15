@@ -46,10 +46,17 @@ curl https://rpc.testnet.dfinance.co/genesis | jq '.result.genesis' > ~/.dnode/c
 Now replace seeds in \(_~/.dnode/config.toml_\) with current testnet seed node:
 
 ```bash
-persistent_peers = "9a6e46339e0b63e07d82a2d5a506b54899322537@pub.testnet.dfinance.co:8888"
+seeds = "b57d87dac7a9f77fbb11eb0f137a922fcc44cf0c@pub.testnet.dfinance.co:26656"
 ```
 
 **Important**: if you set up full-node, you must open `26656` port on your machine, otherwise your node will not be able to broadcast and receive data from other nodes by P2P.
+
+
+Once you opened port, configure your external address in \(_~/.dnode/config.toml_\):
+
+```bash
+external_address="your_ip:26656"
+```
 
 More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.
 
