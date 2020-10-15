@@ -40,25 +40,16 @@ After that download testnet version of `genesis.json`:
 rm ~/.dnode/config/genesis.json
 
 # this solution requires 'jq' util to be installed
-curl rpc.testnet.dfinance.co:26657/genesis | jq '.result.genesis' > ~/.dnode/config/genesis.json
+curl https://rpc.testnet.dfinance.co/genesis | jq '.result.genesis' > ~/.dnode/config/genesis.json
 ```
 
-Now let's get testnet seed node address:
+Now replace seeds in \(_~/.dnode/config.toml_\) with current testnet seed node:
 
 ```bash
-# this solution requires 'jq' util to be installed
-curl rpc.testnet.dfinance.co:26657/genesis | jq -r '.result.genesis.app_state.genutil.gentxs[].value | select(.msg[0].value.description.moniker == "bootnode") | try(.memo |= split("@")) | .memo[0] + "@rpc.testnet.dfinance.co:26656"'
+persistent_peers = "9a6e46339e0b63e07d82a2d5a506b54899322537@pub.testnet.dfinance.co:8888"
 ```
 
-Previous command prints testnet seed node address.
-
-Now replace seeds in \(_~/.dnode/config.toml_\):
-
-```bash
-persistent_peers = "put seed address here" # e.g. "25c5340ac11a7b383f5a8a0d13f346b12fcf21a4@rpc.testnet.dfinance.co:26656"
-```
-
-**Important**: if you set up full-node, you must open `26656` port on your machine, otherwise your node will be not able to communicate with other nodes by P2P. 
+**Important**: if you set up full-node, you must open `26656` port on your machine, otherwise your node will not be able to broadcast and receive data from other nodes by P2P.
 
 More detailed instruction on how to build `dnode` from sources can be found in [dnode repository](https://github.com/dfinance/dnode). If want some more space for experiments you can also use `dnode` to launch your own local testnet.
 

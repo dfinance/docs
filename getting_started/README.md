@@ -47,8 +47,8 @@ dncli config chain-id dn-testnet
 dncli config output json
 dncli config indent true
 dncli config trust-node true
-dncli config compiler tcp://rpc.testnet.dfinance.co:50051
-dncli config node http://rpc.testnet.dfinance.co:26657
+dncli config compiler tcp://pub.testnet.dfinance.co:50051
+dncli config node https://rpc.testnet.dfinance.co:443
 dncli config keyring-backend file
 ```
 

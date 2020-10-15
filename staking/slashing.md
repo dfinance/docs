@@ -44,6 +44,8 @@ Where:
   * `slash_fraction_double_sign` - the percent of stake that validator/delegator loses in case validator double sign block, currently 5%.
   * `slash_fraction_downtime` - the percentage of stake that validator/delegator loses in case of validator downtime.
 
+**Important:** slashing affects only sXFI delegations, LPT balances can't be slashed.
+
 If validators slashed for downtime (missed signatures/proposals), validator and his delegators loose part of their stakes (see `slash_fraction_downtime`), also, such validator will be  `jailed`, after jail period (see `downtime_jail_duration`) validator can send transaction to [unjail](#unjail) himself. While the validator jailed, he can't propose/sign new blocks and participate in the consensus at all.
 
 If validator double sign block, what's much more critical than downtime, then validator and his delegators will lose part of their stakes (see `slash_fraction_double_sign`), also, validator becoming `jailed` forever, and tombstoned -  removed from validators list and can't participate in the consensus at all anymore.
