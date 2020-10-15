@@ -14,20 +14,20 @@ The default gas parameter in **dncli** is `500000`, if you see errors related to
 
 ### Block gas limit
 
-The current testnet block gas limit is `10000000` gas. Means that transaction with gas limit greater than `10000000` will be not accepted by validators nodes.
+The current testnet block gas limit is `5000000` gas. Means that transaction with gas limit greater than `5000000` will be not accepted by validators nodes.
 
 In future this setting will become changeable via Government voting mechanism.
 
 ## Fees
 
-Although **dfinance** supports different currencies \(like ETH\), transaction fees can be paid only in **DFI** currency.
+Although **dfinance** supports different currencies \(like ETH\), transaction fees can be paid only in **XFI** currency.
 
-Currently, minimal fee amount is **1 DFI**. Though this value may vary for each validator in the network as it's for validator to decide his minimal fee. This means that even if your transaction fee was too low for current validator, it still may be added in one of the next few blocks by validators whose minimal fee matches your value.
+Currently, minimal fee amount is **1 XFI**. Though this value may vary for each validator in the network as it's for validator to decide his minimal fee. This means that even if your transaction fee was too low for current validator, it still may be added in one of the next few blocks by validators whose minimal fee matches your value.
 
 **dncli** sets fees automatically, so you can ignore `--fees` flag, alternatively, if you want to speed up your transaction confirmation time you can can set fees manually by using `--fees` flag, e.g.:
 
 ```bash
 # Fees amount MUST be written without spaces between amount and denom
-dncli tx vm execute <script.mvir.json> <args,...> --fees 1000000000000000000dfi
+dncli tx vm execute <script.mvir.json> <args,...> --fees 1000000000000000000xfi
 ```
 

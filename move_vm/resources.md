@@ -168,15 +168,15 @@ Here are a few scripts examples, of how you can work with Swap module \(don't fo
 ```rust
 script {
     use {{sender}}::Swap;
-    use 0x1::DFI;
+    use 0x1::XFI;
     use 0x1::Coins;
     use 0x1::Account;
 
     fun main(sender: &signer, amount: u128, price: u128) {
-        let dfi = Account::withdraw_from_sender(sender, amount);
+        let xfi = Account::withdraw_from_sender(sender, amount);
 
-        // Deposit DFI coins in exchange to UDST.
-        Swap::create<DFI::T, Coins::USDT>(sender, dfi, price);
+        // Deposit XFI coins in exchange to UDST.
+        Swap::create<XFI::T, Coins::USDT>(sender, xfi, price);
     }
 }
 ```
@@ -186,7 +186,7 @@ script {
 ```rust
 script {
     use {{sender}}::Swap;
-    use 0x1::DFI;
+    use 0x1::XFI;
     use 0x1::Coins;
     use 0x1::Account;
 
@@ -194,7 +194,7 @@ script {
         let usdt = Account::withdraw_from_sender(sender, price);
 
         // Deposit USDT to swap coins.
-        Swap::swap<DFI::T, Coins::USDT>(sender, seller, usdt);
+        Swap::swap<XFI::T, Coins::USDT>(sender, seller, usdt);
     }
 }
 ```

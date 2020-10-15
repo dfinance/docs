@@ -59,8 +59,8 @@ dncli q vm tx [txId]
 **dncli** by default connects to local **dnode** \(at localhost:26657\) and **compiler** \(inside **dvm**\) \(at localhost:50051\). To connect to remote node or launched testnet, change these configuration settings:
 
 ```bash
-dncli config compiler tcp://rpc.testnet.dfinance.co:50051
-dncli config node http://rpc.testnet.dfinance.co:26657
+dncli config compiler tcp://pub.testnet.dfinance.co:50051
+dncli config node https://rpc.testnet.dfinance.co:443
 ```
 
 Also, **compiler** address could be passed as `--compiler` option during execution of command requiring compilation, this is: 

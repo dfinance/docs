@@ -13,9 +13,9 @@ script {
    use 0x1::Event;
    use {{sender}}::Math;
 
-   fun main(a: u64, b: u64) {
+   fun main(account: &signer, a: u64, b: u64) {
       let sum = Math::add(a, b);
-      Event::emit(sum);
+      Event::emit(account, sum);
    }
 }
 ```
@@ -94,7 +94,7 @@ There will be even fired event, that will contain **"keep"** status and the resu
          },
          {
             "key":"amount",
-            "value":"1dfi"
+            "value":"1xfi"
          }
       ]
    }

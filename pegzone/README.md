@@ -1,5 +1,7 @@
 # PegZone
 
+**THIS DOCUMENTATION IS OUT OF DATE. NEW DOCUMENTATION WILL BE AVAILABLE SOON.**
+
 This document described how PegZone works in the case of **dfinance** protocol.
 
 ## Introduction
@@ -23,7 +25,7 @@ PegZone takes fees only when your deposit your coins/tokens to dfinance, when yo
 
 Nice UML to see how it works:
 
-![DFI to WETH UML](https://raw.githubusercontent.com/dfinance/eth-peg-zone/master/res/eth_wei_flow.png)
+![XFI to WETH UML](https://raw.githubusercontent.com/dfinance/eth-peg-zone/master/res/eth_wei_flow.png)
 
 For more details, include smart contracts, check our [eth-peg-zone](https://github.com/dfinance/eth-peg-zone) repository.
 

@@ -17,9 +17,8 @@ You can also see events in transaction logs in [block explorer](https://explorer
 For smart contracts related transactions, there are reserved types for events, such as:
 
 * **contract\_status** - contains contract execution status. Usually contains **"status"** attribute, which represents one of the possible statuses:
-  * **"keep"** - when transaction executed via VM \(means passed pre-verification, byte code, arguments, etc\), but still can contain error and exists together with status **"error"**.
-  * **"discard"** - when transaction not passed via VM, because of fail on pre-validation.
-  * **"error"** - when transaction contains an error, happens together with status **"keep"**, contains attributes:
+  * **"keep"** - when transaction successful executed by VM \(means passed pre-verification, byte code, arguments, etc\).
+  * **"discard"** - when transaction contains an error, contains attributes:
     * **major\_status** - the major status of error, integer.
     * **sub\_status** - the sub status of error, integer, optional.
     * **message** - text message, optional.
@@ -121,7 +120,7 @@ Events example:
          },
          {
             "key":"amount",
-            "value":"1dfi"
+            "value":"1xfi"
          }
       ]
    }
@@ -133,8 +132,8 @@ Events attributes always sorted in the same sequence, so you can go over `contra
 To catch events you can use REST API, for example, all events from Account module, look at this URL to see how filters work:
 
 ```text
-https://rest.testnet.dfinance.co/txs?contract_events.source=0x1::Account
+https://rest.testnet.dfinance.co/txs?vm.contract_events.source=0x1::Account
 ```
 
-Also, look at our [swagger](https://swagger.testnet.dfinance.co/?urls.primaryName=Cosmos%20SDK%20API) and [Dnode events doc](https://github.com/dfinance/dnode/blob/master/docs/events.md) for details.
+Also, look at our [swagger](https://swagger.testnet.dfinance.co/) and [Dnode events doc](https://github.com/dfinance/dnode/blob/master/docs/events.md) for details.
 

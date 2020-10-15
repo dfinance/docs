@@ -13,15 +13,15 @@ Let's do the same we've done in the previous part of documentation, but with sma
 ```rust
 script {
     use 0x1::Account;
-    use 0x1::DFI;
+    use 0x1::XFI;
 
     fun main(sender: &signer, recipient: address, dfi_amount: u128) {
-        Account::pay_from_sender<DFI::T>(sender, recipient, dfi_amount);
+        Account::pay_from_sender<XFI::T>(sender, recipient, dfi_amount);
     }
 }
 ```
 
-As you can see we import core modules from address 0x1. This address \(0x1\) reserved for core modules. Currently we're importing two modules as part of our standard library: [Account](https://github.com/dfinance/dvm/blob/master/stdlib/modules/account.move) and [DFI](https://github.com/dfinance/dvm/blob/master/stdlib/modules/dfi.move). Account module is developed to work with Dfinance accounts from Move, DFI module contains resources to work with DFI balances of accounts. We will talk more about resources later in this documentation or you can read about them in [Move Book](https://move-book.com) \(the book about Move language developed by our team\).
+As you can see we import core modules from address 0x1. This address \(0x1\) reserved for core modules. Currently we're importing two modules as part of our standard library: [Account](https://github.com/dfinance/dvm/blob/master/stdlib/modules/account.move) and [XFI](https://github.com/dfinance/dvm/blob/master/stdlib/modules/xfi.move). Account module is developed to work with Dfinance accounts from Move, XFI module contains resources to work with XFI balances of accounts. We will talk more about resources later in this documentation or you can read about them in [Move Book](https://move-book.com) \(the book about Move language developed by our team\).
 
 Also, you can see the `signer` type. The signer type represents sender authority. In other words - using signer means accessing the sender's address and resources. It has no direct relation to signatures or literally signing, in terms of Move VM it simply represents sender. If you are going to use the `signer` type in your script, it must be the first argument in your main function. **Important**: you don't need to provide an argument for signer type when executing a script, as it will be done automatically.
 
@@ -62,4 +62,4 @@ As you see arguments passed to `execute` match arguments in script function **"m
 
 In nutshell, we have done the same, but instead of using **dncli** native functional for sending coins, we used a smart contract.
 
-Now, once the transaction confirmed and executed, you can query the recipient account again to see how balance changed \(should be increased by 10 DFI\).
+Now, once the transaction confirmed and executed, you can query the recipient account again to see how balance changed \(should be increased by 10 XFI\).

@@ -32,8 +32,8 @@ func main() {
 	// Configure Cosmos SDK.
 	prefix := "wallet"
 	config := sdk.GetConfig()
-    config.SetBech32PrefixForAccount(prefix, prefix + sdk.PrefixPublic)
-    config.Seal()
+	config.SetBech32PrefixForAccount(prefix, prefix + sdk.PrefixPublic)
+	config.Seal()
 
 	// Generate new address from new private key.
 	privKey := secp256k1.GenPrivKey()
