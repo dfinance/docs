@@ -1,6 +1,6 @@
 # Getting started
 
-Here is a guide on how to install **dncli** command line interface and connect to **dfinance** testnet.
+Here is a guide on how to install **dncli** command line interface and connect to **dfinance**.
 
 ## Installation using precompiled binaries
 
@@ -47,12 +47,12 @@ dncli config chain-id dn-testnet
 dncli config output json
 dncli config indent true
 dncli config trust-node true
-dncli config compiler tcp://pub.testnet.dfinance.co:50051
-dncli config node https://rpc.testnet.dfinance.co:443
+dncli config compiler tcp://pub.dfinance.co:50051
+dncli config node https://rpc.dfinance.co:443
 dncli config keyring-backend file
 ```
 
-These configurations will connect your local **dncli** with remote testnet nodes.
+These configurations will connect your local **dncli** with remote nodes.
 
 Check that **dncli** configurated correctly:
 

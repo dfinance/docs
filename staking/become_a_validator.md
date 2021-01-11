@@ -14,15 +14,15 @@ To become a validator:
 
 1. Set up a full node, using a dedicated server or cloud services. The validator machine must have a good performance and latency and must be always online.
 2. Install **dnode**/**dncli** on your node using [dnode](/architecture/dnode.md) and [dncli](/architecture/dncli.md) instructions.
-3. Ensure that your node is in sync with the rest of the network by requesting the latest testnet block. Request testnet status to see latest block or use [explorer](https://explorer.testnet.dfinance.co/):
+3. Ensure that your node is in sync with the rest of the network by requesting the latest block. Request the network status to see latest block or use [explorer](https://explorer.dfinance.co/):
 
-Use these commands to compare block height on your node and on testnet:
+Use these commands to compare block height on your node and on the mainnet:
 
 ```bash
 # Both commands require jq.
 
-# Get latest block from testnet
-curl https://rest.testnet.dfinance.co/blocks/latest  | jq '.block.header.height'
+# Get latest block from mainnet
+curl https://rest.dfinance.co/blocks/latest  | jq '.block.header.height'
 
 # Get latest block from local node
 curl localhost:1317/blocks/latest  | jq '.block.header.height'
@@ -30,7 +30,7 @@ curl localhost:1317/blocks/latest  | jq '.block.header.height'
 dncli q block
 ```
 
-Once the difference between your height and testnet height is small (just a few blocks), you can start the process of registering your account as a validator.
+Once the difference between your height and mainnet height is small (just a few blocks), you can start the process of registering your account as a validator.
 
 ### Important
 
@@ -64,10 +64,10 @@ First, let's try to find validator public key:
 dnode tendermint show-validator
 ```
 
-In case you are using [testnet-bootstrap](https://github.com/dfinance/testnet-bootstrap) docker-compose:
+In case you are using [bootstrap](https://github.com/dfinance/bootstrap) docker-compose:
 
 ```bash
-cd testnet-bootstrap # Go to testnet bootstrap directory.
+cd bootstrap # Go to bootstrap directory.
 docker-compose exec dnode bash # Run bash inside a dnode container.
 dnode tendermint show-validator # Print validator public key, copy it.
 exit # Exit from container.

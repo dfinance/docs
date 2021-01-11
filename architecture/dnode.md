@@ -8,9 +8,9 @@ You can find dnode source code [in dnode Github repository](https://github.com/d
 
 There are multiple ways of running your dnode. We've sorted them from easiest to more complicated.
 
-### Join testnet with testnet-bootstrap
+### Join mainnet with bootstrap
 
-For fastest and simplest launch we recommend using [testnet-bootstrap repos](https://github.com/dfinance/testnet-bootstrap). We've created it to make testnet-node launch as easy as it can be. See 4-step launch guide in its [README](https://github.com/dfinance/testnet-bootstrap#dfinance-testnet-bootstrap).
+For fastest and simplest launch we recommend using [bootstrap repos](https://github.com/dfinance/bootstrap). We've created it to make node launch as easy as it can be. See 4-step launch guide in its [README](https://github.com/dfinance/bootstrap#dfinance-bootstrap).
 
 ### Docker Image
 
@@ -25,7 +25,7 @@ After that you need to:
 * Install **dvm** from [dvm repository](https://github.com/dfinance/dvm).
 * Launch **dvm** with recommended port setting \(or configure your own ports in both dnode and dvm\).
 
-## Testnet configuration \(for docker or manual run\)
+## Mainnet configuration \(for docker or manual run\)
 
 First of all init your local **dnode** with moniker \(name\) of your node:
 
@@ -33,20 +33,20 @@ First of all init your local **dnode** with moniker \(name\) of your node:
 dnode init <moniker>
 ```
 
-After that download testnet version of `genesis.json`:
+After that download `genesis.json`:
 
 ```bash
 # remove default genesis created on init
 rm ~/.dnode/config/genesis.json
 
 # this solution requires 'jq' util to be installed
-curl https://rpc.testnet.dfinance.co/genesis | jq '.result.genesis' > ~/.dnode/config/genesis.json
+curl https://rpc.dfinance.co/genesis | jq '.result.genesis' > ~/.dnode/config/genesis.json
 ```
 
-Now replace seeds in \(_~/.dnode/config.toml_\) with current testnet seed node:
+Now replace seeds in \(_~/.dnode/config.toml_\) with current seed nodes:
 
 ```bash
-seeds = "b57d87dac7a9f77fbb11eb0f137a922fcc44cf0c@pub.testnet.dfinance.co:26656"
+seeds = "122c6788e6d33718833a6020a534fed146e72ca7@pub.dfinance.co:26656,e12f9bdb7d4490b00743017807327f6172c98b32@pub2.dfinance.co:26656"
 ```
 
 **Important**: if you set up full-node, you must open `26656` port on your machine, otherwise your node will not be able to broadcast and receive data from other nodes by P2P.

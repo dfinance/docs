@@ -13,7 +13,7 @@ Currently, dfinance supports next tickers:
 * **XFI\_ETH** - simulation.
 * **XFI\_BTC** - simulation.
 
-A list of assets could be updated, so the actual one you can get from [API](https://rest.testnet.dfinance.co/oracle/assets).
+A list of assets could be updated, so the actual one you can get from [API](https://rest.dfinance.co/oracle/assets).
 
 Currently oracles nodes fetching price from Binance only. Oracle node application published in our Github [repository](https://github.com/dfinance/oracle-app) and we are welcome for contributions: **dfinance** needs more exchanges and ticker pairs.
 
