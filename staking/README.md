@@ -2,7 +2,7 @@
 
 This documentation introduces dfinance Proof-of-Stake consensus algorithm and contains instructions on how to delegate sXFI or LPT, how to become validator on dfinance, how run a full node, and how to earn rewards for delegation.
 
-**IMPORTANT: during incentivized testnet users stake their sXFI (Staking XFI) coins and LPT (Liquidity Provider Tokens).**
+**IMPORTANT: during incentivized mainnet users stake their sXFI (Staking XFI) coins and LPT (Liquidity Provider Tokens).**
 
 Users can get their sXFI and LPT on your account using [Staking Gateway](https://stake.dfinance.co/).
 

@@ -38,10 +38,10 @@
 ## Useful Resources
 
 * [Dfinance Website](https://dfinance.co)
-* [Wallet](https://testnet.dfinance.co)
+* [Wallet](https://wallet.dfinance.co)
 * [Move Book](https://move-book.com)
-* [Block Explorer](https://explorer.testnet.dfinance.co)
-* [Swagger UI](https://swagger.testnet.dfinance.co)
+* [Block Explorer](https://explorer.dfinance.co)
+* [Swagger UI](https://swagger.dfinance.co)
 * [Community](https://community.dfinance.co)
 * [VSCode Move IDE](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide)
 

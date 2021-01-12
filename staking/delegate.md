@@ -4,7 +4,7 @@ This section describes process of delegation of sXFI and LPT to validators in **
 
 Any user who has sXFI or LPT on his account's balance can delegate his coins/tokens to one or multiple validators (though a single sXFI or LPT cannot be used twice).
 
-To find validators and delegate you can use our [explorer](https://explorer.testnet.dfinance.co/validators) and [wallet](https://wallet.testnet.dfinance.co/), or use **dncli**:
+To find validators and delegate you can use our [explorer](https://explorer.dfinance.co/validators) and [wallet](https://wallet.dfinance.co/), or use **dncli**:
 
 ```bash
 # The staking module contains delegators/validators commands.
@@ -20,7 +20,7 @@ dncli tx staking --help
 
 First, choose the validator you want to delegate your sXFI or LPT to and send `delegate` transaction to the network.
 
-Use [wallet](https://wallet.testnet.dfinance.co/) to delegate.
+Use [wallet](https://wallet.dfinance.co/) to delegate.
 Or use **dncli**:
 
 See the list of validators:
@@ -76,7 +76,7 @@ Since you have your first delegation, you can start getting rewards, read more i
 
 When you want to get staked sXFI or LPT back, you can send *unbond* (undelegate) transaction to the network, this will start *unbonding procedure*. Unbonding procedure will take some time, usually, it's 7 days unbonding period for both sXFI and LPT. During this period the delegator still can be slashed for potential misbehaviors committed by the validator before the unbonding process ends.
 
-Use [wallet](https://wallet.testnet.dfinance.co/) to unbond or continue with **dncli**.
+Use [wallet](https://wallet.dfinance.co/) to unbond or continue with **dncli**.
 
 Find delegations from your address:
 
@@ -106,7 +106,7 @@ Once the unbonding period is completed you will get your sXFI or LPT coins back 
 
 In situations when you don't want to unbond your sXFI and at the same time don't want to delegate to a specific validator, or if you want to delegate part of your staked sXFI or LPT to another validator, you can redelegate.
 
-Use [wallet](https://wallet.testnet.dfinance.co/your_validators) to redelegate or continue with **dncli**.
+Use [wallet](https://wallet.dfinance.co/your_validators) to redelegate or continue with **dncli**.
 
 Run redelegate command:
 

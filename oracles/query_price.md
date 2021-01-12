@@ -66,7 +66,7 @@ By default returned **u128** price has reserved **8 decimals places**.
 
 Means price for ETH\_USDT as **100.02** will be presented as **10002000000**.
 
-To see an example look at our [API](https://rest.testnet.dfinance.co/oracle/currentprice/btc_usdt), ETH\_USDT part, how price presented there.
+To see an example look at our [API](https://rest.dfinance.co/oracle/currentprice/btc_usdt), ETH\_USDT part, how price presented there.
 
 ## Write a script
 

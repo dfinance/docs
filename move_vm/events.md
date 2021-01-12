@@ -10,7 +10,7 @@ You can see them by querying transaction by id, they're stored under 'events' ke
 ]
 ```
 
-You can also see events in transaction logs in [block explorer](https://explorer.testnet.dfinance.co/txs?page=1).
+You can also see events in transaction logs in [block explorer](https://explorer.dfinance.co/txs?page=1).
 
 ## VM related events
 
@@ -132,8 +132,8 @@ Events attributes always sorted in the same sequence, so you can go over `contra
 To catch events you can use REST API, for example, all events from Account module, look at this URL to see how filters work:
 
 ```text
-https://rest.testnet.dfinance.co/txs?vm.contract_events.source=0x1::Account
+https://rest.dfinance.co/txs?vm.contract_events.source=0x1::Account
 ```
 
-Also, look at our [swagger](https://swagger.testnet.dfinance.co/) and [Dnode events doc](https://github.com/dfinance/dnode/blob/master/docs/events.md) for details.
+Also, look at our [swagger](https://swagger.dfinance.co/) and [Dnode events doc](https://github.com/dfinance/dnode/blob/master/docs/events.md) for details.
 

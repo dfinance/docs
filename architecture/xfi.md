@@ -58,11 +58,13 @@ You can learn more about generics in Move in the [Move book](https://move-book.c
 
 ## Other coins
 
-Current testnet supports other coins along with XFI:
+Current mainnet supports other coins along with XFI (just for test purposes):
+
+**IMPORTANT: DON'T DEPOSIT REAL MAINNET ETH VIA PEGZONE**
 
 * **ETH** - ETH representation, can be transfered through [PegZone](../pegzone/).
-* **BTC** - simulation of BTC, can be recieved by [faucet](https://testnet.dfinance.co).
-* **USDT** - simulation of Tether USDT, can be recieved also by [faucet](https://testnet.dfinance.co).
+* **BTC** - simulation of BTC, can be recieved by [faucet](https://wallet.dfinance.co).
+* **USDT** - simulation of Tether USDT, can be recieved also by [faucet](https://wallet.dfinance.co).
 
 Same as XFI, all coins can be sent between accounts with CLI:
 

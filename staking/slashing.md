@@ -24,7 +24,7 @@ Slashing parameter described in genesis blocks, you can look at them:
 dncli q slashing params 
 ```
 
-Current testnet configuration looks so:
+Current mainnet configuration looks so:
 
 ```json
 {

@@ -54,13 +54,13 @@ In case, your VM transaction contains an error, you always can query detailed in
 dncli q vm tx [txId]
 ```
 
-## Testnet configuration
+## Mainnet configuration
 
-**dncli** by default connects to local **dnode** \(at localhost:26657\) and **compiler** \(inside **dvm**\) \(at localhost:50051\). To connect to remote node or launched testnet, change these configuration settings:
+**dncli** by default connects to local **dnode** \(at localhost:26657\) and **compiler** \(inside **dvm**\) \(at localhost:50051\). To connect to remote node or launched mainnet, change these configuration settings:
 
 ```bash
-dncli config compiler tcp://pub.testnet.dfinance.co:50051
-dncli config node https://rpc.testnet.dfinance.co:443
+dncli config compiler tcp://pub.dfinance.co:50051
+dncli config node https://rpc.dfinance.co:443
 ```
 
 Also, **compiler** address could be passed as `--compiler` option during execution of command requiring compilation, this is: 

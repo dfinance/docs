@@ -22,7 +22,7 @@ dncli keys add -i my-account
 
 Save **passphrase** and keep in safe place. **Without mnemonic and passphrase you can't access your new account!**
 
-Go to **dfinance** [**wallet portal**](https://testnet.dfinance.co/), use your **mnemonic** and **passphrase** to login, and request faucet to send your free XFI. Click there on request **Request Tokens** button and wait for few seconds, XFI coins will appear on your account. Also, the faucet sending testnet BTC and USDT coins besides XFI.
+Go to **dfinance** [**wallet portal**](https://wallet.dfinance.co/), use your **mnemonic** and **passphrase** to login, and request faucet to send your free XFI. Click there on request **Request Tokens** button and wait for few seconds, XFI coins will appear on your account. Also, the faucet sending testnet BTC and USDT coins besides XFI.
 
 After this let's query our account with **dncli**:
 

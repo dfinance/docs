@@ -1,6 +1,6 @@
 # Deposit
 
-In this documentation explained how to deposit testnet ropsten ETH from your account to **dfinance** testnet.
+In this documentation explained how to deposit testnet ropsten ETH from your account to **dfinance**.
 
 **Important**: use only ropsten ETH, as all mentioned contracts deployed in ropsten ethereum testnet, and this is experimental software, you can lose your ETH.
 
@@ -11,11 +11,11 @@ Required:
 * [Metamask](https://metamask.io/)
 * Ropsten ETH - request from some known faucet, for example, use this [one](https://faucet.ropsten.be/).
 
-Go to [wallet](https://testnet.dfinance.co) portal and recover/create an account.
+Go to [wallet](https://wallet.dfinance.co) portal and recover/create an account.
 
 Then click on **"Transfer"** button to transfer **ETH** from your Metamask account to **dfinance** blockchain.
 
-After 100+ confirmations you ETH will appear on your account in **dfinance** testnet.
+After 100+ confirmations you ETH will appear on your account in **dfinance**.
 
 ## By sending transaction
 

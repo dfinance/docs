@@ -8,7 +8,7 @@ Read more about the inflation and rewards model supported by the dfinance networ
 
 ## Inflation
 
-Dfinance inflation model is in production version and implemented in current testnet. We are releasing information about it step by step, as dfinance inflation model very innovative and using a lot of parameters.
+Dfinance inflation model is in production version and implemented in current mainnet. We are releasing information about it step by step, as dfinance inflation model very innovative and using a lot of parameters.
 
 You can read about introduction in our latest [article](https://medium.com/dfinance/token-economics-954874a35252).
 
@@ -26,7 +26,7 @@ More information will be provided soon with coming documentation updates.
 
 ## Rewards
 
-Use [wallet](https://wallet.testnet.dfinance.co) to see & withdraw rewards or continue with **dncli**.
+Use [wallet](https://wallet.dfinance.co) to see & withdraw rewards or continue with **dncli**.
 
 See `distribution` module:
 
@@ -55,7 +55,7 @@ If you are validator, see earned commission:
 dncli q distribution commission [validator]
 ```
 
-**Important:** in current testnet rewards withdrawing disabled and will become available with mainnet.
+**Important:** in current mainnet rewards withdrawing disabled and will become available later.
 
 To withdraw rewards send transaction:
 

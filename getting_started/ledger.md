@@ -1,12 +1,12 @@
 # Ledger Support
 
-**dncli** and [wallet](https://wallet.testnet.dfinance.co) both supports [Ledger](https://www.ledger.com/) via Cosmos Ledger App.
+**dncli** and [wallet](https://wallet.dfinance.co) both supports [Ledger](https://www.ledger.com/) via Cosmos Ledger App.
 
 Install Cosmos Ledger App using official [instruction](https://support.ledger.com/hc/en-us/articles/360013713840-Cosmos-ATOM-).
 
 ## Wallet
 
-Launch Cosmos App on your ledger device and visit [wallet](https://wallet.testnet.dfinance.co), login by clicking on 'Unlock with Ledger' button and follow instructions appear on your screen.
+Launch Cosmos App on your ledger device and visit [wallet](https://wallet.dfinance.co), login by clicking on 'Unlock with Ledger' button and follow instructions appear on your screen.
 
 ## dncli
 
